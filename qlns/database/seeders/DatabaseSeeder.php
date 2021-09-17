@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $account = Account::create(['name' => 'Acme Corporation']);
+        $account = Account::create(['name' => 'Công Ty Phần Mềm SIBEN']);
 
         User::factory()->create([
             'account_id' => $account->id,
