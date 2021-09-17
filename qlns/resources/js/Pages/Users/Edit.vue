@@ -69,24 +69,25 @@ export default {
         password: null,
         owner: this.user.owner,
         photo: null,
-      }),
+      })
     }
   },
   methods: {
     update() {
-      this.form.post(this.route('users.update', this.user.id), {
-        onSuccess: () => this.form.reset('password', 'photo'),
-      })
+        // this.route('users.update', this.user.id) not working when upload images
+        this.form.post('/users/' + this.user.id, {
+            onSuccess: () => this.form.reset('password', 'photo')
+        })
     },
     destroy() {
-      if (confirm('Are you sure you want to delete this user?')) {
-        this.$inertia.delete(this.route('users.destroy', this.user.id))
-      }
+        if (confirm('Are you sure you want to delete this user?')) {
+            this.$inertia.delete(this.route('users.destroy', this.user.id))
+        }
     },
     restore() {
-      if (confirm('Are you sure you want to restore this user?')) {
-        this.$inertia.put(this.route('users.restore', this.user.id))
-      }
+        if (confirm('Are you sure you want to restore this user?')) {
+            this.$inertia.put(this.route('users.restore', this.user.id))
+        }
     },
   },
 }

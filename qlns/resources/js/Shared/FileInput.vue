@@ -48,7 +48,7 @@ export default {
       this.$refs.file.click()
     },
     change(e) {
-      this.$emit('input', e.target.files[0])
+      this.$emit('input', e.target.files[0]);
     },
     remove() {
       this.$emit('input', null)

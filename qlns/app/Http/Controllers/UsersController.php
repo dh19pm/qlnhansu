@@ -15,6 +15,9 @@ class UsersController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->owner === false)
+            abort(404);
+
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
             'users' => Auth::user()->account->users()
@@ -34,6 +37,9 @@ class UsersController extends Controller
 
     public function create()
     {
+        if (Auth::user()->owner === false)
+            abort(404);
+
         return Inertia::render('Users/Create');
     }
 
