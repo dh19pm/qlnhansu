@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     update() {
-        // this.route('users.update', this.user.id) not working when upload images
+        // this.route('users.update', this.user.id) not working when upload images fix by siben
         this.form.post('/users/' + this.user.id, {
             onSuccess: () => this.form.reset('password', 'photo')
         })

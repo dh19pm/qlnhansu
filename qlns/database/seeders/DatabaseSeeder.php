@@ -17,17 +17,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $account = Account::create(['name' => 'Công Ty Phần Mềm SIBEN']);
+        $account = Account::create(['name' => 'Quản Lý Nhân Sự']);
 
         User::factory()->create([
             'account_id' => $account->id,
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'johndoe@example.com',
+            'first_name' => 'Sĩ',
+            'last_name' => 'Ben',
+            'email' => 'admin@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
             'owner' => true,
         ]);
 
-        User::factory(5)->create(['account_id' => $account->id]);
+        User::factory()->create([
+            'account_id' => $account->id,
+            'first_name' => 'Vũ',
+            'last_name' => 'Hán',
+            'email' => 'user@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
+            'owner' => false,
+        ]);
+
+        // User::factory(5)->create(['account_id' => $account->id]);
 
         $organizations = Organization::factory(100)
             ->create(['account_id' => $account->id]);

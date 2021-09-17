@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Dashboard</h1>
-    <p class="mb-8 leading-normal">Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how <a class="text-indigo-500 underline hover:text-orange-600" href="https://inertiajs.com">Inertia.js</a> works.</p>
+    <h1 class="mb-8 font-bold text-3xl">Trang Chủ</h1>
+    <p class="mb-8 leading-normal">Chào mừng đã đến với website quản lý nhân sự, đồ án năm 4 được code bởi <a class="text-indigo-500 underline hover:text-orange-600" href="https://siben.vn">Sĩ Ben</a></p>
   </div>
 </template>
 
