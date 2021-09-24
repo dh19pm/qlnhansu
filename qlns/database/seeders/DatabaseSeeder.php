@@ -21,8 +21,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'account_id' => $account->id,
-            'first_name' => 'Sĩ',
-            'last_name' => 'Ben',
+            'fullname' => 'Đặng Tiến Sĩ',
             'email' => 'admin@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
             'owner' => true,
@@ -30,8 +29,15 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'account_id' => $account->id,
-            'first_name' => 'Vũ',
-            'last_name' => 'Hán',
+            'fullname' => 'Mai Tấn Lộc',
+            'email' => 'user@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
+            'owner' => false,
+        ]);
+
+        User::factory()->create([
+            'account_id' => $account->id,
+            'fullname' => 'Lê Quang Vinh',
             'email' => 'user@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
             'owner' => false,
