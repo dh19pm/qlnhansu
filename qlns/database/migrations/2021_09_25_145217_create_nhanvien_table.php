@@ -16,6 +16,8 @@ class CreateNhanvienTable extends Migration
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('mucluong_id');
+            $table->unsignedInteger('bangcap_id');
+            $table->unsignedInteger('chuyenmon_id');
             $table->string('hovaten', 100);
             $table->boolean('gioitinh')->default(false);
             $table->date('ngaysinh');
@@ -26,6 +28,8 @@ class CreateNhanvienTable extends Migration
             $table->boolean('trangthai')->default(false);
             $table->timestamps();
             $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
+            $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
+            $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
             $table->softDeletes();
         });
     }

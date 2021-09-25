@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThuongphatTable extends Migration
+class CreateUngluongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateThuongphatTable extends Migration
      */
     public function up()
     {
-        Schema::create('thuongphat', function (Blueprint $table) {
+        Schema::create('ungluong', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->boolean('loai')->default(false);
             $table->integer('sotien');
             $table->string('lydo', 255);
-            $table->date('ngayhan');
             $table->timestamps();
-            $table->foreign('nhanvien_id','fk_thuongphat_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->foreign('nhanvien_id','fk_ungluong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
             $table->softDeletes();
         });
     }
@@ -33,11 +31,11 @@ class CreateThuongphatTable extends Migration
      */
     public function down()
     {
-        Schema::table('thuongphat', function(Blueprint $table)
+        Schema::table('ungluong', function(Blueprint $table)
         {
-            $table->dropForeign('fk_thuongphat_nhanvien_id');
+            $table->dropForeign('fk_ungluong_nhanvien_id');
             $table->dropColumn('nhanvien_id');
         });
-        Schema::dropIfExists('thuongphat');
+        Schema::dropIfExists('ungluong');
     }
 }
