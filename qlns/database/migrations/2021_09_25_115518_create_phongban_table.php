@@ -17,6 +17,7 @@ class CreatePhongbanTable extends Migration
             $table->increments('id');
             $table->string('tenpb', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

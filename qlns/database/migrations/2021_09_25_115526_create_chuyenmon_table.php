@@ -17,6 +17,7 @@ class CreateChuyenmonTable extends Migration
             $table->increments('id');
             $table->string('tencm', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

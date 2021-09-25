@@ -15,12 +15,14 @@ class CreateMucluongTable extends Migration
     {
         Schema::create('mucluong', function (Blueprint $table) {
             $table->increments('id');
-            $table->index('phongban_id');
-            $table->integer('chucvu_id');
+            $table->unsignedInteger('phongban_id');
+            $table->unsignedInteger('chucvu_id');
             $table->integer('luongcb');
             $table->integer('phucap');
             $table->timestamps();
-            $table->foreign('phongban_id','fk_mucluong_phongban_id')->references('id')->on('phongban')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('phongban_id','fk_mucluong_phongban_id')->references('id')->on('phongban')->onUpdate('CASCADE');
+            $table->foreign('chucvu_id','fk_mucluong_chucvu_id')->references('id')->on('chucvu')->onUpdate('CASCADE');
+            $table->softDeletes();
         });
     }
 
@@ -34,7 +36,9 @@ class CreateMucluongTable extends Migration
         Schema::table('mucluong', function(Blueprint $table)
         {
             $table->dropForeign('fk_mucluong_phongban_id');
+            $table->dropForeign('fk_mucluong_chucvu_id');
             $table->dropColumn('phongban_id');
+            $table->dropColumn('chucvu_id');
         });
         Schema::dropIfExists('mucluong');
     }

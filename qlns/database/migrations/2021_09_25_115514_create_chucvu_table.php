@@ -17,6 +17,7 @@ class CreateChucvuTable extends Migration
             $table->increments('id');
             $table->string('tencv', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

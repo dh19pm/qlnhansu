@@ -17,6 +17,7 @@ class CreateBangcapTable extends Migration
             $table->increments('id');
             $table->string('tenbc', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
