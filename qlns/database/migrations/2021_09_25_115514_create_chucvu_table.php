@@ -16,8 +16,6 @@ class CreateChucvuTable extends Migration
         Schema::create('chucvu', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tencv', 100);
-            $table->integer('luongcb');
-            $table->integer('phucap');
             $table->timestamps();
         });
     }
