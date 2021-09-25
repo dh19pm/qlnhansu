@@ -11,7 +11,7 @@
     <trashed-message v-if="user.deleted_at" class="mb-6" @restore="restore">
       This user has been deleted.
     </trashed-message>
-    <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+    <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
           <text-input v-model="form.fullname" :error="form.errors.fullname" class="pr-6 pb-8 w-full lg:w-1/2" label="Full name" />

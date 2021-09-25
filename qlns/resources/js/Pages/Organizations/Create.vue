@@ -4,7 +4,7 @@
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('organizations')">Organizations</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Create
     </h1>
-    <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+    <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
           <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Name" />

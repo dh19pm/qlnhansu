@@ -8,7 +8,7 @@
     <trashed-message v-if="organization.deleted_at" class="mb-6" @restore="restore">
       This organization has been deleted.
     </trashed-message>
-    <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+    <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
           <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Name" />
