@@ -26,6 +26,7 @@ class CreateNhanvienTable extends Migration
             $table->string('sdt', 15);
             $table->string('diachi', 255)->nullable();
             $table->boolean('trangthai')->default(false);
+            $table->date('ngaynghilam')->nullable();
             $table->timestamps();
             $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
