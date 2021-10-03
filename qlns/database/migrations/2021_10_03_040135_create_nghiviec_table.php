@@ -14,8 +14,15 @@ class CreateNghiviecTable extends Migration
     public function up()
     {
         Schema::create('nghiviec', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('nhanvien_id');
+            $table->date('ngaybatdau');
+            $table->date('ngayketthuc');
+            $table->string('lydo', 255);
+            $table->boolean('huongluong')->default(false);
             $table->timestamps();
+            $table->foreign('nhanvien_id','fk_nghiviec_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +33,11 @@ class CreateNghiviecTable extends Migration
      */
     public function down()
     {
+        Schema::table('nghiviec', function(Blueprint $table)
+        {
+            $table->dropForeign('fk_nghiviec_nhanvien_id');
+            $table->dropColumn('nhanvien_id');
+        });
         Schema::dropIfExists('nghiviec');
     }
 }
