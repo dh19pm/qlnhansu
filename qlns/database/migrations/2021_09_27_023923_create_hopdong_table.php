@@ -17,7 +17,7 @@ class CreateHopdongTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
             $table->date('ngayky');
-            $table->date('thoihan')->nullable();
+            $table->date('ngayketthuc')->nullable();
             $table->boolean('trangthai')->default(false);
             $table->timestamps();
             $table->foreign('nhanvien_id','fk_hopdong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
