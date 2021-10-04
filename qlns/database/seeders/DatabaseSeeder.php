@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'account_id' => $account->id,
             'fullname' => 'Mai Tấn Lộc',
-            'email' => 'user@email.com',
+            'email' => 'user1@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
             'owner' => false,
         ]);
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'account_id' => $account->id,
             'fullname' => 'Lê Quang Vinh',
-            'email' => 'user@email.com',
+            'email' => 'user2@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
             'owner' => false,
         ]);

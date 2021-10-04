@@ -10,4 +10,6 @@ class NhanVien extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'nhanvien';
 }

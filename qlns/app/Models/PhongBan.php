@@ -10,4 +10,6 @@ class PhongBan extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'phongban';
 }

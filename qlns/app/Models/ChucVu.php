@@ -10,4 +10,6 @@ class ChucVu extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'chucvu';
 }

@@ -10,4 +10,6 @@ class MucLuong extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'mucluong';
 }

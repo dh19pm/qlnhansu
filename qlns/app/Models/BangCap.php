@@ -10,4 +10,6 @@ class BangCap extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'bangcap';
 }
