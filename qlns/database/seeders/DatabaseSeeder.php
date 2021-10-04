@@ -24,10 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $congty = CongTy::create(['tenct' => 'Công Ty Phần Mềm SIBEN']);
-
         User::factory()->create([
-            'account_id' => $congty->id,
             'fullname' => 'Đặng Tiến Sĩ',
             'email' => 'admin@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -35,7 +32,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'account_id' => $congty->id,
             'fullname' => 'Mai Tấn Lộc',
             'email' => 'user1@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -43,7 +39,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'account_id' => $congty->id,
             'fullname' => 'Lê Quang Vinh',
             'email' => 'user2@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -390,16 +385,5 @@ class DatabaseSeeder extends Seeder
             'trangthai' => true,
             'dongbhxh' => 8.0
         ]);
-
-        // User::factory(5)->create(['account_id' => $congty->id]);
-
-        // $organizations = Organization::factory(100)
-        //     ->create(['account_id' => $congty->id]);
-
-        // Contact::factory(100)
-        //     ->create(['account_id' => $congty->id])
-        //     ->each(function ($contact) use ($organizations) {
-        //         $contact->update(['organization_id' => $organizations->random()->id]);
-        //     });
     }
 }
