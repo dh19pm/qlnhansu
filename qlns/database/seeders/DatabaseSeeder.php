@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\BangCap;
 use App\Models\ChucVu;
 use App\Models\ChuyenMon;
+use App\Models\CongTy;
 use App\Models\Contact;
 use App\Models\MucLuong;
 use App\Models\NhanVien;
@@ -23,10 +24,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $account = Account::create(['name' => 'Công Ty Phần Mềm SIBEN']);
+        $congty = CongTy::create(['tenct' => 'Công Ty Phần Mềm SIBEN']);
 
         User::factory()->create([
-            'account_id' => $account->id,
+            'account_id' => $congty->id,
             'fullname' => 'Đặng Tiến Sĩ',
             'email' => 'admin@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -34,7 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'account_id' => $account->id,
+            'account_id' => $congty->id,
             'fullname' => 'Mai Tấn Lộc',
             'email' => 'user1@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'account_id' => $account->id,
+            'account_id' => $congty->id,
             'fullname' => 'Lê Quang Vinh',
             'email' => 'user2@email.com',
             'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
@@ -390,13 +391,13 @@ class DatabaseSeeder extends Seeder
             'dongbhxh' => 8.0
         ]);
 
-        // User::factory(5)->create(['account_id' => $account->id]);
+        // User::factory(5)->create(['account_id' => $congty->id]);
 
         // $organizations = Organization::factory(100)
-        //     ->create(['account_id' => $account->id]);
+        //     ->create(['account_id' => $congty->id]);
 
         // Contact::factory(100)
-        //     ->create(['account_id' => $account->id])
+        //     ->create(['account_id' => $congty->id])
         //     ->each(function ($contact) use ($organizations) {
         //         $contact->update(['organization_id' => $organizations->random()->id]);
         //     });
