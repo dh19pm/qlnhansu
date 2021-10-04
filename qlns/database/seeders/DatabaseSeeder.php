@@ -8,6 +8,7 @@ use App\Models\ChucVu;
 use App\Models\ChuyenMon;
 use App\Models\Contact;
 use App\Models\MucLuong;
+use App\Models\NhanVien;
 use App\Models\Organization;
 use App\Models\PhongBan;
 use App\Models\User;
@@ -92,170 +93,301 @@ class DatabaseSeeder extends Seeder
             'tencv' => 'Nhân Viên'
         ]);
 
-        MucLuong::factory()->create([
+        $giamdoc_truongphong = MucLuong::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $truongphong,
             'luongcb' => 100000000,
             'phucap' => 3000000
         ]);
 
-        MucLuong::factory()->create([
+        $giamdoc_phophong = MucLuong::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $phophong,
             'luongcb' => 70000000,
             'phucap' => 2000000
         ]);
 
-        MucLuong::factory()->create([
+        $kinhdoanh_truongphong = MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $kinhdoanh_phophong = MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $kinhdoanh_marketing = MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $marketing,
             'luongcb' => 15000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $kinhdoanh_nhanvien = MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $phantich_truongphong = MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $phantich_phophong = MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $phophong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $phantich_nhanvien = MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $thietke_truongphong = MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $thietke_phophong = MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $thietke_nhanvien = MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $laptrinh_truongphong = MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $laptrinh_phophong = MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $laptrinh_nhanvien = MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 20000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $hanhchinh_truongphong = MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $truongphong,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $hanhchinh_phophong = MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $phophong,
             'luongcb' => 7000000,
             'phucap' => 500000
         ]);
 
-        MucLuong::factory()->create([
+        $hanhchinh_nhanvien = MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 5000000,
             'phucap' => 500000
         ]);
 
-        ChuyenMon::factory()->create([
+        $programmer = ChuyenMon::factory()->create([
             'tencm' => 'Programmer'
         ]);
 
-        ChuyenMon::factory()->create([
+        $tester = ChuyenMon::factory()->create([
             'tencm' => 'Tester'
         ]);
 
-        ChuyenMon::factory()->create([
+        $frontend = ChuyenMon::factory()->create([
             'tencm' => 'Front-end'
         ]);
 
-        ChuyenMon::factory()->create([
+        $backend = ChuyenMon::factory()->create([
             'tencm' => 'Back-end'
         ]);
 
-        ChuyenMon::factory()->create([
+        $fullstack = ChuyenMon::factory()->create([
             'tencm' => 'Full-Stack'
         ]);
 
-        BangCap::factory()->create([
+        $tiensi = BangCap::factory()->create([
             'tenbc' => 'Tiến Sĩ'
         ]);
 
-        BangCap::factory()->create([
+        $thacsi = BangCap::factory()->create([
             'tenbc' => 'Thạc Sĩ'
         ]);
 
-        BangCap::factory()->create([
+        $cunhan = BangCap::factory()->create([
             'tenbc' => 'Cử Nhân'
         ]);
 
-        BangCap::factory()->create([
+        $daihoc = BangCap::factory()->create([
             'tenbc' => 'Đại Học'
         ]);
 
-        BangCap::factory()->create([
+        $caodang = BangCap::factory()->create([
             'tenbc' => 'Cao Đẳng'
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $giamdoc_truongphong,
+            'bangcap_id' => $tiensi,
+            'chuyenmon_id' => $fullstack,
+            'hovaten' => 'Nguyễn Giám Đốc',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $giamdoc_phophong,
+            'bangcap_id' => $tiensi,
+            'chuyenmon_id' => $frontend,
+            'hovaten' => 'Nguyễn Minh Tuấn',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $giamdoc_phophong,
+            'bangcap_id' => $tiensi,
+            'chuyenmon_id' => $frontend,
+            'hovaten' => 'Phạm Văn Mách',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $thietke_truongphong,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $frontend,
+            'hovaten' => 'Lê Văn Luyện',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $thietke_phophong,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $frontend,
+            'hovaten' => 'Nguyễn Thị Phương Thảo',
+            'gioitinh' => true,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $thietke_nhanvien,
+            'bangcap_id' => $caodang,
+            'chuyenmon_id' => $frontend,
+            'hovaten' => 'Mai Hồi Kết',
+            'gioitinh' => true,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $laptrinh_truongphong,
+            'bangcap_id' => $thacsi,
+            'chuyenmon_id' => $backend,
+            'hovaten' => 'Tô Ngọc Trân',
+            'gioitinh' => true,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $laptrinh_phophong,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $backend,
+            'hovaten' => 'Nguyễn Thị Kim Trang',
+            'gioitinh' => true,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $laptrinh_nhanvien,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $backend,
+            'hovaten' => 'Mai Lỗ Tấn',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $kinhdoanh_truongphong,
+            'bangcap_id' => $tiensi,
+            'chuyenmon_id' => $fullstack,
+            'hovaten' => 'Nguyễn Văn Nam',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $kinhdoanh_marketing,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $fullstack,
+            'hovaten' => 'Nguyễn Tấn Tài',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $kinhdoanh_marketing,
+            'bangcap_id' => $daihoc,
+            'chuyenmon_id' => $fullstack,
+            'hovaten' => 'Nguyễn Tấn Tài',
+            'gioitinh' => false,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
+        ]);
+
+
+        NhanVien::factory()->create([
+            'mucluong_id' => $hanhchinh_truongphong,
+            'bangcap_id' => $thacsi,
+            'chuyenmon_id' => $fullstack,
+            'hovaten' => 'Phạm Thanh Mai',
+            'gioitinh' => true,
+            'trangthai' => true,
+            'dongbhxh' => 8.0
         ]);
 
         // User::factory(5)->create(['account_id' => $account->id]);

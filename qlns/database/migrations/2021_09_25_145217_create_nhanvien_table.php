@@ -27,7 +27,7 @@ class CreateNhanvienTable extends Migration
             $table->string('diachi', 255)->nullable();
             $table->string('dantoc', 15);
             $table->string('tongiao', 15);
-            $table->string('quequan', 15);
+            $table->string('quequan', 255);
             $table->boolean('trangthai')->default(false);
             $table->float('dongbhxh', 5, 2);
             $table->date('ngaynghilam')->nullable();
