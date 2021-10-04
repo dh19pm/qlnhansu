@@ -16,8 +16,8 @@ class CreateLichnghiTable extends Migration
         Schema::create('lichnghi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tenln', 255);
-            $table->date('ngaybatdau');
-            $table->date('ngayketthuc');
+            $table->date('ngaybd');
+            $table->date('ngaykt');
             $table->boolean('huongluong')->default(false);
             $table->timestamps();
             $table->softDeletes();

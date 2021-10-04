@@ -16,8 +16,8 @@ class CreateNghiviecTable extends Migration
         Schema::create('nghiviec', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->date('ngaybatdau');
-            $table->date('ngayketthuc');
+            $table->date('ngaybd');
+            $table->date('ngaykt');
             $table->string('lydo', 255);
             $table->boolean('huongluong')->default(false);
             $table->timestamps();
