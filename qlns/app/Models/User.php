@@ -29,11 +29,6 @@ class User extends Authenticatable
         return $this->belongsTo(Account::class);
     }
 
-    public function nhanvien()
-    {
-        return $this->belongsTo(NhanVien::class);
-    }
-
     public function getNameAttribute()
     {
         return $this->fullname;
