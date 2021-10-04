@@ -7,6 +7,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\NhanVienController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -133,6 +134,12 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
 
 Route::get('reports', [ReportsController::class, 'index'])
     ->name('reports')
+    ->middleware('auth');
+
+// NhanVien
+
+Route::get('nhanvien', [NhanVienController::class, 'index'])
+    ->name('nhanvien')
     ->middleware('auth');
 
 // Images

@@ -61,7 +61,7 @@ class UsersController extends Controller
             'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
         ]);
 
-        return Redirect::route('users')->with('success', 'User created.');
+        return Redirect::route('users')->with('success', 'Đã tạo người dùng.');
     }
 
     public function edit(User $user)
@@ -80,9 +80,9 @@ class UsersController extends Controller
 
     public function update(User $user)
     {
-        if (App::environment('demo') && $user->isDemoUser()) {
-            return Redirect::back()->with('error', 'Updating the demo user is not allowed.');
-        }
+        // if (App::environment('demo') && $user->isDemoUser()) {
+        //     return Redirect::back()->with('error', 'Updating the demo user is not allowed.');
+        // }
 
         Request::validate([
             'fullname' => ['required', 'max:100'],
@@ -102,24 +102,24 @@ class UsersController extends Controller
             $user->update(['password' => Request::get('password')]);
         }
 
-        return Redirect::back()->with('success', 'User updated.');
+        return Redirect::back()->with('success', 'Đã cập nhật người dùng.');
     }
 
     public function destroy(User $user)
     {
-        if (App::environment('demo') && $user->isDemoUser()) {
-            return Redirect::back()->with('error', 'Deleting the demo user is not allowed.');
-        }
+        // if (App::environment('demo') && $user->isDemoUser()) {
+        //     return Redirect::back()->with('error', 'Deleting the demo user is not allowed.');
+        // }
 
         $user->delete();
 
-        return Redirect::back()->with('success', 'User deleted.');
+        return Redirect::back()->with('success', 'Đã xoá người dùng.');
     }
 
     public function restore(User $user)
     {
         $user->restore();
 
-        return Redirect::back()->with('success', 'User restored.');
+        return Redirect::back()->with('success', 'Đã khôi phục người dùng.');
     }
 }

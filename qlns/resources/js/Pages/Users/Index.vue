@@ -1,32 +1,31 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Users</h1>
+    <h1 class="mb-8 font-bold text-3xl">Người Dùng</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
-        <label class="block text-gray-700">Role:</label>
+        <label class="block text-gray-700">Quyền hạn:</label>
         <select v-model="form.role" class="mt-1 w-full form-select">
-          <option :value="null" />
-          <option value="user">User</option>
-          <option value="owner">Owner</option>
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="user">Người dùng</option>
+          <option value="owner">Quản trị viên</option>
         </select>
-        <label class="mt-4 block text-gray-700">Trashed:</label>
+        <label class="mt-4 block text-gray-700">Trạng thái xoá:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="only">Đã xoá</option>
+          <option value="with">Tất cả</option>
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('users.create')">
-        <span>Create</span>
-        <span class="hidden md:inline">User</span>
+        <span>Tạo Mới</span>
       </inertia-link>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">
-          <th class="px-6 pt-6 pb-4">Name</th>
+          <th class="px-6 pt-6 pb-4">Họ và tên</th>
           <th class="px-6 pt-6 pb-4">Email</th>
-          <th class="px-6 pt-6 pb-4" colspan="2">Role</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Quyền hạn</th>
         </tr>
         <tr v-for="user in users" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
@@ -43,7 +42,7 @@
           </td>
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('users.edit', user.id)" tabindex="-1">
-              {{ user.owner ? 'Owner' : 'User' }}
+              {{ user.owner ? 'Quản trị viên' : 'Người dùng' }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
