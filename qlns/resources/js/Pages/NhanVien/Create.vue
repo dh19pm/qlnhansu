@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     store() {
-      this.form.post(this.route('nhanvien.store'))
+      this.form.post('/nhanvien')
     },
   },
 }
