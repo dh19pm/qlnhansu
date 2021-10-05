@@ -20,8 +20,8 @@ class UsersController extends Controller
 
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
-            'users' => Auth::user()->account->users()
-                ->orderByName()
+            'users' => (new User())
+                ->orderBy('fullname')
                 ->filter(Request::only('search', 'role', 'trashed'))
                 ->get()
                 ->transform(fn ($user) => [
@@ -53,7 +53,7 @@ class UsersController extends Controller
             'photo' => ['nullable', 'image'],
         ]);
 
-        Auth::user()->account->users()->create([
+        Auth::user()->nguoidung->create([
             'fullname' => Request::get('fullname'),
             'email' => Request::get('email'),
             'password' => Request::get('password'),

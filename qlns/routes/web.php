@@ -76,6 +76,29 @@ Route::get('nhanvien', [NhanVienController::class, 'index'])
     ->name('nhanvien')
     ->middleware('auth');
 
+Route::get('nhanvien/create', [NhanVienController::class, 'create'])
+    ->name('nhanvien.create')
+    ->middleware('auth');
+
+Route::post('nhanvien', [NhanVienController::class, 'store'])
+    ->name('nhanvien.store')
+    ->middleware('auth');
+
+Route::get('nhanvien/{nhanvien}/edit', [NhanVienController::class, 'edit'])
+    ->name('nhanvien.edit')
+    ->middleware('auth');
+
+Route::put('nhanvien/{nhanvien}', [NhanVienController::class, 'update'])
+    ->name('nhanvien.update')
+    ->middleware('auth');
+
+Route::delete('nhanvien/{nhanvien}', [NhanVienController::class, 'destroy'])
+    ->name('nhanvien.destroy')
+    ->middleware('auth');
+
+Route::put('nhanvien/{nhanvien}/restore', [NhanVienController::class, 'restore'])
+    ->name('nhanvien.restore')
+    ->middleware('auth');
 // Images
 
 Route::get('/img/{path}', [ImagesController::class, 'show'])

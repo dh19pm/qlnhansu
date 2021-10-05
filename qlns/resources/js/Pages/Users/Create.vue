@@ -32,7 +32,7 @@ import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
 export default {
-  metaInfo: { title: 'Create User' },
+  metaInfo: { title: 'Thêm Mới Người Dùng' },
   components: {
     FileInput,
     LoadingButton,

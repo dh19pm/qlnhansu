@@ -24,9 +24,9 @@ class User extends Authenticatable
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
-    public function account()
+    public function nguoidung()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(User::class);
     }
 
     public function nhanvien()
