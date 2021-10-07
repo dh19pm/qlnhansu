@@ -16,8 +16,8 @@ class CreateHopdongTable extends Migration
         Schema::create('hopdong', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->date('ngayky');
-            $table->date('ngayketthuc')->nullable();
+            $table->date('ngaybd');
+            $table->date('ngaykt')->nullable();
             $table->boolean('trangthai')->default(false);
             $table->timestamps();
             $table->foreign('nhanvien_id','fk_hopdong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');

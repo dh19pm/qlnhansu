@@ -37,8 +37,8 @@ class CreateBaohiemTable extends Migration
         Schema::table('baohiem', function(Blueprint $table)
         {
             $table->dropForeign('fk_baohiem_nhanvien_id');
-            $table->dropColumn('nhanvien_id');
             $table->dropForeign('fk_baohiem_loaibaohiem_id');
+            $table->dropColumn('nhanvien_id');
             $table->dropColumn('loaibaohiem_id');
         });
         Schema::dropIfExists('baohiem');

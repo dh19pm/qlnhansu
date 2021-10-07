@@ -37,6 +37,7 @@ class CreateNhanvienTable extends Migration
             $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
             $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
+            $table->foreign('ngoaingu_id','fk_nhanvien_ngoaingu_id')->references('id')->on('ngoaingu')->onUpdate('CASCADE');
             $table->softDeletes();
         });
     }
@@ -51,7 +52,13 @@ class CreateNhanvienTable extends Migration
         Schema::table('nhanvien', function(Blueprint $table)
         {
             $table->dropForeign('fk_nhanvien_mucluong_id');
+            $table->dropForeign('fk_nhanvien_bangcap_id');
+            $table->dropForeign('fk_nhanvien_ngoaingu_id');
+            $table->dropForeign('fk_nhanvien_chuyenmon_id');
             $table->dropColumn('mucluong_id');
+            $table->dropColumn('bangcap_id');
+            $table->dropColumn('chuyenmon_id');
+            $table->dropColumn('ngoaingu_id');
         });
         Schema::dropIfExists('nhanvien');
     }

@@ -18,7 +18,7 @@ class CreateNhanluongTable extends Migration
             $table->unsignedInteger('nhanvien_id');
             $table->integer('luongcb');
             $table->integer('phucap');
-            $table->integer('dongbhxh');
+            $table->integer('mucdongbh');
             $table->integer('songaycong');
             $table->integer('nghihl');
             $table->integer('nghikhl');
