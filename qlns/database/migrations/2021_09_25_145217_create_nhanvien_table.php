@@ -30,6 +30,7 @@ class CreateNhanvienTable extends Migration
             $table->string('quequan', 255)->nullable();
             $table->boolean('trangthai')->default(false);
             $table->float('dongbhxh', 5, 2);
+            $table->float('hesoluong', 5, 2);
             $table->date('ngaynghilam')->nullable();
             $table->string('photo_path', 100)->nullable();
             $table->timestamps();
