@@ -18,6 +18,7 @@ class CreateNhanvienTable extends Migration
             $table->unsignedInteger('mucluong_id');
             $table->unsignedInteger('bangcap_id');
             $table->unsignedInteger('chuyenmon_id');
+            $table->unsignedInteger('ngoaingu_id');
             $table->string('hovaten', 100);
             $table->boolean('gioitinh')->default(false);
             $table->date('ngaysinh');
@@ -29,7 +30,6 @@ class CreateNhanvienTable extends Migration
             $table->string('tongiao', 15)->nullable();
             $table->string('quequan', 255)->nullable();
             $table->boolean('trangthai')->default(false);
-            $table->float('dongbhxh', 5, 2);
             $table->float('hesoluong', 5, 2);
             $table->date('ngaynghilam')->nullable();
             $table->string('photo_path', 100)->nullable();
