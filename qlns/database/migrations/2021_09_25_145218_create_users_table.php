@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->tinyInteger('position');
+            $table->tinyInteger('role');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('nhanvien_id','fk_users_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');

@@ -24,11 +24,6 @@ class User extends Authenticatable
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
-    public function nguoidung()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function nhanvien()
     {
         return $this->hasMany(NhanVien::class);
@@ -42,11 +37,6 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
-    }
-
-    public function isDemoUser()
-    {
-        return $this->email === 'test@email.com';
     }
 
     public function scopeOrderByName($query)
