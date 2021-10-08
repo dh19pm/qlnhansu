@@ -19,7 +19,8 @@ class CreateLichnghiTable extends Migration
             $table->date('ngaybd');
             $table->date('ngaykt');
             $table->boolean('huongluong')->default(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
         });
     }

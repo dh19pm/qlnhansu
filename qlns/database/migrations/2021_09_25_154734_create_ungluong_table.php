@@ -18,9 +18,12 @@ class CreateUngluongTable extends Migration
             $table->unsignedInteger('nhanvien_id');
             $table->integer('sotien');
             $table->string('lydo', 255);
-            $table->timestamps();
-            $table->foreign('nhanvien_id','fk_ungluong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->date('ngaybd');
+            $table->date('ngaykt');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
+            $table->foreign('nhanvien_id','fk_ungluong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
         });
     }
 

@@ -16,9 +16,8 @@ class CreateChamcongTable extends Migration
         Schema::create('chamcong', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
             $table->foreign('nhanvien_id','fk_chamcong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
-            $table->softDeletes();
         });
     }
 

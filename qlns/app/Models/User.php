@@ -15,8 +15,7 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $casts = [
-        'owner' => 'boolean',
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
 
     public function resolveRouteBinding($value, $field = null)

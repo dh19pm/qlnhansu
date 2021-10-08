@@ -19,9 +19,10 @@ class CreateHopdongTable extends Migration
             $table->date('ngaybd');
             $table->date('ngaykt')->nullable();
             $table->boolean('trangthai')->default(false);
-            $table->timestamps();
-            $table->foreign('nhanvien_id','fk_hopdong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
+            $table->foreign('nhanvien_id','fk_hopdong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
         });
     }
 

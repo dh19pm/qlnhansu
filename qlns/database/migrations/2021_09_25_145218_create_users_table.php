@@ -21,9 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->tinyInteger('role');
             $table->rememberToken();
-            $table->timestamps();
-            $table->foreign('nhanvien_id','fk_users_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
+            $table->foreign('nhanvien_id','fk_users_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
         });
     }
 

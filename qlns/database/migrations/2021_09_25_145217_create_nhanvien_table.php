@@ -33,12 +33,13 @@ class CreateNhanvienTable extends Migration
             $table->float('hesoluong', 5, 2);
             $table->date('ngaynghilam')->nullable();
             $table->string('photo_path', 100)->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->softDeletes();
             $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
             $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
             $table->foreign('ngoaingu_id','fk_nhanvien_ngoaingu_id')->references('id')->on('ngoaingu')->onUpdate('CASCADE');
-            $table->softDeletes();
         });
     }
 

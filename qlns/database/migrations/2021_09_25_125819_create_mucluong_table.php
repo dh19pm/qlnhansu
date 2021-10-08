@@ -19,10 +19,11 @@ class CreateMucluongTable extends Migration
             $table->unsignedInteger('chucvu_id');
             $table->integer('luongcb');
             $table->float('phucap', 5, 2);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->softDeletes();
             $table->foreign('phongban_id','fk_mucluong_phongban_id')->references('id')->on('phongban')->onUpdate('CASCADE');
             $table->foreign('chucvu_id','fk_mucluong_chucvu_id')->references('id')->on('chucvu')->onUpdate('CASCADE');
-            $table->softDeletes();
         });
     }
 

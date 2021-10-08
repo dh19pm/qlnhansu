@@ -20,10 +20,11 @@ class CreateBaohiemTable extends Migration
             $table->date('ngaybd');
             $table->date('ngaykt');
             $table->float('mucdong', 5, 2);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->softDeletes();
             $table->foreign('nhanvien_id','fk_baohiem_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
             $table->foreign('loaibaohiem_id','fk_baohiem_loaibaohiem_id')->references('id')->on('loaibaohiem')->onUpdate('CASCADE');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

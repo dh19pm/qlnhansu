@@ -16,7 +16,8 @@ class CreateNgoainguTable extends Migration
         Schema::create('ngoaingu', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tenng', 100);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
         });
     }
