@@ -2,17 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Account;
 use App\Models\BangCap;
 use App\Models\ChucVu;
 use App\Models\ChuyenMon;
-use App\Models\CongTy;
-use App\Models\Contact;
 use App\Models\MucLuong;
 use App\Models\NhanVien;
-use App\Models\Organization;
 use App\Models\PhongBan;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -68,169 +65,169 @@ class DatabaseSeeder extends Seeder
             'tencv' => 'Nhân Viên'
         ]);
 
-        $giamdoc_truongphong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $truongphong,
             'luongcb' => 100000000,
             'phucap' => 3000000
         ]);
 
-        $giamdoc_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $phophong,
             'luongcb' => 70000000,
             'phucap' => 2000000
         ]);
 
-        $kinhdoanh_truongphong = MucLuong::factory()->create([
+         MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        $kinhdoanh_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        $kinhdoanh_marketing = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $marketing,
             'luongcb' => 15000000,
             'phucap' => 500000
         ]);
 
-        $kinhdoanh_nhanvien = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        $phantich_truongphong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        $phantich_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $phophong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        $phantich_nhanvien = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        $thietke_truongphong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        $thietke_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        $thietke_nhanvien = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $nhanvien,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        $laptrinh_truongphong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $truongphong,
             'luongcb' => 50000000,
             'phucap' => 500000
         ]);
 
-        $laptrinh_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $phophong,
             'luongcb' => 30000000,
             'phucap' => 500000
         ]);
 
-        $laptrinh_nhanvien = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 20000000,
             'phucap' => 500000
         ]);
 
-        $hanhchinh_truongphong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $truongphong,
             'luongcb' => 10000000,
             'phucap' => 500000
         ]);
 
-        $hanhchinh_phophong = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $phophong,
             'luongcb' => 7000000,
             'phucap' => 500000
         ]);
 
-        $hanhchinh_nhanvien = MucLuong::factory()->create([
+        MucLuong::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $nhanvien,
             'luongcb' => 5000000,
             'phucap' => 500000
         ]);
 
-        $programmer = ChuyenMon::factory()->create([
+        ChuyenMon::factory()->create([
             'tencm' => 'Programmer'
         ]);
 
-        $tester = ChuyenMon::factory()->create([
+        ChuyenMon::factory()->create([
             'tencm' => 'Tester'
         ]);
 
-        $frontend = ChuyenMon::factory()->create([
+        ChuyenMon::factory()->create([
             'tencm' => 'Front-end'
         ]);
 
-        $backend = ChuyenMon::factory()->create([
+        ChuyenMon::factory()->create([
             'tencm' => 'Back-end'
         ]);
 
-        $fullstack = ChuyenMon::factory()->create([
+        ChuyenMon::factory()->create([
             'tencm' => 'Full-Stack'
         ]);
 
-        $tiensi = BangCap::factory()->create([
+        BangCap::factory()->create([
             'tenbc' => 'Tiến Sĩ'
         ]);
 
-        $thacsi = BangCap::factory()->create([
+        BangCap::factory()->create([
             'tenbc' => 'Thạc Sĩ'
         ]);
 
-        $cunhan = BangCap::factory()->create([
+        BangCap::factory()->create([
             'tenbc' => 'Cử Nhân'
         ]);
 
-        $daihoc = BangCap::factory()->create([
+        BangCap::factory()->create([
             'tenbc' => 'Đại Học'
         ]);
 
-        $caodang = BangCap::factory()->create([
+        BangCap::factory()->create([
             'tenbc' => 'Cao Đẳng'
         ]);
 
