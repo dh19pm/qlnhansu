@@ -18,19 +18,9 @@ class NhanVien extends Model
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
-    public function mucluong()
+    public function user()
     {
-        return $this->hasMany(MucLuong::class);
-    }
-
-    public function bangcap()
-    {
-        return $this->hasMany(BangCap::class);
-    }
-
-    public function chuyenmon()
-    {
-        return $this->hasMany(ChuyenMon::class);
+        return $this->hasMany(User::class);
     }
 
     public function scopeFilter($query, array $filters)

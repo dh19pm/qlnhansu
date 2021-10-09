@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     public function nhanvien()
     {
-        return $this->hasMany(NhanVien::class);
+        return $this->belongsTo(NhanVien::class);
     }
 
     public function getNameAttribute()
