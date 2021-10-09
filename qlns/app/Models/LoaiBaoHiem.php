@@ -12,4 +12,9 @@ class LoaiBaoHiem extends Model
     use SoftDeletes;
 
     protected $table = 'loaibaohiem';
+
+    public function baohiem()
+    {
+        return $this->hasMany(BaoHiem::class);
+    }
 }

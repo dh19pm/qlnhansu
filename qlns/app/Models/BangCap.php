@@ -12,4 +12,9 @@ class BangCap extends Model
     use SoftDeletes;
 
     protected $table = 'bangcap';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }

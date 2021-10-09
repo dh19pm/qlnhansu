@@ -12,4 +12,9 @@ class UngLuong extends Model
     use SoftDeletes;
 
     protected $table = 'ungluong';
+
+    public function nhanvien()
+    {
+        return $this->belongsTo(NhanVien::class);
+    }
 }

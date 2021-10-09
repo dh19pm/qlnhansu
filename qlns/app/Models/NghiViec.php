@@ -12,4 +12,9 @@ class NghiViec extends Model
     use SoftDeletes;
 
     protected $table = 'nghiviec';
+
+    public function nhanvien()
+    {
+        return $this->belongsTo(NhanVien::class);
+    }
 }

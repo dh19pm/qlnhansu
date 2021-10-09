@@ -15,6 +15,6 @@ class HopDong extends Model
 
     public function nhanvien()
     {
-        return $this->hasMany(NhanVien::class);
+        return $this->belongsTo(NhanVien::class);
     }
 }

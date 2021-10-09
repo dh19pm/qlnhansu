@@ -12,4 +12,14 @@ class NhanLuong extends Model
     use SoftDeletes;
 
     protected $table = 'nhanluong';
+
+    public function nhanvien()
+    {
+        return $this->belongsTo(NhanVien::class);
+    }
+
+    public function nhanluong_baohiem()
+    {
+        return $this->hasMany(NhanLuongBaoHiem::class);
+    }
 }
