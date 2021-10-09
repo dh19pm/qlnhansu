@@ -19,6 +19,8 @@ class CreateNhanvienTable extends Migration
             $table->unsignedInteger('bangcap_id');
             $table->unsignedInteger('chuyenmon_id');
             $table->unsignedInteger('ngoaingu_id');
+            $table->unsignedInteger('dantoc_id');
+            $table->unsignedInteger('tongiao_id');
             $table->string('hovaten', 100);
             $table->boolean('gioitinh')->default(false);
             $table->date('ngaysinh');
@@ -39,6 +41,8 @@ class CreateNhanvienTable extends Migration
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
             $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
             $table->foreign('ngoaingu_id','fk_nhanvien_ngoaingu_id')->references('id')->on('ngoaingu')->onUpdate('CASCADE');
+            $table->foreign('dantoc_id','fk_nhanvien_dantoc_id')->references('id')->on('dantoc')->onUpdate('CASCADE');
+            $table->foreign('tongiao_id','fk_nhanvien_tongiao_id')->references('id')->on('tongiao')->onUpdate('CASCADE');
             $table->engine = 'InnoDB';
         });
     }
@@ -56,10 +60,14 @@ class CreateNhanvienTable extends Migration
             $table->dropForeign('fk_nhanvien_bangcap_id');
             $table->dropForeign('fk_nhanvien_ngoaingu_id');
             $table->dropForeign('fk_nhanvien_chuyenmon_id');
+            $table->dropForeign('fk_nhanvien_dantoc_id');
+            $table->dropForeign('fk_nhanvien_tongiao_id');
             $table->dropColumn('mucluong_id');
             $table->dropColumn('bangcap_id');
             $table->dropColumn('chuyenmon_id');
             $table->dropColumn('ngoaingu_id');
+            $table->dropColumn('dantoc_id');
+            $table->dropColumn('tongiao_id');
         });
         Schema::dropIfExists('nhanvien');
     }

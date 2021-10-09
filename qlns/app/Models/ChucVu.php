@@ -12,4 +12,9 @@ class ChucVu extends Model
     use SoftDeletes;
 
     protected $table = 'chucvu';
+
+    public function mucluong()
+    {
+        return $this->hasMany(MucLuong::class);
+    }
 }

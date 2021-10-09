@@ -23,6 +23,61 @@ class NhanVien extends Model
         return $this->hasMany(User::class);
     }
 
+    public function chamcong()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
+
+    public function hopdong()
+    {
+        return $this->hasMany(HopDong::class);
+    }
+
+    public function thuongphat()
+    {
+        return $this->hasMany(ThuongPhat::class);
+    }
+
+    public function ungluong()
+    {
+        return $this->hasMany(UngLuong::class);
+    }
+
+    public function nghiviec()
+    {
+        return $this->hasMany(NghiViec::class);
+    }
+
+    public function baohiem()
+    {
+        return $this->hasMany(BaoHiem::class);
+    }
+
+    public function nhanluong()
+    {
+        return $this->hasMany(NhanLuong::class);
+    }
+
+    public function mucluong()
+    {
+        return $this->belongsTo(MucLuong::class);
+    }
+
+    public function ngoaingu()
+    {
+        return $this->belongsTo(NgoaiNgu::class);
+    }
+
+    public function chuyenmon()
+    {
+        return $this->belongsTo(ChuyenMon::class);
+    }
+
+    public function bangcap()
+    {
+        return $this->belongsTo(BangCap::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

@@ -24,7 +24,7 @@ class NhanVienFactory extends Factory
         $tongiao = ['Phật giáo', 'Công giáo', 'Tin Lành', 'Hồi giáo', 'Cao Đài', 'Hoà Hảo'];
         $dantoc = ['Kinh', 'Tày', 'Thái', 'Hoa'];
         return [
-            'email' => $this->faker->unique()->safeEmail,
+            'hovaten' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'sdt' => $this->faker->tollFreePhoneNumber,
             'diachi' => $this->faker->streetAddress,
             'quequan' => $this->faker->city,

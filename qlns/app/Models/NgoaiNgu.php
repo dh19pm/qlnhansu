@@ -12,4 +12,9 @@ class NgoaiNgu extends Model
     use SoftDeletes;
 
     protected $table = 'ngoaingu';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }

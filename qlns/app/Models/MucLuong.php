@@ -14,6 +14,21 @@ class MucLuong extends Model
 
     protected $table = 'mucluong';
 
+    public function phongban()
+    {
+        return $this->belongsTo(PhongBan::class);
+    }
+
+    public function chucvu()
+    {
+        return $this->belongsTo(ChucVu::class);
+    }
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
+
     public function getAll()
     {
         return DB::table('mucluong')

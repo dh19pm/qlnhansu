@@ -12,4 +12,9 @@ class PhongBan extends Model
     use SoftDeletes;
 
     protected $table = 'phongban';
+
+    public function mucluong()
+    {
+        return $this->hasMany(MucLuong::class);
+    }
 }

@@ -12,4 +12,9 @@ class ChamCong extends Model
     use SoftDeletes;
 
     protected $table = 'chamcong';
+
+    public function nhanvien()
+    {
+        return $this->belongsTo(NhanVien::class);
+    }
 }

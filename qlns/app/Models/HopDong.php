@@ -12,4 +12,9 @@ class HopDong extends Model
     use SoftDeletes;
 
     protected $table = 'hopdong';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }

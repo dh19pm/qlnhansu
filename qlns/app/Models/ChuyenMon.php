@@ -12,4 +12,9 @@ class ChuyenMon extends Model
     use SoftDeletes;
 
     protected $table = 'chuyenmon';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }

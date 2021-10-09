@@ -237,22 +237,19 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'fullname' => 'Đặng Tiến Sĩ',
             'email' => 'admin@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => true,
+            'role' => 2,
         ]);
 
         User::factory()->create([
             'fullname' => 'Mai Tấn Lộc',
-            'email' => 'user1@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => false,
+            'email' => 'quanly@email.com',
+            'role' => 1,
         ]);
 
         User::factory()->create([
             'fullname' => 'Lê Quang Vinh',
-            'email' => 'user2@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => false,
+            'email' => 'nhanvien@email.com',
+            'role' => 0,
         ]);
     }
 }
