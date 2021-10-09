@@ -20,8 +20,7 @@ class CreateNghiviecTable extends Migration
             $table->date('ngaykt');
             $table->string('lydo', 255);
             $table->boolean('huongluong')->default(false);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_nghiviec_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
             $table->engine = 'InnoDB';

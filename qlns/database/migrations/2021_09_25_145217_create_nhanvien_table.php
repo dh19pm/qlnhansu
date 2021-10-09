@@ -30,11 +30,10 @@ class CreateNhanvienTable extends Migration
             $table->string('tongiao', 15)->nullable();
             $table->string('quequan', 255)->nullable();
             $table->boolean('trangthai')->default(false);
-            $table->float('hesoluong', 5, 2);
             $table->date('ngaynghilam')->nullable();
+            $table->float('hesoluong', 5, 2);
             $table->string('photo_path', 100)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
             $table->softDeletes();
             $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');

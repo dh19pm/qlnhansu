@@ -16,8 +16,7 @@ class CreatePhongbanTable extends Migration
         Schema::create('phongban', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tenpb', 100);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });

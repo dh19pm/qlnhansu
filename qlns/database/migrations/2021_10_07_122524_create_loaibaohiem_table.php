@@ -16,8 +16,7 @@ class CreateLoaibaohiemTable extends Migration
         Schema::create('loaibaohiem', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tenbh', 100);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });

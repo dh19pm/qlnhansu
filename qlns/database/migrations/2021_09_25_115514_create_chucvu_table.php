@@ -16,8 +16,7 @@ class CreateChucvuTable extends Migration
         Schema::create('chucvu', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tencv', 100);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });

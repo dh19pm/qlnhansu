@@ -24,27 +24,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'fullname' => 'Đặng Tiến Sĩ',
-            'email' => 'admin@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => true,
-        ]);
-
-        User::factory()->create([
-            'fullname' => 'Mai Tấn Lộc',
-            'email' => 'user1@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => false,
-        ]);
-
-        User::factory()->create([
-            'fullname' => 'Lê Quang Vinh',
-            'email' => 'user2@email.com',
-            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
-            'owner' => false,
-        ]);
-
         $giamdoc = PhongBan::factory()->create([
             'tenpb' => 'Ban Giám Đốc'
         ]);
@@ -255,135 +234,25 @@ class DatabaseSeeder extends Seeder
             'tenbc' => 'Cao Đẳng'
         ]);
 
-        NhanVien::factory()->create([
-            'mucluong_id' => $giamdoc_truongphong,
-            'bangcap_id' => $tiensi,
-            'chuyenmon_id' => $fullstack,
-            'hovaten' => 'Nguyễn Giám Đốc',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
+        User::factory()->create([
+            'fullname' => 'Đặng Tiến Sĩ',
+            'email' => 'admin@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
+            'owner' => true,
         ]);
 
-        NhanVien::factory()->create([
-            'mucluong_id' => $giamdoc_phophong,
-            'bangcap_id' => $tiensi,
-            'chuyenmon_id' => $frontend,
-            'hovaten' => 'Nguyễn Minh Tuấn',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
+        User::factory()->create([
+            'fullname' => 'Mai Tấn Lộc',
+            'email' => 'user1@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
+            'owner' => false,
         ]);
 
-        NhanVien::factory()->create([
-            'mucluong_id' => $giamdoc_phophong,
-            'bangcap_id' => $tiensi,
-            'chuyenmon_id' => $frontend,
-            'hovaten' => 'Phạm Văn Mách',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $thietke_truongphong,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $frontend,
-            'hovaten' => 'Lê Văn Luyện',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $thietke_phophong,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $frontend,
-            'hovaten' => 'Nguyễn Thị Phương Thảo',
-            'gioitinh' => true,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $thietke_nhanvien,
-            'bangcap_id' => $caodang,
-            'chuyenmon_id' => $frontend,
-            'hovaten' => 'Mai Hồi Kết',
-            'gioitinh' => true,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $laptrinh_truongphong,
-            'bangcap_id' => $thacsi,
-            'chuyenmon_id' => $backend,
-            'hovaten' => 'Tô Ngọc Trân',
-            'gioitinh' => true,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $laptrinh_phophong,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $backend,
-            'hovaten' => 'Nguyễn Thị Kim Trang',
-            'gioitinh' => true,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $laptrinh_nhanvien,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $backend,
-            'hovaten' => 'Mai Lỗ Tấn',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $kinhdoanh_truongphong,
-            'bangcap_id' => $tiensi,
-            'chuyenmon_id' => $fullstack,
-            'hovaten' => 'Nguyễn Văn Nam',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $kinhdoanh_marketing,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $fullstack,
-            'hovaten' => 'Nguyễn Tấn Tài',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $kinhdoanh_marketing,
-            'bangcap_id' => $daihoc,
-            'chuyenmon_id' => $fullstack,
-            'hovaten' => 'Nguyễn Tấn Tài',
-            'gioitinh' => false,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
-        ]);
-
-
-        NhanVien::factory()->create([
-            'mucluong_id' => $hanhchinh_truongphong,
-            'bangcap_id' => $thacsi,
-            'chuyenmon_id' => $fullstack,
-            'hovaten' => 'Phạm Thanh Mai',
-            'gioitinh' => true,
-            'trangthai' => true,
-            'dongbhxh' => 8.0
+        User::factory()->create([
+            'fullname' => 'Lê Quang Vinh',
+            'email' => 'user2@email.com',
+            'password' => '$2y$10$lA.ce1x/0raT1YqpuYUR0.BjrEoHMR0TmcB3/nbI7cXw2EqBSk2bK',
+            'owner' => false,
         ]);
     }
 }
