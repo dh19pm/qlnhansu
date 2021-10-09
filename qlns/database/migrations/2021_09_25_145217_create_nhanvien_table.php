@@ -40,6 +40,7 @@ class CreateNhanvienTable extends Migration
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
             $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
             $table->foreign('ngoaingu_id','fk_nhanvien_ngoaingu_id')->references('id')->on('ngoaingu')->onUpdate('CASCADE');
+            $table->engine = 'InnoDB';
         });
     }
 

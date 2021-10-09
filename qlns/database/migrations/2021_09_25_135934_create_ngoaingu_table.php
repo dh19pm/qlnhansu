@@ -19,6 +19,7 @@ class CreateNgoainguTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
+            $table->engine = 'InnoDB';
         });
     }
 

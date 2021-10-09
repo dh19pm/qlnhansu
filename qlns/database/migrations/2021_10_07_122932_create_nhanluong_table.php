@@ -27,6 +27,7 @@ class CreateNhanluongTable extends Migration
             $table->timestamp('created_at');
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_nhanluong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->engine = 'InnoDB';
         });
     }
 

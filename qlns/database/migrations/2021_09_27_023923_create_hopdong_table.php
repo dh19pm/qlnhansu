@@ -23,6 +23,7 @@ class CreateHopdongTable extends Migration
             $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_hopdong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->engine = 'InnoDB';
         });
     }
 

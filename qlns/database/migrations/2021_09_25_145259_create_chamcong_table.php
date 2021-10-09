@@ -18,6 +18,7 @@ class CreateChamcongTable extends Migration
             $table->unsignedInteger('nhanvien_id');
             $table->timestamp('created_at')->useCurrent();
             $table->foreign('nhanvien_id','fk_chamcong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
+            $table->engine = 'InnoDB';
         });
     }
 
