@@ -78,6 +78,16 @@ class NhanVien extends Model
         return $this->belongsTo(BangCap::class);
     }
 
+    public function tongiao()
+    {
+        return $this->belongsTo(TonGiao::class);
+    }
+
+    public function dantoc()
+    {
+        return $this->belongsTo(DanToc::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

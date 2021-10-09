@@ -12,4 +12,9 @@ class TonGiao extends Model
     use SoftDeletes;
 
     protected $table = 'tongiao';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }

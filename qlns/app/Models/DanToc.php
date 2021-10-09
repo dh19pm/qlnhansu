@@ -12,4 +12,9 @@ class DanToc extends Model
     use SoftDeletes;
 
     protected $table = 'dantoc';
+
+    public function nhanvien()
+    {
+        return $this->hasMany(NhanVien::class);
+    }
 }
