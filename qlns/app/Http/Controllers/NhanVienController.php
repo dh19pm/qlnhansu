@@ -19,7 +19,7 @@ class NhanVienController extends Controller
     {
         return Inertia::render('NhanVien/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'nhanvien' => (new NhanVien())
+            'nhanvien' => Auth::user()->nhanvien
                 ->orderBy('hovaten')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)

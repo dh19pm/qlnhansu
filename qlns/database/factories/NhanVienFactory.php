@@ -21,17 +21,16 @@ class NhanVienFactory extends Factory
      */
     public function definition()
     {
-        $tongiao = ['Phật giáo', 'Công giáo', 'Tin Lành', 'Hồi giáo', 'Cao Đài', 'Hoà Hảo'];
-        $dantoc = ['Kinh', 'Tày', 'Thái', 'Hoa'];
         return [
             'hovaten' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'sdt' => $this->faker->tollFreePhoneNumber,
             'diachi' => $this->faker->streetAddress,
             'quequan' => $this->faker->city,
             'ngaysinh' => $this->faker->dateTimeBetween('1985-01-01', '1995-12-31'),
-            'tongiao' => $tongiao[rand(1, count($tongiao)) - 1],
-            'dantoc' => $dantoc[rand(1, count($dantoc)) - 1],
-            'cmnd' => rand(100000000,999999999)
+            'gioitinh' => boolval(rand(0, 1)),
+            'cmnd' => rand(100000000,999999999),
+            'hesoluong' => 1.00,
+            'trangthai' => true
         ];
     }
 }
