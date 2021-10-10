@@ -20,13 +20,13 @@
             <dropdown class="mt-1" placement="bottom-end">
               <div class="flex items-center cursor-pointer select-none group">
                 <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">
-                  <span>{{ $page.props.auth.user.fullname }}</span>
+                  <span>{{ $page.props.auth.user.hovaten }}</span>
                 </div>
                 <icon class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600" name="cheveron-down" />
               </div>
               <div slot="dropdown" class="mt-2 py-2 shadow-xl bg-white rounded text-sm">
                 <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="route('users.edit', $page.props.auth.user.id)">Hồ Sơ Của Bạn</inertia-link>
-                <inertia-link v-if="$page.props.auth.user.owner == 1" class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="route('users')">Quản Lý Người Dùng</inertia-link>
+                <inertia-link v-if="$page.props.auth.user.role == 2" class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="route('users')">Quản Lý Người Dùng</inertia-link>
                 <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left" :href="route('logout')" method="delete" as="button">Đăng Xuất</inertia-link>
               </div>
             </dropdown>
