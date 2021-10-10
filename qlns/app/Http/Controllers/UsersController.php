@@ -16,10 +16,10 @@ class UsersController extends Controller
     public function index()
     {
         return Inertia::render('Users/Index', [
-            'filters' => Request::all('search', 'role', 'trashed'),
+            'filters' => Request::all('search', 'trashed', 'role'),
             'users' => Auth::user()->nhanvien->user
                 ->latest('users.created_at')
-                ->filter(Request::only('search', 'role', 'trashed'))
+                ->filter(Request::only('search', 'trashed', 'role'))
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($user) => [

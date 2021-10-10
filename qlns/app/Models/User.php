@@ -33,12 +33,6 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 
-    public function scopeWhereRole($query, $role)
-    {
-        if (in_array($role, [0, 1, 2]))
-            return $query->where('role', $role);
-    }
-
     public function getUserRoleName($role)
     {
         switch ($role) {
@@ -54,13 +48,17 @@ class User extends Authenticatable
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                  $query->join('nhanvien as nv', 'users.nhanvien_id', '=', 'nv.id')
-                        ->Where('users.email', 'like', '%'.$search.'%')
-                        ->orWhere('nv.hovaten', 'like', '%'.$search.'%');
-            });
+            $query->join('nhanvien as nv', 'users.nhanvien_id', '=', 'nv.id')
+            ->Where('users.email', 'like', '%'.$search.'%')
+            ->orWhere('nv.hovaten', 'like', '%'.$search.'%');
         })->when($filters['role'] ?? null, function ($query, $role) {
-            $query->whereRole($role);
+                if ($role === 'quantrivien') {
+                    $query->where('role', 2);
+                } elseif ($role === 'quanly') {
+                    $query->where('role', 1);
+                } elseif ($role === 'nguoidung') {
+                    $query->where('role', 0);
+                }
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();

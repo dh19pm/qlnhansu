@@ -95,6 +95,10 @@ class NhanVien extends Model
                   ->where('nhanvien.hovaten', 'like', '%'.$search.'%')
                   ->orWhere('nhanvien.sdt', 'like', '%'.$search.'%')
                   ->orWhere('u.email', 'like', '%'.$search.'%');
+        })->when($filters['gioitinh'] ?? null, function ($query, $gioitinh) {
+                $query->where('gioitinh', $gioitinh === 'nam' ? false : true);
+        })->when($filters['trangthai'] ?? null, function ($query, $trangthai) {
+                $query->where('trangthai', $trangthai === 'danghilam' ? false : true);
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();

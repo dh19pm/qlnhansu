@@ -3,18 +3,18 @@
     <h1 class="mb-8 font-bold text-3xl">Người Dùng</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
-        <label class="block text-gray-700">Quyền hạn:</label>
-        <select v-model="form.role" class="mt-1 w-full form-select">
-          <option :value="null">-- Chưa chọn --</option>
-          <option value="0">Người dùng</option>
-          <option value="1">Quản lý</option>
-          <option value="2">Quản trị viên</option>
-        </select>
-        <label class="mt-4 block text-gray-700">Trạng thái xoá:</label>
+        <label class="block text-gray-700">Trạng thái xoá:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
           <option :value="null">-- Chưa chọn --</option>
           <option value="only">Đã xoá</option>
           <option value="with">Tất cả</option>
+        </select>
+        <label class="mt-4 block text-gray-700">Quyền hạn:</label>
+        <select v-model="form.role" class="mt-1 w-full form-select">
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="nguoidung">Người dùng</option>
+          <option value="quanly">Quản lý</option>
+          <option value="quantrivien">Quản trị viên</option>
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('nhanvien.create')">

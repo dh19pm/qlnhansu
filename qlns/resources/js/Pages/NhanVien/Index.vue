@@ -3,11 +3,23 @@
     <h1 class="mb-8 font-bold text-3xl">Nhân Viên</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
-        <label class="block text-gray-700">Trashed:</label>
+        <label class="block text-gray-700">Trạng thái xoá:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="only">Đã xoá</option>
+          <option value="with">Tất cả</option>
+        </select>
+        <label class="mt-4 block text-gray-700">Giới tính:</label>
+        <select v-model="form.gioitinh" class="mt-1 w-full form-select">
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="nam">Nam</option>
+          <option value="nu">Nữ</option>
+        </select>
+        <label class="mt-4 block text-gray-700">Trạng thái:</label>
+        <select v-model="form.trangthai" class="mt-1 w-full form-select">
+          <option :value="null">-- Chưa chọn --</option>
+          <option value="danghilam">Đã nghĩ làm</option>
+          <option value="danglamviec">Đang làm việc</option>
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('nhanvien.create')">
@@ -42,7 +54,7 @@
           </td>
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('nhanvien.edit', nv.id)" tabindex="-1">
-              {{ nv.gioitinh ? 'Nam' : 'Nữ'}}
+              {{ nv.gioitinh ? 'Nữ' : 'Nam'}}
             </inertia-link>
           </td>
           <td class="border-t">
@@ -90,6 +102,8 @@ export default {
       form: {
         search: this.filters.search,
         trashed: this.filters.trashed,
+        gioitinh: this.filters.gioitinh,
+        trangthai: this.filters.trangthai,
       },
     }
   },
