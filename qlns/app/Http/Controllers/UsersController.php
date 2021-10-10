@@ -18,13 +18,15 @@ class UsersController extends Controller
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
             'users' => Auth::user()->nhanvien->user
-                ->orderBy('email')
+                ->latest('users.created_at')
                 ->filter(Request::only('search', 'role', 'trashed'))
-                ->get()
-                ->transform(fn ($user) => [
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($user) => [
                     'id' => $user->id,
+                    'hovaten' => $user->nhanvien->hovaten,
                     'email' => $user->email,
-                    'role' => $user->role,
+                    'role' => $user->getUserRoleName($user->role),
                     'deleted_at' => $user->deleted_at,
                 ]),
         ]);
@@ -35,6 +37,7 @@ class UsersController extends Controller
         return Inertia::render('Users/Edit', [
             'user' => [
                 'id' => $user->id,
+                'hovaten' => $user->nhanvien->hovaten,
                 'email' => $user->email,
                 'role' => $user->role,
                 'deleted_at' => $user->deleted_at,
@@ -47,7 +50,7 @@ class UsersController extends Controller
         Request::validate([
             'email' => ['required', 'max:50', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable'],
-            'role' => ['required', 'boolean']
+            'role' => ['required', 'between:0,2']
         ]);
 
         $user->update(Request::only('email', 'role'));

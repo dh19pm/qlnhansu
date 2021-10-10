@@ -20,7 +20,7 @@ class NhanVienController extends Controller
         return Inertia::render('NhanVien/Index', [
             'filters' => Request::all('search', 'trashed'),
             'nhanvien' => Auth::user()->nhanvien
-                ->orderBy('hovaten')
+                ->latest('nhanvien.created_at')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
                 ->withQueryString()
@@ -81,7 +81,7 @@ class NhanVienController extends Controller
             'hovaten' => ['required', 'max:100'],
             'gioitinh' => ['required', 'boolean'],
             'ngaysinh' => ['required', 'date'],
-            'role' => ['required', 'boolean'],
+            'role' => ['required', 'between:0,2'],
             'email' => ['required', 'max:100', 'email', Rule::unique('users', 'email')],
             'password' => ['nullable'],
             'sdt' => ['required', 'max:15'],

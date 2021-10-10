@@ -28759,6 +28759,12 @@ input:focus, input:active, select:focus, select:active, textarea:focus, textarea
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Custom SiBen */
+
+input:disabled, select:disabled, textarea:disabled, button:disabled {
+  background: #fff3f3;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

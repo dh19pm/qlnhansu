@@ -33,39 +33,40 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 
-    // public function getNameAttribute()
-    // {
-    //     return $this->fullname;
-    // }
+    public function scopeWhereRole($query, $role)
+    {
+        if (in_array($role, [0, 1, 2]))
+            return $query->where('role', $role);
+    }
 
-    // public function scopeOrderByName($query)
-    // {
-    //     $query->orderBy('fullname');
-    // }
+    public function getUserRoleName($role)
+    {
+        switch ($role) {
+            case 2:
+                return 'Quản trị viên';
+            case 1:
+                return 'Quản lý';
+        }
 
-    // public function scopeWhereRole($query, $role)
-    // {
-    //     switch ($role) {
-    //         case 'user': return $query->where('owner', false);
-    //         case 'owner': return $query->where('owner', true);
-    //     }
-    // }
+        return 'Người dùng';
+    }
 
-    // public function scopeFilter($query, array $filters)
-    // {
-    //     $query->when($filters['search'] ?? null, function ($query, $search) {
-    //         $query->where(function ($query) use ($search) {
-    //             $query->where('fullname', 'like', '%'.$search.'%')
-    //                 ->orWhere('email', 'like', '%'.$search.'%');
-    //         });
-    //     })->when($filters['role'] ?? null, function ($query, $role) {
-    //         $query->whereRole($role);
-    //     })->when($filters['trashed'] ?? null, function ($query, $trashed) {
-    //         if ($trashed === 'with') {
-    //             $query->withTrashed();
-    //         } elseif ($trashed === 'only') {
-    //             $query->onlyTrashed();
-    //         }
-    //     });
-    // }
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                  $query->join('nhanvien as nv', 'users.nhanvien_id', '=', 'nv.id')
+                        ->Where('users.email', 'like', '%'.$search.'%')
+                        ->orWhere('nv.hovaten', 'like', '%'.$search.'%');
+            });
+        })->when($filters['role'] ?? null, function ($query, $role) {
+            $query->whereRole($role);
+        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
+            if ($trashed === 'with') {
+                $query->withTrashed();
+            } elseif ($trashed === 'only') {
+                $query->onlyTrashed();
+            }
+        });
+    }
 }
