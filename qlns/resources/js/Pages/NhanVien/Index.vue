@@ -38,6 +38,7 @@
         <tr v-for="nv in nhanvien.data" :key="nv.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('nhanvien.edit', nv.id)">
+              <img v-if="nv.photo" class="block w-5 h-5 rounded-full mr-2 -my-2" :src="nv.photo" />
               {{ nv.hovaten }}
               <icon v-if="nv.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>

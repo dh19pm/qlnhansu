@@ -93,27 +93,25 @@ class NhanVienController extends Controller
             'photo' => ['nullable', 'image']
         ]);
 
-        $nhanvien_id = Auth::user()->nhanvien->create([
-            'mucluong_id' => Request::get('mucluong'),
-            'bangcap_id' => Request::get('bangcap'),
-            'chuyenmon_id' => Request::get('chuyenmon'),
-            'ngoaingu_id' => Request::get('ngoaingu'),
-            'dantoc_id' => Request::get('dantoc'),
-            'tongiao_id' => Request::get('tongiao'),
-            'hovaten' => Request::get('hovaten'),
-            'gioitinh' => Request::get('gioitinh'),
-            'ngaysinh' => Request::get('ngaysinh'),
-            'sdt' => Request::get('sdt'),
-            'cmnd' => Request::get('cmnd'),
-            'diachi' => Request::get('diachi'),
-            'quequan' => Request::get('quequan'),
-            'trangthai' => Request::get('trangthai'),
-            'hesoluong' => Request::get('hesoluong'),
-            'photo_path' => Request::file('photo') ? Request::file('photo')->store('nhanvien') : null,
-        ]);
-
         Auth::user()->nhanvien->user->create([
-            'nhanvien_id' => $nhanvien_id,
+            'nhanvien_id' => Auth::user()->nhanvien->create([
+                'mucluong_id' => Request::get('mucluong'),
+                'bangcap_id' => Request::get('bangcap'),
+                'chuyenmon_id' => Request::get('chuyenmon'),
+                'ngoaingu_id' => Request::get('ngoaingu'),
+                'dantoc_id' => Request::get('dantoc'),
+                'tongiao_id' => Request::get('tongiao'),
+                'hovaten' => Request::get('hovaten'),
+                'gioitinh' => Request::get('gioitinh'),
+                'ngaysinh' => Request::get('ngaysinh'),
+                'sdt' => Request::get('sdt'),
+                'cmnd' => Request::get('cmnd'),
+                'diachi' => Request::get('diachi'),
+                'quequan' => Request::get('quequan'),
+                'trangthai' => Request::get('trangthai'),
+                'hesoluong' => Request::get('hesoluong'),
+                'photo_path' => Request::file('photo') ? Request::file('photo')->store('nhanvien') : null,
+            ])->id,
             'email' => Request::get('email'),
             'password' => Request::get('password'),
             'role' => Request::get('role')
