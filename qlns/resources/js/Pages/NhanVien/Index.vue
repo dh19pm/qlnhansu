@@ -15,7 +15,7 @@
           <option value="nam">Nam</option>
           <option value="nu">Nữ</option>
         </select>
-        <label class="mt-4 block text-gray-700">Trạng thái:</label>
+        <label class="mt-4 block text-gray-700">Trạng thái làm việc:</label>
         <select v-model="form.trangthai" class="mt-1 w-full form-select">
           <option :value="null">-- Chưa chọn --</option>
           <option value="danghilam">Đã nghĩ làm</option>
