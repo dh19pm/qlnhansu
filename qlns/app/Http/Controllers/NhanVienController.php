@@ -83,7 +83,7 @@ class NhanVienController extends Controller
             'ngaysinh' => ['required', 'date'],
             'role' => ['required', 'between:0,2'],
             'email' => ['required', 'max:100', 'email', Rule::unique('users', 'email')],
-            'password' => ['nullable'],
+            'password' => ['required'],
             'sdt' => ['required', 'max:15'],
             'cmnd' => ['required', 'max:50'],
             'diachi' => ['nullable', 'max:255'],
