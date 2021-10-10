@@ -27,7 +27,7 @@ class NhanVienController extends Controller
                 ->through(fn ($nhanvien) => [
                     'id' => $nhanvien->id,
                     'hovaten' => $nhanvien->hovaten,
-                    'email' => $nhanvien->email,
+                    'email' => $nhanvien->user->email,
                     'sdt' => $nhanvien->sdt,
                     'gioitinh' => $nhanvien->gioitinh,
                     'trangthai' => $nhanvien->trangthai,
@@ -36,20 +36,36 @@ class NhanVienController extends Controller
                 ]),
         ]);
     }
+
     public function create()
     {
         return Inertia::render('NhanVien/Create', [
-            'mucluong' => (new MucLuong())->getAll(),
-            'bangcap' => (new BangCap())
+            'mucluong' => Auth::user()->nhanvien->mucluong->getAll(),
+            'bangcap' => Auth::user()->nhanvien->bangcap
                 ->orderBy('tenbc')
                 ->get()
                 ->map
                 ->only('id', 'tenbc'),
-            'chuyenmon' => (new ChuyenMon())
+            'chuyenmon' => Auth::user()->nhanvien->chuyenmon
                 ->orderBy('tencm')
                 ->get()
                 ->map
-                ->only('id', 'tencm')
+                ->only('id', 'tencm'),
+            'ngoaingu' => Auth::user()->nhanvien->ngoaingu
+                ->orderBy('tenng')
+                ->get()
+                ->map
+                ->only('id', 'tenng'),
+            'dantoc' => Auth::user()->nhanvien->dantoc
+                ->orderBy('tendt')
+                ->get()
+                ->map
+                ->only('id', 'tendt'),
+            'tongiao' => Auth::user()->nhanvien->tongiao
+                ->orderBy('tentg')
+                ->get()
+                ->map
+                ->only('id', 'tentg')
         ]);
     }
 

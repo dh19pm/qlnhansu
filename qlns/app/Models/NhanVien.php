@@ -20,78 +20,79 @@ class NhanVien extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class, 'nhanvien_id', 'id');
     }
 
     public function chamcong()
     {
-        return $this->hasMany(NhanVien::class);
+        return $this->hasMany(NhanVien::class, 'nhanvien_id', 'id');
     }
 
     public function hopdong()
     {
-        return $this->hasMany(HopDong::class);
+        return $this->hasMany(HopDong::class, 'nhanvien_id', 'id');
     }
 
     public function thuongphat()
     {
-        return $this->hasMany(ThuongPhat::class);
+        return $this->hasMany(ThuongPhat::class, 'nhanvien_id', 'id');
     }
 
     public function ungluong()
     {
-        return $this->hasMany(UngLuong::class);
+        return $this->hasMany(UngLuong::class, 'nhanvien_id', 'id');
     }
 
     public function nghiviec()
     {
-        return $this->hasMany(NghiViec::class);
+        return $this->hasMany(NghiViec::class, 'nhanvien_id', 'id');
     }
 
     public function baohiem()
     {
-        return $this->hasMany(BaoHiem::class);
+        return $this->hasMany(BaoHiem::class, 'nhanvien_id', 'id');
     }
 
     public function nhanluong()
     {
-        return $this->hasMany(NhanLuong::class);
+        return $this->hasMany(NhanLuong::class, 'nhanvien_id', 'id');
     }
 
     public function mucluong()
     {
-        return $this->belongsTo(MucLuong::class);
+        return $this->belongsTo(MucLuong::class, 'mucluong_id', 'id');
     }
 
     public function ngoaingu()
     {
-        return $this->belongsTo(NgoaiNgu::class);
+        return $this->belongsTo(NgoaiNgu::class, 'ngoaingu_id', 'id');
     }
 
     public function chuyenmon()
     {
-        return $this->belongsTo(ChuyenMon::class);
+        return $this->belongsTo(ChuyenMon::class, 'chuyenmon_id', 'id');
     }
 
     public function bangcap()
     {
-        return $this->belongsTo(BangCap::class);
+        return $this->belongsTo(BangCap::class, 'bangcap_id', 'id');
     }
 
     public function tongiao()
     {
-        return $this->belongsTo(TonGiao::class);
+        return $this->belongsTo(TonGiao::class, 'tongiao_id', 'id');
     }
 
     public function dantoc()
     {
-        return $this->belongsTo(DanToc::class);
+        return $this->belongsTo(DanToc::class, 'dantoc_id', 'id');
     }
 
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('hovaten', 'like', '%'.$search.'%');
+            $query->where('hovaten', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
