@@ -75,38 +75,48 @@ class NhanVienController extends Controller
             'mucluong' => ['required', Rule::exists('mucluong', 'id')],
             'bangcap' => ['required', Rule::exists('bangcap', 'id')],
             'chuyenmon' => ['required', Rule::exists('chuyenmon', 'id')],
+            'ngoaingu' => ['required', Rule::exists('ngoaingu', 'id')],
+            'dantoc' => ['required', Rule::exists('dantoc', 'id')],
+            'tongiao' => ['required', Rule::exists('tongiao', 'id')],
             'hovaten' => ['required', 'max:100'],
             'gioitinh' => ['required', 'boolean'],
             'ngaysinh' => ['required', 'date'],
-            'email' => ['required', 'max:100', 'email', Rule::unique('nhanvien', 'email')],
+            'role' => ['required', 'boolean'],
+            'email' => ['required', 'max:100', 'email', Rule::unique('users', 'email')],
+            'password' => ['nullable'],
             'sdt' => ['required', 'max:15'],
             'cmnd' => ['required', 'max:50'],
             'diachi' => ['nullable', 'max:255'],
-            'dantoc' => ['nullable', 'max:15'],
-            'tongiao' => ['nullable', 'max:15'],
             'quequan' => ['nullable', 'max:255'],
             'trangthai' => ['required', 'boolean'],
-            'dongbhxh' => ['required', 'integer'],
+            'hesoluong' => ['required', 'between:0,100.00'],
             'photo' => ['nullable', 'image']
         ]);
 
-        (new NhanVien())->create([
+        $nhanvien_id = Auth::user()->nhanvien->create([
             'mucluong_id' => Request::get('mucluong'),
             'bangcap_id' => Request::get('bangcap'),
             'chuyenmon_id' => Request::get('chuyenmon'),
+            'ngoaingu_id' => Request::get('ngoaingu'),
+            'dantoc_id' => Request::get('dantoc'),
+            'tongiao_id' => Request::get('tongiao'),
             'hovaten' => Request::get('hovaten'),
             'gioitinh' => Request::get('gioitinh'),
             'ngaysinh' => Request::get('ngaysinh'),
-            'email' => Request::get('email'),
             'sdt' => Request::get('sdt'),
             'cmnd' => Request::get('cmnd'),
             'diachi' => Request::get('diachi'),
-            'dantoc' => Request::get('dantoc'),
-            'tongiao' => Request::get('tongiao'),
             'quequan' => Request::get('quequan'),
             'trangthai' => Request::get('trangthai'),
-            'dongbhxh' => Request::get('dongbhxh'),
+            'hesoluong' => Request::get('hesoluong'),
             'photo_path' => Request::file('photo') ? Request::file('photo')->store('nhanvien') : null,
+        ]);
+
+        Auth::user()->nhanvien->user->create([
+            'nhanvien_id' => $nhanvien_id,
+            'email' => Request::get('email'),
+            'password' => Request::get('password'),
+            'role' => Request::get('role')
         ]);
 
         return Redirect::route('nhanvien')->with('success', 'Đã tạo nhân viên.');

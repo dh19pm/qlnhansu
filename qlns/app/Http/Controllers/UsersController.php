@@ -15,53 +15,19 @@ class UsersController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->owner === false)
-            abort(404);
-
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
-            'users' => (new User())
-                ->orderBy('fullname')
+            'users' => Auth::user()->nhanvien->user
+                ->orderBy('email')
                 ->filter(Request::only('search', 'role', 'trashed'))
                 ->get()
                 ->transform(fn ($user) => [
                     'id' => $user->id,
-                    'name' => $user->name,
                     'email' => $user->email,
-                    'owner' => $user->owner,
-                    'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 40, 'h' => 40, 'fit' => 'crop']) : null,
+                    'role' => $user->role,
                     'deleted_at' => $user->deleted_at,
                 ]),
         ]);
-    }
-
-    public function create()
-    {
-        if (Auth::user()->owner === false)
-            abort(404);
-
-        return Inertia::render('Users/Create');
-    }
-
-    public function store()
-    {
-        Request::validate([
-            'fullname' => ['required', 'max:100'],
-            'email' => ['required', 'max:50', 'email', Rule::unique('users')],
-            'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
-        ]);
-
-        Auth::user()->nguoidung->create([
-            'fullname' => Request::get('fullname'),
-            'email' => Request::get('email'),
-            'password' => Request::get('password'),
-            'owner' => Request::get('owner'),
-            'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
-        ]);
-
-        return Redirect::route('users')->with('success', 'Đã tạo người dùng.');
     }
 
     public function edit(User $user)
@@ -69,10 +35,8 @@ class UsersController extends Controller
         return Inertia::render('Users/Edit', [
             'user' => [
                 'id' => $user->id,
-                'fullname' => $user->fullname,
                 'email' => $user->email,
-                'owner' => $user->owner,
-                'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+                'role' => $user->role,
                 'deleted_at' => $user->deleted_at,
             ],
         ]);
@@ -81,18 +45,12 @@ class UsersController extends Controller
     public function update(User $user)
     {
         Request::validate([
-            'fullname' => ['required', 'max:100'],
             'email' => ['required', 'max:50', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
+            'role' => ['required', 'boolean']
         ]);
 
-        $user->update(Request::only('fullname', 'email', 'owner'));
-
-        if (Request::file('photo')) {
-            $user->update(['photo_path' => Request::file('photo')->store('users')]);
-        }
+        $user->update(Request::only('email', 'role'));
 
         if (Request::get('password')) {
             $user->update(['password' => Request::get('password')]);

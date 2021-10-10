@@ -91,8 +91,10 @@ class NhanVien extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('hovaten', 'like', '%'.$search.'%')
-                  ->orWhere('email', 'like', '%'.$search.'%');
+            $query->join('users as u', 'nhanvien.id', '=', 'u.nhanvien_id')
+                  ->where('nhanvien.hovaten', 'like', '%'.$search.'%')
+                  ->orWhere('nhanvien.sdt', 'like', '%'.$search.'%')
+                  ->orWhere('u.email', 'like', '%'.$search.'%');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
