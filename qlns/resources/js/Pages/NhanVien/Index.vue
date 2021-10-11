@@ -5,19 +5,19 @@
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Trạng thái xoá:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null">-- Chưa chọn --</option>
+          <option :value="null">- Chưa chọn -</option>
           <option value="only">Đã xoá</option>
           <option value="with">Tất cả</option>
         </select>
         <label class="mt-4 block text-gray-700">Giới tính:</label>
         <select v-model="form.gioitinh" class="mt-1 w-full form-select">
-          <option :value="null">-- Chưa chọn --</option>
+          <option :value="null">- Chưa chọn -</option>
           <option value="nam">Nam</option>
           <option value="nu">Nữ</option>
         </select>
         <label class="mt-4 block text-gray-700">Trạng thái làm việc:</label>
         <select v-model="form.trangthai" class="mt-1 w-full form-select">
-          <option :value="null">-- Chưa chọn --</option>
+          <option :value="null">- Chưa chọn -</option>
           <option value="danghilam">Đã nghĩ làm</option>
           <option value="danglamviec">Đang làm việc</option>
         </select>
