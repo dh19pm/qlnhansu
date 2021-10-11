@@ -120,23 +120,115 @@ class NhanVienController extends Controller
         return Redirect::route('nhanvien')->with('success', 'Đã tạo nhân viên.');
     }
 
-    public function edit(NhanVien $nhanVien)
+    public function edit(NhanVien $nhanvien)
     {
-        return '';
+        return Inertia::render('NhanVien/Edit', [
+            'mucluong' => Auth::user()->nhanvien->mucluong->getAll(),
+            'bangcap' => Auth::user()->nhanvien->bangcap
+                ->orderBy('tenbc')
+                ->get()
+                ->map
+                ->only('id', 'tenbc'),
+            'chuyenmon' => Auth::user()->nhanvien->chuyenmon
+                ->orderBy('tencm')
+                ->get()
+                ->map
+                ->only('id', 'tencm'),
+            'ngoaingu' => Auth::user()->nhanvien->ngoaingu
+                ->orderBy('tenng')
+                ->get()
+                ->map
+                ->only('id', 'tenng'),
+            'dantoc' => Auth::user()->nhanvien->dantoc
+                ->orderBy('tendt')
+                ->get()
+                ->map
+                ->only('id', 'tendt'),
+            'tongiao' => Auth::user()->nhanvien->tongiao
+                ->orderBy('tentg')
+                ->get()
+                ->map
+                ->only('id', 'tentg'),
+            'nhanvien' => [
+                'id' => $nhanvien->id,
+                'mucluong' => $nhanvien->mucluong_id,
+                'bangcap' => $nhanvien->bangcap_id,
+                'chuyenmon' => $nhanvien->chuyenmon_id,
+                'ngoaingu' => $nhanvien->ngoaingu_id,
+                'dantoc' => $nhanvien->dantoc_id,
+                'tongiao' => $nhanvien->tongiao_id,
+                'hovaten' => $nhanvien->hovaten,
+                'gioitinh' => $nhanvien->gioitinh,
+                'ngaysinh' => $nhanvien->ngaysinh,
+                'sdt' => $nhanvien->sdt,
+                'cmnd' => $nhanvien->cmnd,
+                'diachi' => $nhanvien->diachi,
+                'quequan' => $nhanvien->quequan,
+                'trangthai' => $nhanvien->trangthai,
+                'hesoluong' => $nhanvien->hesoluong,
+                'photo' => $nhanvien->photo_path ? URL::route('image', ['path' => $nhanvien->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+                'deleted_at' => $nhanvien->deleted_at,
+            ],
+        ]);
     }
 
-    public function update(NhanVien $nhanVien)
+    public function update(NhanVien $nhanvien)
     {
-        return '';
+        Request::validate([
+            'mucluong' => ['required', Rule::exists('mucluong', 'id')],
+            'bangcap' => ['required', Rule::exists('bangcap', 'id')],
+            'chuyenmon' => ['required', Rule::exists('chuyenmon', 'id')],
+            'ngoaingu' => ['required', Rule::exists('ngoaingu', 'id')],
+            'dantoc' => ['required', Rule::exists('dantoc', 'id')],
+            'tongiao' => ['required', Rule::exists('tongiao', 'id')],
+            'hovaten' => ['required', 'max:100'],
+            'gioitinh' => ['required', 'boolean'],
+            'ngaysinh' => ['required', 'date'],
+            'sdt' => ['required', 'max:15'],
+            'cmnd' => ['required', 'max:50'],
+            'diachi' => ['nullable', 'max:255'],
+            'quequan' => ['nullable', 'max:255'],
+            'trangthai' => ['required', 'boolean'],
+            'hesoluong' => ['required', 'between:0,100.00'],
+            'photo' => ['nullable', 'image']
+        ]);
+
+        $nhanvien->update([
+            'mucluong_id' => Request::get('mucluong'),
+            'bangcap_id' => Request::get('bangcap'),
+            'chuyenmon_id' => Request::get('chuyenmon'),
+            'ngoaingu_id' => Request::get('ngoaingu'),
+            'dantoc_id' => Request::get('dantoc'),
+            'tongiao_id' => Request::get('tongiao'),
+            'hovaten' => Request::get('hovaten'),
+            'gioitinh' => Request::get('gioitinh'),
+            'ngaysinh' => Request::get('ngaysinh'),
+            'sdt' => Request::get('sdt'),
+            'cmnd' => Request::get('cmnd'),
+            'diachi' => Request::get('diachi'),
+            'quequan' => Request::get('quequan'),
+            'trangthai' => Request::get('trangthai'),
+            'hesoluong' => Request::get('hesoluong')
+        ]);
+
+        if (Request::file('photo')) {
+            $nhanvien->update(['photo_path' => Request::file('photo')->store('users')]);
+        }
+
+        return Redirect::back()->with('success', 'Đã cập nhật hồ sơ nhân viên.');
     }
 
-    public function destroy(NhanVien $nhanVien)
+    public function destroy(NhanVien $nhanvien)
     {
-        return '';
+        $nhanvien->delete();
+
+        return Redirect::back()->with('success', 'Đã xoá hồ sơ nhân viên.');
     }
 
-    public function restore(NhanVien $nhanVien)
+    public function restore(NhanVien $nhanvien)
     {
-        return '';
+        $nhanvien->restore();
+
+        return Redirect::back()->with('success', 'Đã khôi phục hồ sơ nhân viên.');
     }
 }
