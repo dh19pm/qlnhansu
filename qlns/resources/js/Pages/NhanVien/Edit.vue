@@ -115,7 +115,7 @@ export default {
         cmnd: this.nhanvien.cmnd,
         diachi: this.nhanvien.diachi,
         quequan: this.nhanvien.quequan,
-        hesoluong: this.nhanvien.hesoluong,
+        hesoluong: this.nhanvien.hesoluong.toString(),
         photo: null
       })
     }

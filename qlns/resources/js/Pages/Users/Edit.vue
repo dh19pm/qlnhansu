@@ -23,7 +23,7 @@
           <text-input v-model="form.password" :error="form.errors.password" class="pr-6 pb-8 w-full lg:w-1/2" type="password" autocomplete="new-password" label="Mật khẩu" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!user.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Người Dùng</button>
+          <button v-if="!user.deleted_at && $page.props.auth.user.role == 2 && $page.props.auth.user.id != user.id" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Người Dùng</button>
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Cập Nhật</loading-button>
         </div>
       </form>
