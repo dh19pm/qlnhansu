@@ -151,6 +151,7 @@ class NhanVienController extends Controller
                 ->only('id', 'tentg'),
             'nhanvien' => [
                 'id' => $nhanvien->id,
+                'user_id' => $nhanvien->user->id,
                 'mucluong' => $nhanvien->mucluong_id,
                 'bangcap' => $nhanvien->bangcap_id,
                 'chuyenmon' => $nhanvien->chuyenmon_id,
