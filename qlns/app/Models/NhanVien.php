@@ -20,7 +20,7 @@ class NhanVien extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'nhanvien_id', 'id');
+        return $this->hasOne(User::class, 'nhanvien_id', 'id')->withTrashed();
     }
 
     public function chamcong()

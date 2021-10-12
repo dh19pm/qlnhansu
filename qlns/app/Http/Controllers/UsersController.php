@@ -24,7 +24,7 @@ class UsersController extends Controller
                 ->withQueryString()
                 ->through(fn ($user) => [
                     'id' => $user->id,
-                    'hovaten' => $user->nhanvien->hovaten ?? '*Không có hồ sơ*',
+                    'hovaten' => $user->nhanvien->hovaten ?? '*Đã bị xoá*',
                     'email' => $user->email,
                     'role' => $user->getUserRoleName($user->role),
                     'deleted_at' => $user->deleted_at,
@@ -37,7 +37,7 @@ class UsersController extends Controller
         return Inertia::render('Users/Edit', [
             'user' => [
                 'id' => $user->id,
-                'hovaten' => $user->nhanvien->hovaten ?? '*Không có hồ sơ*',
+                'hovaten' => $user->nhanvien->hovaten ?? '*Đã bị xoá*',
                 'email' => $user->email,
                 'role' => $user->role,
                 'deleted_at' => $user->deleted_at,

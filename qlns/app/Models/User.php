@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     public function nhanvien()
     {
-        return $this->belongsTo(NhanVien::class);
+        return $this->belongsTo(NhanVien::class)->withTrashed();
     }
 
     public function setPasswordAttribute($password)
