@@ -31,14 +31,14 @@ class ChamCongController extends Controller
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
-            'ngaycong' => ['required', 'date']
+            'created_at' => ['required', 'date']
         ]);
 
         (new ChamCong())->create([
             'nhanvien_id' => $nhanvien->id,
-            'ngaycong' => Request::get('ngaycong')
+            'created_at' => Request::get('created_at')
         ]);
 
-        return Redirect::back()->with('success', 'Đã chấm công ngày `' . Request::get('ngaycong') . '`.');
+        return Redirect::back()->with('success', 'Đã chấm công.');
     }
 }

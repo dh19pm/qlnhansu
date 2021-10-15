@@ -1,13 +1,17 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('chamcong', nhanvien.id)">Chấm Công</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> {{ nhanvien.hovaten }}
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien')">Nhân Viên</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien.edit', nhanvien.id)">{{ nhanvien.hovaten }}</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien')">Chấm Công</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span> Thêm Mới
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.ngaycong" :error="form.errors.ngaycong" class="pr-6 pb-8 w-full lg:w-1/1" type="date" label="Ngày công" />
+          <text-input v-model="form.created_at" :error="form.errors.created_at" class="pr-6 pb-8 w-full lg:w-1/1" type="datetime-local" label="Ngày công" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Tạo Mới</loading-button>
@@ -37,14 +41,14 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        ngaycong: null
+        created_at: null
       }),
     }
   },
   methods: {
     store() {
         this.form.post(this.route('chamcong.store', this.nhanvien.id), {
-            onSuccess: () => this.form.reset('ngaycong')
+            onSuccess: () => this.form.reset('created_at')
         })
     },
   },
