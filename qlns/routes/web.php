@@ -46,10 +46,6 @@ Route::get('users', [UsersController::class, 'index'])
     ->name('users')
     ->middleware('auth');
 
-Route::get('users/create', [UsersController::class, 'create'])
-    ->name('users.create')
-    ->middleware('auth');
-
 Route::post('users', [UsersController::class, 'store'])
     ->name('users.store')
     ->middleware('auth');
@@ -99,8 +95,15 @@ Route::delete('nhanvien/{nhanvien}', [NhanVienController::class, 'destroy'])
 Route::put('nhanvien/{nhanvien}/restore', [NhanVienController::class, 'restore'])
     ->name('nhanvien.restore')
     ->middleware('auth');
+
 // Images
 
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
+
+// NhanVien
+
+Route::get('chamcong/{nhanvien}/create', [ChamCongController::class, 'create'])
+    ->name('chamcong.create')
+    ->middleware('auth');
