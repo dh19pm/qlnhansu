@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div class="mb-8 flex justify-start max-w-3xl">
+    <div class="mb-8 flex justify-between items-center">
       <h1 class="font-bold text-3xl">
         <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien')">Nhân Viên</inertia-link>
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.hovaten }}
       </h1>
+      <inertia-link class="btn-indigo" :href="route('chamcong', nhanvien.id)">
+        <span>Chấm Công</span>
+      </inertia-link>
     </div>
     <trashed-message v-if="nhanvien.deleted_at" class="mb-6" @restore="restore">
       Nhân viên này đã bị xoá.
