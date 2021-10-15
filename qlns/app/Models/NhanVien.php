@@ -25,37 +25,37 @@ class NhanVien extends Model
 
     public function chamcong()
     {
-        return $this->hasMany(NhanVien::class, 'nhanvien_id', 'id');
+        return $this->hasMany(NhanVien::class, 'id', 'nhanvien_id');
     }
 
     public function hopdong()
     {
-        return $this->hasMany(HopDong::class, 'nhanvien_id', 'id');
+        return $this->hasMany(HopDong::class, 'id', 'nhanvien_id');
     }
 
     public function thuongphat()
     {
-        return $this->hasMany(ThuongPhat::class, 'nhanvien_id', 'id');
+        return $this->hasMany(ThuongPhat::class, 'id', 'nhanvien_id');
     }
 
     public function ungluong()
     {
-        return $this->hasMany(UngLuong::class, 'nhanvien_id', 'id');
+        return $this->hasMany(UngLuong::class, 'id', 'nhanvien_id');
     }
 
     public function nghiviec()
     {
-        return $this->hasMany(NghiViec::class, 'nhanvien_id', 'id');
+        return $this->hasMany(NghiViec::class, 'id', 'nhanvien_id');
     }
 
     public function baohiem()
     {
-        return $this->hasMany(BaoHiem::class, 'nhanvien_id', 'id');
+        return $this->hasMany(BaoHiem::class, 'id', 'nhanvien_id');
     }
 
     public function nhanluong()
     {
-        return $this->hasMany(NhanLuong::class, 'nhanvien_id', 'id');
+        return $this->hasMany(NhanLuong::class, 'id', 'nhanvien_id');
     }
 
     public function mucluong()

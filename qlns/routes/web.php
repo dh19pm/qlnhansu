@@ -8,6 +8,7 @@ use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\ChamCongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,7 +104,15 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->name('image');
 
 // NhanVien
+Route::get('chamcong/{nhanvien}', [ChamCongController::class, 'index'])
+    ->name('chamcong')
+    ->middleware('auth');
 
 Route::get('chamcong/{nhanvien}/create', [ChamCongController::class, 'create'])
     ->name('chamcong.create')
     ->middleware('auth');
+
+Route::post('chamcong/{nhanvien}', [ChamCongController::class, 'store'])
+    ->name('chamcong.store')
+    ->middleware('auth');
+
