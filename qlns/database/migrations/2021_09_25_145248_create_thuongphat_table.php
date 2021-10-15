@@ -19,8 +19,8 @@ class CreateThuongphatTable extends Migration
             $table->boolean('loai')->default(false);
             $table->integer('sotien');
             $table->string('lydo', 255);
-            $table->date('ngaybd');
-            $table->date('ngaykt');
+            $table->integer('thang');
+            $table->integer('nam');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_thuongphat_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');

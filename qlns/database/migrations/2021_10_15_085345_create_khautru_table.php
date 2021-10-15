@@ -18,8 +18,8 @@ class CreateKhautruTable extends Migration
             $table->unsignedInteger('nhanvien_id');
             $table->unsignedInteger('loaibaohiem_id');
             $table->float('mucdong', 5, 2);
-            $table->date('ngaybd');
-            $table->date('ngaykt');
+            $table->integer('thang');
+            $table->integer('nam');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_khautru_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');

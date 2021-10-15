@@ -20,6 +20,7 @@ class CreateBaohiemTable extends Migration
             $table->date('maso');
             $table->string('noicap', 255);
             $table->date('ngaycap');
+            $table->date('ngayhethan');
             $table->float('mucdong', 5, 2);
             $table->timestamps();
             $table->softDeletes();
