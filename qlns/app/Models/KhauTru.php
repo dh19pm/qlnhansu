@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BaoHiem extends Model
+class KhauTru extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'baohiem';
+    protected $table = 'khautru';
 
     public function nhanvien()
     {

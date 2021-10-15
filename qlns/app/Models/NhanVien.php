@@ -53,6 +53,11 @@ class NhanVien extends Model
         return $this->hasMany(BaoHiem::class, 'id', 'nhanvien_id');
     }
 
+    public function khautru()
+    {
+        return $this->hasMany(KhauTru::class, 'id', 'nhanvien_id');
+    }
+
     public function nhanluong()
     {
         return $this->hasMany(NhanLuong::class, 'id', 'nhanvien_id');

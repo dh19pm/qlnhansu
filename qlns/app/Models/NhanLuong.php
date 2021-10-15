@@ -15,11 +15,6 @@ class NhanLuong extends Model
 
     public function nhanvien()
     {
-        return $this->belongsTo(NhanVien::class);
-    }
-
-    public function nhanluong_baohiem()
-    {
-        return $this->hasMany(NhanLuongBaoHiem::class);
+        return $this->belongsTo(NhanVien::class, 'nhanvien_id', 'id');
     }
 }
