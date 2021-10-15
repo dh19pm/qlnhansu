@@ -26,6 +26,8 @@ class CreateNhanluongTable extends Migration
             $table->integer('phat');
             $table->integer('tamung');
             $table->integer('khautru');
+            $table->integer('thang');
+            $table->integer('nam');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('nhanvien_id','fk_nhanluong_nhanvien_id')->references('id')->on('nhanvien')->onUpdate('CASCADE');
