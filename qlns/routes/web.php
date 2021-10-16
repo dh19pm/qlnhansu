@@ -10,6 +10,7 @@ use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\ChuyenMonController;
 use App\Http\Controllers\DanTocController;
+use App\Http\Controllers\LoaiBaoHiemcController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -252,4 +253,34 @@ Route::delete('dantoc/{dantoc}', [DanTocController::class, 'destroy'])
 
 Route::put('dantoc/{dantoc}/restore', [DanTocController::class, 'restore'])
     ->name('dantoc.restore')
+    ->middleware('auth');
+
+// LoaiBaoHiem
+
+Route::get('loaibaohiem', [LoaiBaoHiemcController::class, 'index'])
+    ->name('loaibaohiem')
+    ->middleware('auth');
+
+Route::get('loaibaohiem/create', [LoaiBaoHiemcController::class, 'create'])
+    ->name('loaibaohiem.create')
+    ->middleware('auth');
+
+Route::post('loaibaohiem', [LoaiBaoHiemcController::class, 'store'])
+    ->name('loaibaohiem.store')
+    ->middleware('auth');
+
+Route::get('loaibaohiem/{loaibaohiem}/edit', [LoaiBaoHiemcController::class, 'edit'])
+    ->name('loaibaohiem.edit')
+    ->middleware('auth');
+
+Route::put('loaibaohiem/{loaibaohiem}', [LoaiBaoHiemcController::class, 'update'])
+    ->name('loaibaohiem.update')
+    ->middleware('auth');
+
+Route::delete('loaibaohiem/{loaibaohiem}', [LoaiBaoHiemcController::class, 'destroy'])
+    ->name('loaibaohiem.destroy')
+    ->middleware('auth');
+
+Route::put('loaibaohiem/{loaibaohiem}/restore', [LoaiBaoHiemcController::class, 'restore'])
+    ->name('loaibaohiem.restore')
     ->middleware('auth');
