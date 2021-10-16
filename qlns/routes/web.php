@@ -13,6 +13,7 @@ use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\LoaiBaoHiemController;
 use App\Http\Controllers\NgoaiNguController;
 use App\Http\Controllers\PhongBanController;
+use App\Http\Controllers\TonGiaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -345,4 +346,34 @@ Route::delete('phongban/{phongban}', [PhongBanController::class, 'destroy'])
 
 Route::put('phongban/{phongban}/restore', [PhongBanController::class, 'restore'])
     ->name('phongban.restore')
+    ->middleware('auth');
+
+// TonGiao
+
+Route::get('tongiao', [TonGiaoController::class, 'index'])
+    ->name('tongiao')
+    ->middleware('auth');
+
+Route::get('tongiao/create', [TonGiaoController::class, 'create'])
+    ->name('tongiao.create')
+    ->middleware('auth');
+
+Route::post('tongiao', [TonGiaoController::class, 'store'])
+    ->name('tongiao.store')
+    ->middleware('auth');
+
+Route::get('tongiao/{tongiao}/edit', [TonGiaoController::class, 'edit'])
+    ->name('tongiao.edit')
+    ->middleware('auth');
+
+Route::put('tongiao/{tongiao}', [TonGiaoController::class, 'update'])
+    ->name('tongiao.update')
+    ->middleware('auth');
+
+Route::delete('tongiao/{tongiao}', [TonGiaoController::class, 'destroy'])
+    ->name('tongiao.destroy')
+    ->middleware('auth');
+
+Route::put('tongiao/{tongiao}/restore', [TonGiaoController::class, 'restore'])
+    ->name('tongiao.restore')
     ->middleware('auth');
