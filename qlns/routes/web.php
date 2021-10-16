@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\ChamCongController;
 use App\Http\Controllers\BangCapController;
+use App\Http\Controllers\ChucVuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -159,4 +160,34 @@ Route::delete('bangcap/{bangcap}', [BangCapController::class, 'destroy'])
 
 Route::put('bangcap/{bangcap}/restore', [BangCapController::class, 'restore'])
     ->name('bangcap.restore')
+    ->middleware('auth');
+
+// ChucVu
+
+Route::get('chucvu', [ChucVuController::class, 'index'])
+    ->name('chucvu')
+    ->middleware('auth');
+
+Route::get('chucvu/create', [ChucVuController::class, 'create'])
+    ->name('chucvu.create')
+    ->middleware('auth');
+
+Route::post('chucvu', [ChucVuController::class, 'store'])
+    ->name('chucvu.store')
+    ->middleware('auth');
+
+Route::get('chucvu/{chucvu}/edit', [ChucVuController::class, 'edit'])
+    ->name('chucvu.edit')
+    ->middleware('auth');
+
+Route::put('chucvu/{chucvu}', [ChucVuController::class, 'update'])
+    ->name('chucvu.update')
+    ->middleware('auth');
+
+Route::delete('chucvu/{chucvu}', [ChucVuController::class, 'destroy'])
+    ->name('chucvu.destroy')
+    ->middleware('auth');
+
+Route::put('chucvu/{chucvu}/restore', [ChucVuController::class, 'restore'])
+    ->name('chucvu.restore')
     ->middleware('auth');

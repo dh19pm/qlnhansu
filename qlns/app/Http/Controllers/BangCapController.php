@@ -16,7 +16,7 @@ class BangCapController extends Controller
     {
         return Inertia::render('BangCap/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'bangcap' => (new bangcap())
+            'bangcap' => (new BangCap())
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
                 ->withQueryString()
