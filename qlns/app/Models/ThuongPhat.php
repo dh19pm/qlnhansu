@@ -20,6 +20,6 @@ class ThuongPhat extends Model
 
     public function nhanvien()
     {
-        return $this->belongsTo(NhanVien::class);
+        return $this->belongsTo(NhanVien::class, 'nhanvien_id', 'id');
     }
 }

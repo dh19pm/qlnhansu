@@ -20,6 +20,6 @@ class PhongBan extends Model
 
     public function mucluong()
     {
-        return $this->hasMany(MucLuong::class);
+        return $this->hasMany(MucLuong::class, 'id', 'phongban_id');
     }
 }

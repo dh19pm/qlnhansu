@@ -20,6 +20,6 @@ class DanToc extends Model
 
     public function nhanvien()
     {
-        return $this->hasMany(NhanVien::class);
+        return $this->hasMany(NhanVien::class, 'id', 'nhanvien_id');
     }
 }

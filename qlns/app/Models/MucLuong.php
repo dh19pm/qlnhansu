@@ -21,17 +21,17 @@ class MucLuong extends Model
 
     public function phongban()
     {
-        return $this->belongsTo(PhongBan::class);
+        return $this->belongsTo(PhongBan::class, 'phongban_id', 'id');
     }
 
     public function chucvu()
     {
-        return $this->belongsTo(ChucVu::class);
+        return $this->belongsTo(ChucVu::class, 'chucvu_id', 'id');
     }
 
     public function nhanvien()
     {
-        return $this->hasMany(NhanVien::class);
+        return $this->hasMany(NhanVien::class, 'id', 'nhanvien_id');
     }
 
     public function getAll()

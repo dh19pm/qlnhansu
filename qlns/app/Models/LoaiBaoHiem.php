@@ -20,6 +20,6 @@ class LoaiBaoHiem extends Model
 
     public function baohiem()
     {
-        return $this->hasMany(BaoHiem::class);
+        return $this->hasMany(BaoHiem::class, 'id', 'loaibaohiem_id');
     }
 }
