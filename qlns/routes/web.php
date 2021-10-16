@@ -11,6 +11,7 @@ use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\ChuyenMonController;
 use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\LoaiBaoHiemController;
+use App\Http\Controllers\NgoaiNguController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -283,4 +284,34 @@ Route::delete('loaibaohiem/{loaibaohiem}', [LoaiBaoHiemController::class, 'destr
 
 Route::put('loaibaohiem/{loaibaohiem}/restore', [LoaiBaoHiemController::class, 'restore'])
     ->name('loaibaohiem.restore')
+    ->middleware('auth');
+
+// NgoaiNgu
+
+Route::get('ngoaingu', [NgoaiNguController::class, 'index'])
+    ->name('ngoaingu')
+    ->middleware('auth');
+
+Route::get('ngoaingu/create', [NgoaiNguController::class, 'create'])
+    ->name('ngoaingu.create')
+    ->middleware('auth');
+
+Route::post('ngoaingu', [NgoaiNguController::class, 'store'])
+    ->name('ngoaingu.store')
+    ->middleware('auth');
+
+Route::get('ngoaingu/{ngoaingu}/edit', [NgoaiNguController::class, 'edit'])
+    ->name('ngoaingu.edit')
+    ->middleware('auth');
+
+Route::put('ngoaingu/{ngoaingu}', [NgoaiNguController::class, 'update'])
+    ->name('ngoaingu.update')
+    ->middleware('auth');
+
+Route::delete('ngoaingu/{ngoaingu}', [NgoaiNguController::class, 'destroy'])
+    ->name('ngoaingu.destroy')
+    ->middleware('auth');
+
+Route::put('ngoaingu/{ngoaingu}/restore', [NgoaiNguController::class, 'restore'])
+    ->name('ngoaingu.restore')
     ->middleware('auth');

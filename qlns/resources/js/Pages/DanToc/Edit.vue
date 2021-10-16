@@ -8,7 +8,7 @@
       </h1>
     </div>
     <trashed-message v-if="dantoc.deleted_at" class="mb-6" @restore="restore">
-      Bằng cấp này đã bị xoá.
+      Dân tộc này đã bị xoá.
     </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
