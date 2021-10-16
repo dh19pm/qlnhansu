@@ -13,6 +13,11 @@ class HopDong extends Model
 
     protected $table = 'hopdong';
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
     public function nhanvien()
     {
         return $this->belongsTo(NhanVien::class);

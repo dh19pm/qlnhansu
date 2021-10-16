@@ -14,6 +14,11 @@ class MucLuong extends Model
 
     protected $table = 'mucluong';
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
     public function phongban()
     {
         return $this->belongsTo(PhongBan::class);

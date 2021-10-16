@@ -13,6 +13,11 @@ class PhongBan extends Model
 
     protected $table = 'phongban';
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
     public function mucluong()
     {
         return $this->hasMany(MucLuong::class);
