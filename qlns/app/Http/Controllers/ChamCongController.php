@@ -56,7 +56,7 @@ class ChamCongController extends Controller
             'created_at' => Request::get('created_at')
         ]);
 
-        return Redirect::back()->with('success', 'Đã chấm công.');
+        return Redirect::route('chamcong')->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(ChamCong $chamcong)
@@ -82,20 +82,20 @@ class ChamCongController extends Controller
 
         $chamcong->update(Request::only('created_at'));
 
-        return Redirect::back()->with('success', 'Đã cập nhật chấm công.');
+        return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
 
     public function destroy(ChamCong $chamcong)
     {
         $chamcong->delete();
 
-        return Redirect::back()->with('success', 'Đã xoá chấm công.');
+        return Redirect::back()->with('success', 'Đã xoá thành công.');
     }
 
     public function restore(ChamCong $chamcong)
     {
         $chamcong->restore();
 
-        return Redirect::back()->with('success', 'Đã khôi phục chấm công.');
+        return Redirect::back()->with('success', 'Đã khôi phục thành công.');
     }
 }

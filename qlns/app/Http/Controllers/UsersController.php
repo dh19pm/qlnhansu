@@ -59,20 +59,20 @@ class UsersController extends Controller
             $user->update(['password' => Request::get('password')]);
         }
 
-        return Redirect::back()->with('success', 'Đã cập nhật người dùng.');
+        return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return Redirect::back()->with('success', 'Đã xoá người dùng.');
+        return Redirect::back()->with('success', 'Đã xoá thành công.');
     }
 
     public function restore(User $user)
     {
         $user->restore();
 
-        return Redirect::back()->with('success', 'Đã khôi phục người dùng.');
+        return Redirect::back()->with('success', 'Đã khôi phục thành công.');
     }
 }

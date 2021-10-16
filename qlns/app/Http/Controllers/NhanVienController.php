@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\BangCap;
 use App\Models\ChuyenMon;
+use App\Models\DanToc;
 use App\Models\NhanVien;
 use App\Models\MucLuong;
+use App\Models\NgoaiNgu;
+use App\Models\TonGiao;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -40,28 +43,28 @@ class NhanVienController extends Controller
     public function create()
     {
         return Inertia::render('NhanVien/Create', [
-            'mucluong' => Auth::user()->nhanvien->mucluong->getAll(),
-            'bangcap' => Auth::user()->nhanvien->bangcap
+            'mucluong' => (new MucLuong())->getAll(),
+            'bangcap' => (new BangCap())
                 ->orderBy('tenbc')
                 ->get()
                 ->map
                 ->only('id', 'tenbc'),
-            'chuyenmon' => Auth::user()->nhanvien->chuyenmon
+            'chuyenmon' => (new ChuyenMon())
                 ->orderBy('tencm')
                 ->get()
                 ->map
                 ->only('id', 'tencm'),
-            'ngoaingu' => Auth::user()->nhanvien->ngoaingu
+            'ngoaingu' => (new NgoaiNgu())
                 ->orderBy('tenng')
                 ->get()
                 ->map
                 ->only('id', 'tenng'),
-            'dantoc' => Auth::user()->nhanvien->dantoc
+            'dantoc' => (new DanToc())
                 ->orderBy('tendt')
                 ->get()
                 ->map
                 ->only('id', 'tendt'),
-            'tongiao' => Auth::user()->nhanvien->tongiao
+            'tongiao' => (new TonGiao())
                 ->orderBy('tentg')
                 ->get()
                 ->map
@@ -117,34 +120,34 @@ class NhanVienController extends Controller
             'role' => Request::get('role')
         ]);
 
-        return Redirect::route('nhanvien')->with('success', 'Đã tạo nhân viên.');
+        return Redirect::route('nhanvien')->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(NhanVien $nhanvien)
     {
         return Inertia::render('NhanVien/Edit', [
-            'mucluong' => Auth::user()->nhanvien->mucluong->getAll(),
-            'bangcap' => Auth::user()->nhanvien->bangcap
+            'mucluong' => (new MucLuong())->getAll(),
+            'bangcap' => (new BangCap())
                 ->orderBy('tenbc')
                 ->get()
                 ->map
                 ->only('id', 'tenbc'),
-            'chuyenmon' => Auth::user()->nhanvien->chuyenmon
+            'chuyenmon' => (new ChuyenMon())
                 ->orderBy('tencm')
                 ->get()
                 ->map
                 ->only('id', 'tencm'),
-            'ngoaingu' => Auth::user()->nhanvien->ngoaingu
+            'ngoaingu' => (new NgoaiNgu())
                 ->orderBy('tenng')
                 ->get()
                 ->map
                 ->only('id', 'tenng'),
-            'dantoc' => Auth::user()->nhanvien->dantoc
+            'dantoc' => (new DanToc())
                 ->orderBy('tendt')
                 ->get()
                 ->map
                 ->only('id', 'tendt'),
-            'tongiao' => Auth::user()->nhanvien->tongiao
+            'tongiao' => (new TonGiao())
                 ->orderBy('tentg')
                 ->get()
                 ->map
@@ -153,7 +156,7 @@ class NhanVienController extends Controller
                 'id' => $nhanvien->id,
                 'user_id' => $nhanvien->user->id,
                 'mucluong' => $nhanvien->mucluong_id,
-                'bangcap' => $nhanvien->bangcap_id,
+                'bangcap' => $nhanvien->bangcap_id ?? null,
                 'chuyenmon' => $nhanvien->chuyenmon_id,
                 'ngoaingu' => $nhanvien->ngoaingu_id,
                 'dantoc' => $nhanvien->dantoc_id,
@@ -216,20 +219,20 @@ class NhanVienController extends Controller
             $nhanvien->update(['photo_path' => Request::file('photo')->store('users')]);
         }
 
-        return Redirect::back()->with('success', 'Đã cập nhật hồ sơ nhân viên.');
+        return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
 
     public function destroy(NhanVien $nhanvien)
     {
         $nhanvien->delete();
 
-        return Redirect::back()->with('success', 'Đã xoá hồ sơ nhân viên.');
+        return Redirect::back()->with('success', 'Đã xoá thành công.');
     }
 
     public function restore(NhanVien $nhanvien)
     {
         $nhanvien->restore();
 
-        return Redirect::back()->with('success', 'Đã khôi phục hồ sơ nhân viên.');
+        return Redirect::back()->with('success', 'Đã khôi phục thành công.');
     }
 }

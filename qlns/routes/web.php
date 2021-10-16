@@ -1,14 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\OrganizationsController;
-use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\ChamCongController;
+use App\Http\Controllers\BangCapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,7 +101,7 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
 
-// NhanVien
+// ChamCong
 Route::get('chamcong', [ChamCongController::class, 'index'])
     ->name('chamcong')
     ->middleware('auth');
@@ -132,3 +130,33 @@ Route::put('chamcong/{chamcong}/restore', [ChamCongController::class, 'restore']
     ->name('chamcong.restore')
     ->middleware('auth');
 
+
+// BangCap
+
+Route::get('bangcap', [BangCapController::class, 'index'])
+    ->name('bangcap')
+    ->middleware('auth');
+
+Route::get('bangcap/create', [BangCapController::class, 'create'])
+    ->name('bangcap.create')
+    ->middleware('auth');
+
+Route::post('bangcap', [BangCapController::class, 'store'])
+    ->name('bangcap.store')
+    ->middleware('auth');
+
+Route::get('bangcap/{bangcap}/edit', [BangCapController::class, 'edit'])
+    ->name('bangcap.edit')
+    ->middleware('auth');
+
+Route::put('bangcap/{bangcap}', [BangCapController::class, 'update'])
+    ->name('bangcap.update')
+    ->middleware('auth');
+
+Route::delete('bangcap/{bangcap}', [BangCapController::class, 'destroy'])
+    ->name('bangcap.destroy')
+    ->middleware('auth');
+
+Route::put('bangcap/{bangcap}/restore', [BangCapController::class, 'restore'])
+    ->name('bangcap.restore')
+    ->middleware('auth');
