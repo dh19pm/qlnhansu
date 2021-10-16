@@ -14,6 +14,7 @@ use App\Http\Controllers\LoaiBaoHiemController;
 use App\Http\Controllers\NgoaiNguController;
 use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\TonGiaoController;
+use App\Http\Controllers\MucLuongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -376,4 +377,34 @@ Route::delete('tongiao/{tongiao}', [TonGiaoController::class, 'destroy'])
 
 Route::put('tongiao/{tongiao}/restore', [TonGiaoController::class, 'restore'])
     ->name('tongiao.restore')
+    ->middleware('auth');
+
+// MucLuong
+
+Route::get('mucluong', [MucLuongController::class, 'index'])
+    ->name('mucluong')
+    ->middleware('auth');
+
+Route::get('mucluong/create', [MucLuongController::class, 'create'])
+    ->name('mucluong.create')
+    ->middleware('auth');
+
+Route::post('mucluong', [MucLuongController::class, 'store'])
+    ->name('mucluong.store')
+    ->middleware('auth');
+
+Route::get('mucluong/{mucluong}/edit', [MucLuongController::class, 'edit'])
+    ->name('mucluong.edit')
+    ->middleware('auth');
+
+Route::put('mucluong/{mucluong}', [MucLuongController::class, 'update'])
+    ->name('mucluong.update')
+    ->middleware('auth');
+
+Route::delete('mucluong/{mucluong}', [MucLuongController::class, 'destroy'])
+    ->name('mucluong.destroy')
+    ->middleware('auth');
+
+Route::put('mucluong/{mucluong}/restore', [MucLuongController::class, 'restore'])
+    ->name('mucluong.restore')
     ->middleware('auth');

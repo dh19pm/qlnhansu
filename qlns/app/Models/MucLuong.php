@@ -21,12 +21,12 @@ class MucLuong extends Model
 
     public function phongban()
     {
-        return $this->belongsTo(PhongBan::class, 'phongban_id', 'id');
+        return $this->belongsTo(PhongBan::class, 'phongban_id', 'id')->withTrashed();
     }
 
     public function chucvu()
     {
-        return $this->belongsTo(ChucVu::class, 'chucvu_id', 'id');
+        return $this->belongsTo(ChucVu::class, 'chucvu_id', 'id')->withTrashed();
     }
 
     public function nhanvien()
@@ -42,5 +42,22 @@ class MucLuong extends Model
             ->select('mucluong.id', 'phongban.tenpb', 'chucvu.tencv')
             ->orderBy('phongban.id')
             ->get();
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->join('phongban as pb', 'mucluong.phongban_id', '=', 'pb.id')
+            ->join('chucvu as cv', 'mucluong.chucvu_id', '=', 'cv.id')
+            ->Where('pb.tenpb', 'like', '%'.$search.'%')
+            ->OrWhere('cv.tencv', 'like', '%'.$search.'%')
+            ->select('mucluong.*', 'pb.tenpb', 'cv.tencv');
+        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
+            if ($trashed === 'with') {
+                $query->withTrashed();
+            } elseif ($trashed === 'only') {
+                $query->onlyTrashed();
+            }
+        });
     }
 }
