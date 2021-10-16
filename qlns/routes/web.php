@@ -9,6 +9,7 @@ use App\Http\Controllers\ChamCongController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\ChuyenMonController;
+use App\Http\Controllers\DanTocController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -221,4 +222,34 @@ Route::delete('chuyenmon/{chuyenmon}', [ChuyenMonController::class, 'destroy'])
 
 Route::put('chuyenmon/{chuyenmon}/restore', [ChuyenMonController::class, 'restore'])
     ->name('chuyenmon.restore')
+    ->middleware('auth');
+
+// DanToc
+
+Route::get('dantoc', [DanTocController::class, 'index'])
+    ->name('dantoc')
+    ->middleware('auth');
+
+Route::get('dantoc/create', [DanTocController::class, 'create'])
+    ->name('dantoc.create')
+    ->middleware('auth');
+
+Route::post('dantoc', [DanTocController::class, 'store'])
+    ->name('dantoc.store')
+    ->middleware('auth');
+
+Route::get('dantoc/{dantoc}/edit', [DanTocController::class, 'edit'])
+    ->name('dantoc.edit')
+    ->middleware('auth');
+
+Route::put('dantoc/{dantoc}', [DanTocController::class, 'update'])
+    ->name('dantoc.update')
+    ->middleware('auth');
+
+Route::delete('dantoc/{dantoc}', [DanTocController::class, 'destroy'])
+    ->name('dantoc.destroy')
+    ->middleware('auth');
+
+Route::put('dantoc/{dantoc}/restore', [DanTocController::class, 'restore'])
+    ->name('dantoc.restore')
     ->middleware('auth');
