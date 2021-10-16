@@ -15,6 +15,9 @@ class ChamCongController extends Controller
 {
     public function index()
     {
+        if (empty(Request::get('nhanvien')) && Auth::user()->nhanvien->id !== Request::get('nhanvien'))
+            return abort(404);
+
         return Inertia::render('ChamCong/Index', [
             'filters' => Request::all('search', 'trashed', 'nhanvien'),
             'chamcong' => (new ChamCong())
@@ -45,7 +48,7 @@ class ChamCongController extends Controller
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
-            'created_at' => ['required', 'date',  Rule::unique('chamcong')]
+            'created_at' => ['required', 'date', Rule::unique('chamcong')->where('nhanvien_id', $nhanvien->id)]
         ]);
 
         (new ChamCong())->create([
@@ -74,7 +77,7 @@ class ChamCongController extends Controller
     public function update(ChamCong $chamcong)
     {
         Request::validate([
-            'created_at' => ['required', 'date', Rule::unique('chamcong')->ignore($chamcong->id)]
+            'created_at' => ['required', 'date', Rule::unique('chamcong')->where('nhanvien_id', $chamcong->nhanvien->id)->ignore($chamcong->id)]
         ]);
 
         $chamcong->update(Request::only('created_at'));

@@ -130,12 +130,12 @@ export default {
         })
     },
     destroy() {
-        if (confirm('Are you sure you want to delete this user?')) {
+        if (confirm('Bạn có chắc chắn muốn xoá không?')) {
             this.$inertia.delete(this.route('nhanvien.destroy', this.nhanvien.id))
         }
     },
     restore() {
-        if (confirm('Are you sure you want to restore this user?')) {
+        if (confirm('Bạn có chắc chắn muốn khôi phục không?')) {
             this.$inertia.put(this.route('nhanvien.restore', this.nhanvien.id))
         }
     },

@@ -7,7 +7,7 @@
       </h1>
     </div>
     <trashed-message v-if="chamcong.deleted_at" class="mb-6" @restore="restore">
-      Người dùng này đã bị xoá.
+      Ngày công này đã bị xoá.
     </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
@@ -15,7 +15,7 @@
           <text-input v-model="form.created_at" :error="form.errors.created_at" class="pr-6 pb-8 w-full lg:w-1/1" type="date" label="Ngày công" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!chamcong.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Chấm Công</button>
+          <button v-if="!chamcong.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Ngày Công</button>
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Cập Nhật</loading-button>
         </div>
       </form>
@@ -61,12 +61,12 @@ export default {
         this.form.post(this.route('chamcong.update', this.chamcong.id))
     },
     destroy() {
-        if (confirm('Are you sure you want to delete this user?')) {
+        if (confirm('Bạn có chắc chắn muốn xoá không?')) {
             this.$inertia.delete(this.route('chamcong.destroy', this.chamcong.id))
         }
     },
     restore() {
-        if (confirm('Are you sure you want to restore this user?')) {
+        if (confirm('Bạn có chắc chắn muốn khôi phục không?')) {
             this.$inertia.put(this.route('chamcong.restore', this.chamcong.id))
         }
     },
