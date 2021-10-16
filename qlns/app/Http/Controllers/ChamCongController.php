@@ -56,7 +56,7 @@ class ChamCongController extends Controller
             'created_at' => Request::get('created_at')
         ]);
 
-        return Redirect::route('chamcong')->with('success', 'Đã tạo thành công.');
+        return Redirect::route('chamcong', ['nhanvien' => $nhanvien->id])->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(ChamCong $chamcong)
