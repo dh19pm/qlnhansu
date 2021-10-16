@@ -15,7 +15,20 @@ class ChamCongController extends Controller
 {
     public function index()
     {
-        return '';
+        return Inertia::render('ChamCong/Index', [
+            'filters' => Request::all('search', 'trashed', 'nhanvien'),
+            'chamcong' => (new ChamCong())
+                ->latest('chamcong.created_at')
+                ->filter(Request::only('search', 'trashed', 'nhanvien'))
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($chamcong) => [
+                    'id' => $chamcong->id,
+                    'hovaten' => $chamcong->nhanvien->hovaten,
+                    'created_at' => date('Y-m-d H:i:s', strtotime($chamcong->created_at)),
+                    'deleted_at' => $chamcong->deleted_at,
+                ]),
+        ]);
     }
 
     public function create(NhanVien $nhanvien)
@@ -26,6 +39,11 @@ class ChamCongController extends Controller
                 'hovaten' => $nhanvien->hovaten
             ]
         ]);
+    }
+
+    public function edit(ChamCong $chamcong)
+    {
+        return '';
     }
 
     public function store(NhanVien $nhanvien)

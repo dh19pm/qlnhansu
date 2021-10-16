@@ -25,7 +25,7 @@ class NhanVien extends Model
 
     public function chamcong()
     {
-        return $this->hasMany(NhanVien::class, 'id', 'nhanvien_id');
+        return $this->hasMany(NhanVien::class, 'id', 'nhanvien_id')->withTrashed();
     }
 
     public function hopdong()

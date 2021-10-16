@@ -104,12 +104,16 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->name('image');
 
 // NhanVien
-Route::get('chamcong/{nhanvien}', [ChamCongController::class, 'index'])
+Route::get('chamcong', [ChamCongController::class, 'index'])
     ->name('chamcong')
     ->middleware('auth');
 
 Route::get('chamcong/{nhanvien}/create', [ChamCongController::class, 'create'])
     ->name('chamcong.create')
+    ->middleware('auth');
+
+Route::get('chamcong/{chamcong}/edit', [ChamCongController::class, 'edit'])
+    ->name('chamcong.edit')
     ->middleware('auth');
 
 Route::post('chamcong/{nhanvien}', [ChamCongController::class, 'store'])
