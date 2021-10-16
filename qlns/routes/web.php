@@ -8,6 +8,7 @@ use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\ChamCongController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\ChucVuController;
+use App\Http\Controllers\ChuyenMonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -190,4 +191,34 @@ Route::delete('chucvu/{chucvu}', [ChucVuController::class, 'destroy'])
 
 Route::put('chucvu/{chucvu}/restore', [ChucVuController::class, 'restore'])
     ->name('chucvu.restore')
+    ->middleware('auth');
+
+// ChuyenMon
+
+Route::get('chuyenmon', [ChuyenMonController::class, 'index'])
+    ->name('chuyenmon')
+    ->middleware('auth');
+
+Route::get('chuyenmon/create', [ChuyenMonController::class, 'create'])
+    ->name('chuyenmon.create')
+    ->middleware('auth');
+
+Route::post('chuyenmon', [ChuyenMonController::class, 'store'])
+    ->name('chuyenmon.store')
+    ->middleware('auth');
+
+Route::get('chuyenmon/{chuyenmon}/edit', [ChuyenMonController::class, 'edit'])
+    ->name('chuyenmon.edit')
+    ->middleware('auth');
+
+Route::put('chuyenmon/{chuyenmon}', [ChuyenMonController::class, 'update'])
+    ->name('chuyenmon.update')
+    ->middleware('auth');
+
+Route::delete('chuyenmon/{chuyenmon}', [ChuyenMonController::class, 'destroy'])
+    ->name('chuyenmon.destroy')
+    ->middleware('auth');
+
+Route::put('chuyenmon/{chuyenmon}/restore', [ChuyenMonController::class, 'restore'])
+    ->name('chuyenmon.restore')
     ->middleware('auth');

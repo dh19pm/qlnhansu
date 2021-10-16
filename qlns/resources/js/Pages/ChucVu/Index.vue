@@ -17,7 +17,7 @@
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
-          <th class="px-6 pt-6 pb-4" colspan="2">Tên bằng cấp</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Tên chức vụ</th>
         </tr>
         <tr v-for="cv in chucvu.data" :key="cv.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">

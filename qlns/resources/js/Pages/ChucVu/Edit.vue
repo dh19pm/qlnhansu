@@ -13,7 +13,7 @@
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.tencv" :error="form.errors.tencv" class="pr-6 pb-8 w-full lg:w-1/1" label="Tên bằng cấp" />
+          <text-input v-model="form.tencv" :error="form.errors.tencv" class="pr-6 pb-8 w-full lg:w-1/1" label="Tên chức vụ" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
           <button v-if="!chucvu.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Chức Vụ</button>
