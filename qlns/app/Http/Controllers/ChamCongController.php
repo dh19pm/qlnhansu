@@ -25,7 +25,7 @@ class ChamCongController extends Controller
                 ->through(fn ($chamcong) => [
                     'id' => $chamcong->id,
                     'hovaten' => $chamcong->nhanvien->hovaten,
-                    'created_at' => date('Y-m-d H:i:s', strtotime($chamcong->created_at)),
+                    'created_at' => date('d-m-Y', strtotime($chamcong->created_at)),
                     'deleted_at' => $chamcong->deleted_at,
                 ]),
         ]);
@@ -41,15 +41,11 @@ class ChamCongController extends Controller
         ]);
     }
 
-    public function edit(ChamCong $chamcong)
-    {
-        return '';
-    }
 
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
-            'created_at' => ['required', 'date']
+            'created_at' => ['required', 'date',  Rule::unique('chamcong')]
         ]);
 
         (new ChamCong())->create([
@@ -58,5 +54,45 @@ class ChamCongController extends Controller
         ]);
 
         return Redirect::back()->with('success', 'Đã chấm công.');
+    }
+
+    public function edit(ChamCong $chamcong)
+    {
+        return Inertia::render('ChamCong/Edit', [
+            'nhanvien' => [
+                'id' => $chamcong->nhanvien->id,
+                'hovaten' => $chamcong->nhanvien->hovaten
+            ],
+            'chamcong' => [
+                'id' => $chamcong->id,
+                'created_at' => date('Y-m-d', strtotime($chamcong->created_at)),
+                'deleted_at' => $chamcong->deleted_at,
+            ],
+        ]);
+    }
+
+    public function update(ChamCong $chamcong)
+    {
+        Request::validate([
+            'created_at' => ['required', 'date', Rule::unique('chamcong')->ignore($chamcong->id)]
+        ]);
+
+        $chamcong->update(Request::only('created_at'));
+
+        return Redirect::back()->with('success', 'Đã cập nhật chấm công.');
+    }
+
+    public function destroy(ChamCong $chamcong)
+    {
+        $chamcong->delete();
+
+        return Redirect::back()->with('success', 'Đã xoá chấm công.');
+    }
+
+    public function restore(ChamCong $chamcong)
+    {
+        $chamcong->restore();
+
+        return Redirect::back()->with('success', 'Đã khôi phục chấm công.');
     }
 }

@@ -6,14 +6,14 @@
         <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Trang Chủ</div>
       </inertia-link>
     </div>
-    <div class="mb-4">
+    <div v-if="$page.props.auth.user.role > 0" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('nhanvien')">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('nhanvien') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('nhanvien') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Nhân Viên</div>
       </inertia-link>
     </div>
     <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('chamcong')">
+      <inertia-link class="flex items-center group py-3" :href="route('chamcong', { nhanvien: $page.props.auth.user.nhanvien_id })">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('chamcong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('chamcong') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Chấm Công</div>
       </inertia-link>

@@ -6,7 +6,7 @@
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.hovaten }}
       </h1>
-      <inertia-link class="btn-indigo" :href="route('chamcong', { nhanvien: nhanvien.id })">
+      <inertia-link v-if="$page.props.auth.user.role > 0" class="btn-indigo" :href="route('chamcong', { nhanvien: nhanvien.id })">
         <span>Chấm Công</span>
       </inertia-link>
     </div>

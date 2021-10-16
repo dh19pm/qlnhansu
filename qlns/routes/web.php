@@ -120,3 +120,15 @@ Route::post('chamcong/{nhanvien}', [ChamCongController::class, 'store'])
     ->name('chamcong.store')
     ->middleware('auth');
 
+Route::put('chamcong/{chamcong}', [ChamCongController::class, 'update'])
+    ->name('chamcong.update')
+    ->middleware('auth');
+
+Route::delete('chamcong/{chamcong}', [ChamCongController::class, 'destroy'])
+    ->name('chamcong.destroy')
+    ->middleware('auth');
+
+Route::put('chamcong/{chamcong}/restore', [ChamCongController::class, 'restore'])
+    ->name('chamcong.restore')
+    ->middleware('auth');
+
