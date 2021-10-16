@@ -10,6 +10,9 @@
           <option value="with">Tất cả</option>
         </select>
       </search-filter>
+      <inertia-link v-if="filters.nhanvien" class="btn-indigo" :href="route('chamcong.create', filters.nhanvien)">
+        <span>Tạo Mới</span>
+      </inertia-link>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">

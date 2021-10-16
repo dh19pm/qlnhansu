@@ -1,12 +1,8 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien')">Nhân Viên</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span>
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien.edit', nhanvien.id)">{{ nhanvien.hovaten }}</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span>
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('nhanvien')">Chấm Công</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> Thêm Mới
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('chamcong')">Chấm Công</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span> {{ nhanvien.hovaten }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
