@@ -26,7 +26,7 @@ class MucLuongController extends Controller
                     'id' => $mucluong->id,
                     'tenpb' => $mucluong->phongban->tenpb,
                     'tencv' => $mucluong->chucvu->tencv,
-                    'luongcb' => $mucluong->luongcb,
+                    'luongcb' => number_format($mucluong->luongcb) . ' VNĐ',
                     'phucap' => $mucluong->phucap,
                     'deleted_at' => $mucluong->deleted_at,
                 ]),
