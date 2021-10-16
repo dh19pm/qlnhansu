@@ -12,6 +12,7 @@ use App\Http\Controllers\ChuyenMonController;
 use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\LoaiBaoHiemController;
 use App\Http\Controllers\NgoaiNguController;
+use App\Http\Controllers\PhongBanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -314,4 +315,34 @@ Route::delete('ngoaingu/{ngoaingu}', [NgoaiNguController::class, 'destroy'])
 
 Route::put('ngoaingu/{ngoaingu}/restore', [NgoaiNguController::class, 'restore'])
     ->name('ngoaingu.restore')
+    ->middleware('auth');
+
+// PhongBan
+
+Route::get('phongban', [PhongBanController::class, 'index'])
+    ->name('phongban')
+    ->middleware('auth');
+
+Route::get('phongban/create', [PhongBanController::class, 'create'])
+    ->name('phongban.create')
+    ->middleware('auth');
+
+Route::post('phongban', [PhongBanController::class, 'store'])
+    ->name('phongban.store')
+    ->middleware('auth');
+
+Route::get('phongban/{phongban}/edit', [PhongBanController::class, 'edit'])
+    ->name('phongban.edit')
+    ->middleware('auth');
+
+Route::put('phongban/{phongban}', [PhongBanController::class, 'update'])
+    ->name('phongban.update')
+    ->middleware('auth');
+
+Route::delete('phongban/{phongban}', [PhongBanController::class, 'destroy'])
+    ->name('phongban.destroy')
+    ->middleware('auth');
+
+Route::put('phongban/{phongban}/restore', [PhongBanController::class, 'restore'])
+    ->name('phongban.restore')
     ->middleware('auth');

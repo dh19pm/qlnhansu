@@ -22,4 +22,17 @@ class PhongBan extends Model
     {
         return $this->hasMany(MucLuong::class, 'id', 'phongban_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->Where('tenpb', 'like', '%'.$search.'%');
+        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
+            if ($trashed === 'with') {
+                $query->withTrashed();
+            } elseif ($trashed === 'only') {
+                $query->onlyTrashed();
+            }
+        });
+    }
 }
