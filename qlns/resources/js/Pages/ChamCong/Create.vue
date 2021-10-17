@@ -43,9 +43,7 @@ export default {
   },
   methods: {
     store() {
-        this.form.post(this.route('chamcong.store', this.nhanvien.id), {
-            onSuccess: () => this.form.reset('created_at')
-        })
+        this.form.post(this.route('chamcong.store', this.nhanvien.id))
     },
   },
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\NgoaiNguController;
 use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\TonGiaoController;
 use App\Http\Controllers\MucLuongController;
+use App\Http\Controllers\BaoHiemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -290,31 +291,31 @@ Route::put('loaibaohiem/{loaibaohiem}/restore', [LoaiBaoHiemController::class, '
     ->middleware('auth');
 
 // BaoHiem
-Route::get('baohiem', [ChamCongController::class, 'index'])
+Route::get('baohiem', [BaoHiemController::class, 'index'])
     ->name('baohiem')
     ->middleware('auth');
 
-Route::get('baohiem/{nhanvien}/create', [ChamCongController::class, 'create'])
+Route::get('baohiem/{nhanvien}/create', [BaoHiemController::class, 'create'])
     ->name('baohiem.create')
     ->middleware('auth');
 
-Route::get('baohiem/{baohiem}/edit', [ChamCongController::class, 'edit'])
+Route::get('baohiem/{baohiem}/edit', [BaoHiemController::class, 'edit'])
     ->name('baohiem.edit')
     ->middleware('auth');
 
-Route::post('baohiem/{baohiem}', [ChamCongController::class, 'store'])
+Route::post('baohiem/{baohiem}', [BaoHiemController::class, 'store'])
     ->name('baohiem.store')
     ->middleware('auth');
 
-Route::put('baohiem/{baohiem}', [ChamCongController::class, 'update'])
+Route::put('baohiem/{baohiem}', [BaoHiemController::class, 'update'])
     ->name('baohiem.update')
     ->middleware('auth');
 
-Route::delete('baohiem/{baohiem}', [ChamCongController::class, 'destroy'])
+Route::delete('baohiem/{baohiem}', [BaoHiemController::class, 'destroy'])
     ->name('baohiem.destroy')
     ->middleware('auth');
 
-Route::put('baohiem/{baohiem}/restore', [ChamCongController::class, 'restore'])
+Route::put('baohiem/{baohiem}/restore', [BaoHiemController::class, 'restore'])
     ->name('baohiem.restore')
     ->middleware('auth');
 
