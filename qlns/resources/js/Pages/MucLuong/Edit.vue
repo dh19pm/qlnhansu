@@ -66,7 +66,7 @@ export default {
         phongban: this.mucluong.phongban,
         chucvu: this.mucluong.chucvu,
         luongcb: this.mucluong.luongcb,
-        phucap: this.mucluong.phucap,
+        phucap: this.mucluong.phucap.toString(),
       })
     }
   },
