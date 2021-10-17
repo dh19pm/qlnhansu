@@ -19,6 +19,7 @@ class MucLuongController extends Controller
         return Inertia::render('MucLuong/Index', [
             'filters' => Request::all('search', 'trashed'),
             'mucluong' => (new MucLuong())
+                ->latest('mucluong.created_at')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
                 ->withQueryString()
