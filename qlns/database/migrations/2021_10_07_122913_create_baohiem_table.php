@@ -17,7 +17,7 @@ class CreateBaohiemTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
             $table->unsignedInteger('loaibaohiem_id');
-            $table->date('maso');
+            $table->string('maso', 255);
             $table->string('noicap', 255);
             $table->date('ngaycap');
             $table->date('ngayhethan');

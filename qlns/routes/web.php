@@ -289,6 +289,35 @@ Route::put('loaibaohiem/{loaibaohiem}/restore', [LoaiBaoHiemController::class, '
     ->name('loaibaohiem.restore')
     ->middleware('auth');
 
+// BaoHiem
+Route::get('baohiem', [ChamCongController::class, 'index'])
+    ->name('baohiem')
+    ->middleware('auth');
+
+Route::get('baohiem/{nhanvien}/create', [ChamCongController::class, 'create'])
+    ->name('baohiem.create')
+    ->middleware('auth');
+
+Route::get('baohiem/{baohiem}/edit', [ChamCongController::class, 'edit'])
+    ->name('baohiem.edit')
+    ->middleware('auth');
+
+Route::post('baohiem/{baohiem}', [ChamCongController::class, 'store'])
+    ->name('baohiem.store')
+    ->middleware('auth');
+
+Route::put('baohiem/{baohiem}', [ChamCongController::class, 'update'])
+    ->name('baohiem.update')
+    ->middleware('auth');
+
+Route::delete('baohiem/{baohiem}', [ChamCongController::class, 'destroy'])
+    ->name('baohiem.destroy')
+    ->middleware('auth');
+
+Route::put('baohiem/{baohiem}/restore', [ChamCongController::class, 'restore'])
+    ->name('baohiem.restore')
+    ->middleware('auth');
+
 // NgoaiNgu
 
 Route::get('ngoaingu', [NgoaiNguController::class, 'index'])
