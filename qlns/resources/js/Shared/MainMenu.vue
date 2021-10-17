@@ -18,6 +18,12 @@
         <div :class="isUrl('chucvu') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Chức Vụ</div>
       </inertia-link>
     </div>
+    <div v-if="$page.props.auth.user.role == 2" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('mucluong')">
+        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('mucluong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isUrl('mucluong') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Mức Lương</div>
+      </inertia-link>
+    </div>
     <div v-if="$page.props.auth.user.role > 0" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('bangcap')">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('bangcap') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
