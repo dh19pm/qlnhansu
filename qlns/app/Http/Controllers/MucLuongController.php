@@ -53,8 +53,8 @@ class MucLuongController extends Controller
     public function store()
     {
         Request::validate([
-            'phongban' => ['required', Rule::exists('phongban', 'id')],
-            'chucvu' => ['required', Rule::exists('chucvu', 'id')],
+            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('mucluong', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))],
+            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('mucluong', 'chucvu_id')->where('phongban_id', Request::get('phongban'))],
             'luongcb' => ['required', 'integer'],
             'phucap' => ['required', 'between:0,100.00'],
         ]);
@@ -96,8 +96,8 @@ class MucLuongController extends Controller
     public function update(MucLuong $mucluong)
     {
         Request::validate([
-            'phongban' => ['required', Rule::exists('phongban', 'id')],
-            'chucvu' => ['required', Rule::exists('chucvu', 'id')],
+            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('mucluong', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))->ignore($mucluong->id)],
+            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('mucluong', 'chucvu_id')->where('phongban_id', Request::get('phongban'))->ignore($mucluong->id)],
             'luongcb' => ['required', 'integer'],
             'phucap' => ['required', 'between:0,100.00'],
         ]);
