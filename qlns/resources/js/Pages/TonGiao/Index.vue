@@ -33,7 +33,7 @@
           </td>
         </tr>
         <tr v-if="tongiao.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">Không có tôn giáo nào cả.</td>
+          <td class="border-t px-6 py-4" colspan="1">Không có tôn giáo nào cả.</td>
         </tr>
       </table>
     </div>

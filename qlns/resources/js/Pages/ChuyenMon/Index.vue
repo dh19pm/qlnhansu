@@ -33,7 +33,7 @@
           </td>
         </tr>
         <tr v-if="chuyenmon.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">Không có chuyên môn nào cả.</td>
+          <td class="border-t px-6 py-4" colspan="1">Không có chuyên môn nào cả.</td>
         </tr>
       </table>
     </div>

@@ -39,7 +39,7 @@
           </td>
         </tr>
         <tr v-if="chamcong.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">Không có ngày công nào cả.</td>
+          <td class="border-t px-6 py-4" colspan="2">Không có ngày công nào cả.</td>
         </tr>
       </table>
     </div>

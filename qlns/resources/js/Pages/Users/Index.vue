@@ -52,7 +52,7 @@
           </td>
         </tr>
         <tr v-if="users.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">Không có tài khoản nào.</td>
+          <td class="border-t px-6 py-4" colspan="3">Không có tài khoản nào.</td>
         </tr>
       </table>
     </div>
