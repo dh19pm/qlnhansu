@@ -45,12 +45,14 @@ class UngLuongController extends Controller
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
+            'lydo' => ['required', 'max:255'],
             'sotien' => ['required', 'integer'],
             'ngayung' => ['required', 'date'],
         ]);
 
         (new UngLuong())->create([
             'nhanvien_id' => $nhanvien->id,
+            'lydo' => Request::get('lydo'),
             'sotien' => Request::get('sotien'),
             'thang' => date('m', strtotime(Request::get('ngayung'))),
             'nam' => date('Y', strtotime(Request::get('ngayung'))),
@@ -75,11 +77,13 @@ class UngLuongController extends Controller
     public function update(UngLuong $ungluong)
     {
         Request::validate([
+            'lydo' => ['required', 'max:255'],
             'sotien' => ['required', 'integer'],
             'ngayung' => ['required', 'date'],
         ]);
 
         $ungluong->update([
+            'lydo' => Request::get('lydo'),
             'sotien' => Request::get('sotien'),
             'thang' => date('m', strtotime(Request::get('ngayung'))),
             'nam' => date('Y', strtotime(Request::get('ngayung'))),
