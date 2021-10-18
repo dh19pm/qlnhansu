@@ -66,7 +66,7 @@ class BaoHiemController extends Controller
             'mucdong' => Request::get('mucdong')
         ]);
 
-        return Redirect::route('baohiem')->with('success', 'Đã tạo thành công.');
+        return Redirect::route('nhanvien.edit', $nhanvien->id)->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(BaoHiem $baohiem)

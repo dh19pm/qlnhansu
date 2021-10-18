@@ -65,6 +65,58 @@
         </div>
       </form>
     </div>
+    <div class="mt-12 flex justify-between items-center">
+      <h1 class="font-bold text-3xl">Bảo Hiểm</h1>
+      <inertia-link v-if="$page.props.auth.user.role > 0" class="btn-indigo" :href="route('baohiem.create', nhanvien.id)">
+        <span>Thêm Mới</span>
+      </inertia-link>
+    </div>
+    <div class="mt-6 bg-white rounded shadow overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <tr class="text-left font-bold">
+          <th class="px-6 pt-6 pb-4">Mã số</th>
+          <th class="px-6 pt-6 pb-4">Loại bảo hiểm</th>
+          <th class="px-6 pt-6 pb-4">Ngày cấp</th>
+          <th class="px-6 pt-6 pb-4">Ngày hết hạn</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Mức đóng</th>
+        </tr>
+        <tr v-for="bh in baohiem" :key="bh.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('baohiem.edit', bh.id)">
+              {{ bh.maso }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              {{ bh.tenbh }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              {{ bh.ngaycap }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              {{ bh.ngayhethan }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              {{ bh.mucdong }}
+            </inertia-link>
+          </td>
+          <td class="border-t w-px">
+            <inertia-link class="px-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
+            </inertia-link>
+          </td>
+        </tr>
+        <tr v-if="baohiem.length === 0">
+          <td class="border-t px-6 py-4" colspan="4">Chưa có bảo hiểm nào cả.</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -97,7 +149,8 @@ export default {
     ngoaingu: Array,
     tongiao: Array,
     dantoc: Array,
-    nhanvien: Object
+    nhanvien: Object,
+    baohiem: Array
   },
   remember: 'form',
   data() {

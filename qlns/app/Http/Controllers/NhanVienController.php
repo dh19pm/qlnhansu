@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BangCap;
+use App\Models\BaoHiem;
 use App\Models\ChuyenMon;
 use App\Models\DanToc;
 use App\Models\NhanVien;
@@ -173,6 +174,14 @@ class NhanVienController extends Controller
                 'photo' => $nhanvien->photo_path ? URL::route('image', ['path' => $nhanvien->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
                 'deleted_at' => $nhanvien->deleted_at,
             ],
+            'baohiem' => (new BaoHiem())->get()->transform(fn ($baohiem) => [
+                'id' => $baohiem->id,
+                'maso' => $baohiem->maso,
+                'tenbh' => $baohiem->loaibaohiem->tenbh,
+                'ngaycap' => $baohiem->ngaycap,
+                'ngayhethan' => $baohiem->ngayhethan,
+                'mucdong' => $baohiem->mucdong
+            ])
         ]);
     }
 

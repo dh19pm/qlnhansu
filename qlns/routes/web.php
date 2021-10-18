@@ -303,7 +303,7 @@ Route::get('baohiem/{baohiem}/edit', [BaoHiemController::class, 'edit'])
     ->name('baohiem.edit')
     ->middleware('auth');
 
-Route::post('baohiem/{baohiem}', [BaoHiemController::class, 'store'])
+Route::post('baohiem/{nhanvien}', [BaoHiemController::class, 'store'])
     ->name('baohiem.store')
     ->middleware('auth');
 
