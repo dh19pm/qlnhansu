@@ -16,6 +16,7 @@ use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\TonGiaoController;
 use App\Http\Controllers\MucLuongController;
 use App\Http\Controllers\BaoHiemController;
+use App\Http\Controllers\HopDongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -437,4 +438,33 @@ Route::delete('mucluong/{mucluong}', [MucLuongController::class, 'destroy'])
 
 Route::put('mucluong/{mucluong}/restore', [MucLuongController::class, 'restore'])
     ->name('mucluong.restore')
+    ->middleware('auth');
+
+// HopDong
+Route::get('hopdong', [HopDongController::class, 'index'])
+    ->name('hopdong')
+    ->middleware('auth');
+
+Route::get('hopdong/{nhanvien}/create', [HopDongController::class, 'create'])
+    ->name('hopdong.create')
+    ->middleware('auth');
+
+Route::get('hopdong/{hopdong}/edit', [HopDongController::class, 'edit'])
+    ->name('hopdong.edit')
+    ->middleware('auth');
+
+Route::post('hopdong/{nhanvien}', [HopDongController::class, 'store'])
+    ->name('hopdong.store')
+    ->middleware('auth');
+
+Route::put('hopdong/{baohiem}', [HopDongController::class, 'update'])
+    ->name('hopdong.update')
+    ->middleware('auth');
+
+Route::delete('hopdong/{hopdong}', [HopDongController::class, 'destroy'])
+    ->name('hopdong.destroy')
+    ->middleware('auth');
+
+Route::put('hopdong/{hopdong}/restore', [HopDongController::class, 'restore'])
+    ->name('hopdong.restore')
     ->middleware('auth');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HopDong;
+use App\Models\NhanVien;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -31,18 +32,26 @@ class HopDongController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(NhanVien $nhanvien)
     {
-        return Inertia::render('HopDong/Create');
+        return Inertia::render('HopDong/Create', [
+            'nhanvien' => [
+                'id' => $nhanvien->id,
+                'hovaten' => $nhanvien->hovaten
+            ]
+        ]);
     }
 
-    public function store()
+    public function store(NhanVien $nhanvien)
     {
-        (new HopDong())->create(Request::validate([
-            'loaihopdong' => ['required', 'boolean'],
-            'ngaybd' => ['required', 'date'],
-            'ngaykt' => ['nullable', 'date'],
-        ]));
+        (new HopDong())->create(
+            Request::validate([
+                'nhanvien_id' => $nhanvien->id,
+                'loaihopdong' => ['required', 'boolean'],
+                'ngaybd' => ['required', 'date'],
+                'ngaykt' => ['nullable', 'date'],
+            ])
+        );
 
         return Redirect::route('hopdong')->with('success', 'Đã tạo thành công.');
     }
