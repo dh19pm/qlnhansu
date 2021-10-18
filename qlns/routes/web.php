@@ -502,7 +502,7 @@ Route::put('ungluong/{ungluong}/restore', [UngLuongController::class, 'restore']
 
 // NghiViec
 Route::get('nghiviec', [NghiViecController::class, 'index'])
-    ->name('ungluong')
+    ->name('nghiviec')
     ->middleware('auth');
 
 Route::get('nghiviec/{nhanvien}/create', [NghiViecController::class, 'create'])
