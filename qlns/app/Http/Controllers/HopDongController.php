@@ -65,6 +65,7 @@ class HopDongController extends Controller
         return Inertia::render('HopDong/Edit', [
             'hopdong' => [
                 'id' => $hopdong->id,
+                'hovaten' => $hopdong->nhanvien->hovaten,
                 'ngaybd' => $hopdong->ngaybd,
                 'ngaykt' => $hopdong->ngaykt,
                 'loaihopdong' => $hopdong->loaihopdong,
