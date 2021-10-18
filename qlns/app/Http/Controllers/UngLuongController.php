@@ -23,11 +23,10 @@ class UngLuongController extends Controller
                 ->withQueryString()
                 ->through(fn ($ungluong) => [
                     'id' => $ungluong->id,
-                    'mahd' => 'HD' . str_pad($ungluong->id, 10, '0', STR_PAD_LEFT),
+                    'manv' => 'NV' . str_pad($ungluong->nhanvien->id, 10, '0', STR_PAD_LEFT),
                     'hovaten' => $ungluong->nhanvien->hovaten,
-                    'ngaybd' => $ungluong->ngaybd,
-                    'ngaykt' => $ungluong->ngaykt,
-                    'loaihopdong' => $ungluong->loaihopdong,
+                    'sotien' => $ungluong->sotien,
+                    'ngayung' => $ungluong->thang . '-' . $ungluong->nam,
                     'deleted_at' => $ungluong->deleted_at,
                 ]),
         ]);
@@ -46,19 +45,18 @@ class UngLuongController extends Controller
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
-            'loaihopdong' => ['required', 'boolean'],
-            'ngaybd' => ['required', 'date'],
-            'ngaykt' => ['nullable', 'date'],
+            'sotien' => ['required', 'integer'],
+            'ngayung' => ['required', 'date'],
         ]);
 
         (new UngLuong())->create([
             'nhanvien_id' => $nhanvien->id,
-            'loaihopdong' => Request::get('loaihopdong'),
-            'ngaybd' => Request::get('ngaybd'),
-            'ngaykt' => Request::get('ngaykt'),
+            'sotien' => Request::get('sotien'),
+            'thang' => date('m', strtotime(Request::get('ngayung'))),
+            'nam' => date('Y', strtotime(Request::get('ngayung'))),
         ]);
 
-        return Redirect::route('nhanvien.edit', $nhanvien->id)->with('success', 'Đã tạo thành công.');
+        return Redirect::route('ungluong')->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(UngLuong $ungluong)
@@ -67,9 +65,8 @@ class UngLuongController extends Controller
             'ungluong' => [
                 'id' => $ungluong->id,
                 'hovaten' => $ungluong->nhanvien->hovaten,
-                'ngaybd' => $ungluong->ngaybd,
-                'ngaykt' => $ungluong->ngaykt,
-                'loaihopdong' => $ungluong->loaihopdong,
+                'sotien' => $ungluong->sotien,
+                'ngayung' => $ungluong->nam . '-' . $ungluong->thang,
                 'deleted_at' => $ungluong->deleted_at,
             ],
         ]);
@@ -77,13 +74,16 @@ class UngLuongController extends Controller
 
     public function update(UngLuong $ungluong)
     {
-        $ungluong->update(
-            Request::validate([
-                'loaihopdong' => ['required', 'boolean'],
-                'ngaybd' => ['required', 'date'],
-                'ngaykt' => ['nullable', 'date'],
-            ])
-        );
+        Request::validate([
+            'sotien' => ['required', 'integer'],
+            'ngayung' => ['required', 'date'],
+        ]);
+
+        $ungluong->update([
+            'sotien' => Request::get('sotien'),
+            'thang' => date('m', strtotime(Request::get('ngayung'))),
+            'nam' => date('Y', strtotime(Request::get('ngayung'))),
+        ]);
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
