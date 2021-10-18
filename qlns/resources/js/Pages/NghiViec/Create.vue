@@ -9,7 +9,7 @@
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <select-input v-model="form.huongluong" :error="form.errors.huongluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Có hưởng lương không?">
+          <select-input v-model="form.huongluong" :error="form.errors.huongluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Hưởng lương">
             <option :value="null">- Chọn -</option>
             <option :value="0">Không</option>
             <option :value="1">Có</option>
