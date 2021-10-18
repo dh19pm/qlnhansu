@@ -65,7 +65,7 @@ export default {
         _method: 'put',
         phongban: this.mucluong.phongban,
         chucvu: this.mucluong.chucvu,
-        luongcb: this.mucluong.luongcb,
+        luongcb: this.mucluong.luongcb.toString(),
         phucap: this.mucluong.phucap.toString(),
       })
     }

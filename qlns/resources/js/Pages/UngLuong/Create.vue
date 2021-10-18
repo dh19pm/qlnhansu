@@ -10,7 +10,7 @@
       <form @submit.prevent="store">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
           <text-input v-model="form.lydo" :error="form.errors.lydo" class="pr-6 pb-8 w-full lg:w-1/1" label="Lý do ứng tiền" />
-          <text-input v-model="form.sotien" :error="form.errors.sotien" class="pr-6 pb-8 w-full lg:w-1/2" label="Số tiền cần ứng" />
+          <text-input v-model="form.sotien" :error="form.errors.sotien" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Số tiền cần ứng" />
           <text-input v-model="form.ngayung" :error="form.errors.ngayung" class="pr-6 pb-8 w-full lg:w-1/2" type="month" label="Ứng lương tháng nào?" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">

@@ -67,8 +67,9 @@ class UngLuongController extends Controller
             'ungluong' => [
                 'id' => $ungluong->id,
                 'hovaten' => $ungluong->nhanvien->hovaten,
+                'lydo' => $ungluong->lydo,
                 'sotien' => $ungluong->sotien,
-                'ngayung' => $ungluong->nam . '-' . $ungluong->thang,
+                'ngayung' => $ungluong->nam . '-' . str_pad($ungluong->thang, 2, '0', STR_PAD_LEFT),
                 'deleted_at' => $ungluong->deleted_at,
             ],
         ]);
