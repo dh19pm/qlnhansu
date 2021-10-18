@@ -66,6 +66,12 @@
         <div :class="isUrl('baohiem') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Bảo Hiểm</div>
       </inertia-link>
     </div>
+    <div v-if="$page.props.auth.user.role == 2" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('hopdong')">
+        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('hopdong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isUrl('hopdong') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Hợp Đồng</div>
+      </inertia-link>
+    </div>
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('chamcong', { nhanvien: $page.props.auth.user.nhanvien_id })">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('chamcong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
