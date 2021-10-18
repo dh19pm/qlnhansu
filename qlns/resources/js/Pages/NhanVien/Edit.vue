@@ -117,6 +117,46 @@
         </tr>
       </table>
     </div>
+    <div class="mt-12 flex justify-between items-center">
+      <h1 class="font-bold text-3xl">Hợp Đồng</h1>
+      <inertia-link v-if="$page.props.auth.user.role > 0" class="btn-indigo" :href="route('hopdong.create', nhanvien.id)">
+        <span>Thêm Mới</span>
+      </inertia-link>
+    </div>
+    <div class="mt-6 bg-white rounded shadow overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <tr class="text-left font-bold">
+          <th class="px-6 pt-6 pb-4">Loại hợp đồng</th>
+          <th class="px-6 pt-6 pb-4">Ngày bắt đầu</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Ngày kết thúc</th>
+        </tr>
+        <tr v-for="hd in hopdong" :key="hd.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('hopdong.edit', hd.id)">
+              {{ hd.loaihopdong ? 'Hợp đồng chính thức' : 'Hợp đồng thử việc' }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('hopdong.edit', hd.id)" tabindex="-1">
+              {{ hd.ngaybd }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('hopdong.edit', hd.id)" tabindex="-1">
+              {{ hd.ngaykt }}
+            </inertia-link>
+          </td>
+          <td class="border-t w-px">
+            <inertia-link class="px-4 flex items-center" :href="route('hopdong.edit', hd.id)" tabindex="-1">
+              <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
+            </inertia-link>
+          </td>
+        </tr>
+        <tr v-if="hopdong.length === 0">
+          <td class="border-t px-6 py-4" colspan="3">Chưa có hợp đồng nào cả.</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -150,7 +190,8 @@ export default {
     tongiao: Array,
     dantoc: Array,
     nhanvien: Object,
-    baohiem: Array
+    baohiem: Array,
+    hopdong: Array
   },
   remember: 'form',
   data() {
