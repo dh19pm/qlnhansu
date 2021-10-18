@@ -24,7 +24,13 @@ class BaoHiemController extends Controller
                 ->withQueryString()
                 ->through(fn ($baohiem) => [
                     'id' => $baohiem->id,
-                    'tencm' => $baohiem->tencm,
+                    'hovaten' => $baohiem->nhanvien->hovaten,
+                    'loaibaohiem' => $baohiem->loaibaohiem->tenbh,
+                    'maso' => $baohiem->maso,
+                    'noicap' => $baohiem->noicap,
+                    'ngaycap' => $baohiem->ngaycap,
+                    'ngayhethan' => $baohiem->ngayhethan,
+                    'mucdong' => $baohiem->mucdong,
                     'deleted_at' => $baohiem->deleted_at,
                 ]),
         ]);
