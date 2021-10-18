@@ -6,6 +6,7 @@ use App\Models\BangCap;
 use App\Models\BaoHiem;
 use App\Models\ChuyenMon;
 use App\Models\DanToc;
+use App\Models\HopDong;
 use App\Models\NhanVien;
 use App\Models\MucLuong;
 use App\Models\NgoaiNgu;
@@ -181,6 +182,12 @@ class NhanVienController extends Controller
                 'ngaycap' => $baohiem->ngaycap,
                 'ngayhethan' => $baohiem->ngayhethan,
                 'mucdong' => $baohiem->mucdong
+            ]),
+            'hopdong' => (new HopDong())->where('nhanvien_id', $nhanvien->id)->get()->transform(fn ($hopdong) => [
+                'id' => $hopdong->id,
+                'ngaybd' => $hopdong->ngaybd,
+                'ngaykt' => $hopdong->ngaykt,
+                'loaihopdong' => $hopdong->loaihopdong
             ])
         ]);
     }
