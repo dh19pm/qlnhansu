@@ -44,16 +44,20 @@ class HopDongController extends Controller
 
     public function store(NhanVien $nhanvien)
     {
-        (new HopDong())->create(
-            Request::validate([
-                'nhanvien_id' => $nhanvien->id,
-                'loaihopdong' => ['required', 'boolean'],
-                'ngaybd' => ['required', 'date'],
-                'ngaykt' => ['nullable', 'date'],
-            ])
-        );
+        Request::validate([
+            'loaihopdong' => ['required', 'boolean'],
+            'ngaybd' => ['required', 'date'],
+            'ngaykt' => ['nullable', 'date'],
+        ]);
 
-        return Redirect::route('hopdong')->with('success', 'Đã tạo thành công.');
+        (new HopDong())->create([
+            'nhanvien_id' => $nhanvien->id,
+            'loaihopdong' => Request::get('loaihopdong'),
+            'ngaybd' => Request::get('ngaybd'),
+            'ngaykt' => Request::get('ngaykt'),
+        ]);
+
+        return Redirect::route('nhanvien.edit', $nhanvien->id)->with('success', 'Đã tạo thành công.');
     }
 
     public function edit(HopDong $hopdong)

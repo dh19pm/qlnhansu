@@ -457,7 +457,7 @@ Route::post('hopdong/{nhanvien}', [HopDongController::class, 'store'])
     ->name('hopdong.store')
     ->middleware('auth');
 
-Route::put('hopdong/{baohiem}', [HopDongController::class, 'update'])
+Route::put('hopdong/{hopdong}', [HopDongController::class, 'update'])
     ->name('hopdong.update')
     ->middleware('auth');
 
