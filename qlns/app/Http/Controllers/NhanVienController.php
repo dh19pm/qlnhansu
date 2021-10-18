@@ -188,7 +188,7 @@ class NhanVienController extends Controller
                 'id' => $hopdong->id,
                 'mahd' => 'HD' . str_pad($hopdong->id, 10, '0', STR_PAD_LEFT),
                 'ngaybd' => $hopdong->ngaybd,
-                'ngaykt' => $hopdong->ngaykt,
+                'ngaykt' => $hopdong->ngaykt ?? 'Vô thời hạn',
                 'loaihopdong' => $hopdong->loaihopdong
             ])
         ]);

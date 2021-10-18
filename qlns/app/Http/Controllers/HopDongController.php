@@ -26,7 +26,7 @@ class HopDongController extends Controller
                     'mahd' => 'HD' . str_pad($hopdong->id, 10, '0', STR_PAD_LEFT),
                     'hovaten' => $hopdong->nhanvien->hovaten,
                     'ngaybd' => $hopdong->ngaybd,
-                    'ngaykt' => $hopdong->ngaykt,
+                    'ngaykt' => $hopdong->ngaykt ?? 'Vô thời hạn',
                     'loaihopdong' => $hopdong->loaihopdong,
                     'deleted_at' => $hopdong->deleted_at,
                 ]),

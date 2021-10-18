@@ -172,6 +172,7 @@
 </template>
 
 <script>
+import Icon from '@/Shared/Icon'
 import Layout from '@/Shared/Layout'
 import FileInput from '@/Shared/FileInput'
 import TextInput from '@/Shared/TextInput'
@@ -186,6 +187,7 @@ export default {
     }
   },
   components: {
+    Icon,
     FileInput,
     LoadingButton,
     SelectInput,

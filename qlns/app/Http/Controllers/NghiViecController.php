@@ -69,6 +69,7 @@ class NghiViecController extends Controller
             'nghiviec' => [
                 'id' => $nghiviec->id,
                 'hovaten' => $nghiviec->nhanvien->hovaten,
+                'lydo' => $nghiviec->lydo,
                 'ngaybd' => $nghiviec->ngaybd,
                 'ngaykt' => $nghiviec->ngaykt,
                 'huongluong' => $nghiviec->huongluong,

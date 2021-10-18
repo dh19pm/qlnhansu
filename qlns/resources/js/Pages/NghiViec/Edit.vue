@@ -13,15 +13,14 @@
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.maso" :error="form.errors.maso" class="pr-6 pb-8 w-full lg:w-1/2" label="Mã số" />
-          <select-input v-model="form.loaibaohiem" :error="form.errors.loaibaohiem" class="pr-6 pb-8 w-full lg:w-1/2" label="Loại bảo hiểm">
+          <select-input v-model="form.huongluong" :error="form.errors.huongluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Hưởng lương">
             <option :value="null">- Chọn -</option>
-            <option v-for="lbh in loaibaohiem" :key="lbh.id" :value="lbh.id">{{ lbh.tenbh }}</option>
+            <option :value="0">Không</option>
+            <option :value="1">Có</option>
           </select-input>
-          <text-input v-model="form.noicap" :error="form.errors.noicap" class="pr-6 pb-8 w-full lg:w-1/2" label="Nơi cấp" />
-          <text-input v-model="form.ngaycap" :error="form.errors.ngaycap" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày cấp" />
-          <text-input v-model="form.ngayhethan" :error="form.errors.ngayhethan" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày hết hạn" />
-          <text-input v-model="form.mucdong" :error="form.errors.mucdong" class="pr-6 pb-8 w-full lg:w-1/2" label="Mức đóng" />
+          <text-input v-model="form.lydo" :error="form.errors.lydo" class="pr-6 pb-8 w-full lg:w-1/2" label="Lý do" />
+          <text-input v-model="form.ngaybd" :error="form.errors.ngaybd" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày bắt đầu" />
+          <text-input v-model="form.ngaykt" :error="form.errors.ngaykt" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày kết thúc" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
           <button v-if="!nghiviec.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Nghỉ Việc</button>
@@ -53,7 +52,6 @@ export default {
   },
   layout: Layout,
   props: {
-    loaibaohiem: Array,
     nghiviec: Object,
   },
   remember: 'form',
@@ -61,12 +59,10 @@ export default {
     return {
       form: this.$inertia.form({
         _method: 'put',
-        maso: this.nghiviec.maso,
-        loaibaohiem: this.nghiviec.loaibaohiem,
-        noicap: this.nghiviec.noicap,
-        ngaycap: this.nghiviec.ngaycap,
-        ngayhethan: this.nghiviec.ngayhethan,
-        mucdong: this.nghiviec.mucdong.toString(),
+        huongluong: this.nghiviec.huongluong,
+        lydo: this.nghiviec.lydo,
+        ngaybd: this.nghiviec.ngaybd,
+        ngaykt: this.nghiviec.ngaykt,
       })
     }
   },
