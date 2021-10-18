@@ -65,7 +65,7 @@ class BaoHiemController extends Controller
         (new BaoHiem())->create([
             'nhanvien_id' => $nhanvien->id,
             'loaibaohiem_id' => Request::get('loaibaohiem'),
-            'maso' => Request::get('loaibaohiem'),
+            'maso' => Request::get('maso'),
             'noicap' => Request::get('noicap'),
             'ngaycap' => Request::get('ngaycap'),
             'ngayhethan' => Request::get('ngayhethan'),
@@ -110,7 +110,7 @@ class BaoHiemController extends Controller
 
         $baohiem->update([
             'loaibaohiem_id' => Request::get('loaibaohiem'),
-            'maso' => Request::get('loaibaohiem'),
+            'maso' => Request::get('maso'),
             'noicap' => Request::get('noicap'),
             'ngaycap' => Request::get('ngaycap'),
             'ngayhethan' => Request::get('ngayhethan'),
