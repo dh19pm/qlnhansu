@@ -232,7 +232,7 @@ export default {
   },
   methods: {
     update() {
-        this.form.post(this.route('nhanvien.update', this.nhanvien.id), {
+        this.form.post('/nhanvien/' + this.nhanvien.id, {
             onSuccess: () => this.form.reset('password', 'photo')
         })
     },
