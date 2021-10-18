@@ -78,9 +78,20 @@ class BaoHiemController extends Controller
     public function edit(BaoHiem $baohiem)
     {
         return Inertia::render('BaoHiem/Edit', [
+            'loaibaohiem' => (new LoaiBaoHiem())
+                ->orderBy('tenbh')
+                ->get()
+                ->map
+                ->only('id', 'tenbh'),
             'baohiem' => [
                 'id' => $baohiem->id,
-                'tencm' => $baohiem->tencm,
+                'hovaten' => $baohiem->nhanvien->hovaten,
+                'loaibaohiem' => $baohiem->loaibaohiem_id,
+                'maso' => $baohiem->maso,
+                'noicap' => $baohiem->noicap,
+                'ngaycap' => $baohiem->ngaycap,
+                'ngayhethan' => $baohiem->ngayhethan,
+                'mucdong' => $baohiem->mucdong,
                 'deleted_at' => $baohiem->deleted_at,
             ],
         ]);
@@ -89,10 +100,22 @@ class BaoHiemController extends Controller
     public function update(BaoHiem $baohiem)
     {
         Request::validate([
-            'tencm' => ['required', 'max:100', Rule::unique('baohiem')->ignore($baohiem->id)]
+            'loaibaohiem' => ['required', Rule::exists('loaibaohiem', 'id')],
+            'maso' => ['required', 'max:100'],
+            'noicap' => ['required', 'max:100'],
+            'ngaycap' => ['required', 'date'],
+            'ngayhethan' => ['required', 'date'],
+            'mucdong' => ['required', 'between:0,100.00']
         ]);
 
-        $baohiem->update(Request::only('tencm'));
+        $baohiem->update([
+            'loaibaohiem_id' => Request::get('loaibaohiem'),
+            'maso' => Request::get('loaibaohiem'),
+            'noicap' => Request::get('noicap'),
+            'ngaycap' => Request::get('ngaycap'),
+            'ngayhethan' => Request::get('ngayhethan'),
+            'mucdong' => Request::get('mucdong')
+        ]);
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }

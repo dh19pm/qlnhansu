@@ -16,6 +16,7 @@
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Họ và tên</th>
           <th class="px-6 pt-6 pb-4">Loại bảo hiểm</th>
+          <th class="px-6 pt-6 pb-4">Mã số</th>
           <th class="px-6 pt-6 pb-4">Ngày cấp</th>
           <th class="px-6 pt-6 pb-4">Ngày hết hạn</th>
           <th class="px-6 pt-6 pb-4" colspan="2">Mức đóng</th>
@@ -30,6 +31,11 @@
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
               {{ bh.loaibaohiem }}
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('baohiem.edit', bh.id)" tabindex="-1">
+              {{ bh.maso }}
             </inertia-link>
           </td>
           <td class="border-t">
@@ -54,7 +60,7 @@
           </td>
         </tr>
         <tr v-if="baohiem.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="5">Không có bảo hiểm nào cả.</td>
+          <td class="border-t px-6 py-4" colspan="6">Không có bảo hiểm nào cả.</td>
         </tr>
       </table>
     </div>
