@@ -31,6 +31,7 @@ class NhanVienController extends Controller
                 ->withQueryString()
                 ->through(fn ($nhanvien) => [
                     'id' => $nhanvien->id,
+                    'manv' => 'NV' . str_pad($nhanvien->id, 10, '0', STR_PAD_LEFT),
                     'hovaten' => $nhanvien->hovaten,
                     'email' => $nhanvien->user->email,
                     'sdt' => $nhanvien->sdt,
@@ -185,6 +186,7 @@ class NhanVienController extends Controller
             ]),
             'hopdong' => (new HopDong())->where('nhanvien_id', $nhanvien->id)->get()->transform(fn ($hopdong) => [
                 'id' => $hopdong->id,
+                'mahd' => 'HD' . str_pad($hopdong->id, 10, '0', STR_PAD_LEFT),
                 'ngaybd' => $hopdong->ngaybd,
                 'ngaykt' => $hopdong->ngaykt,
                 'loaihopdong' => $hopdong->loaihopdong

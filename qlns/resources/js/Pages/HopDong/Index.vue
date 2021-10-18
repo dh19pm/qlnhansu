@@ -14,6 +14,7 @@
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
+          <th class="px-6 pt-6 pb-4">Mã hợp đồng</th>
           <th class="px-6 pt-6 pb-4">Họ và tên</th>
           <th class="px-6 pt-6 pb-4">Loại hợp đồng</th>
           <th class="px-6 pt-6 pb-4">Ngày bắt đầu</th>
@@ -22,8 +23,13 @@
         <tr v-for="hd in hopdong.data" :key="hd.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('hopdong.edit', hd.id)">
-              {{ hd.hovaten }}
+              {{ hd.mahd }}
               <icon v-if="hd.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
+            </inertia-link>
+          </td>
+          <td class="border-t">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('hopdong.edit', hd.id)">
+              {{ hd.hovaten }}
             </inertia-link>
           </td>
           <td class="border-t">
