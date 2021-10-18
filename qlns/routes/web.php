@@ -18,6 +18,7 @@ use App\Http\Controllers\MucLuongController;
 use App\Http\Controllers\BaoHiemController;
 use App\Http\Controllers\HopDongController;
 use App\Http\Controllers\UngLuongController;
+use App\Http\Controllers\NghiViecController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -497,4 +498,33 @@ Route::delete('ungluong/{ungluong}', [UngLuongController::class, 'destroy'])
 
 Route::put('ungluong/{ungluong}/restore', [UngLuongController::class, 'restore'])
     ->name('ungluong.restore')
+    ->middleware('auth');
+
+// NghiViec
+Route::get('nghiviec', [NghiViecController::class, 'index'])
+    ->name('ungluong')
+    ->middleware('auth');
+
+Route::get('nghiviec/{nhanvien}/create', [NghiViecController::class, 'create'])
+    ->name('nghiviec.create')
+    ->middleware('auth');
+
+Route::get('nghiviec/{nghiviec}/edit', [NghiViecController::class, 'edit'])
+    ->name('nghiviec.edit')
+    ->middleware('auth');
+
+Route::post('nghiviec/{nhanvien}', [NghiViecController::class, 'store'])
+    ->name('nghiviec.store')
+    ->middleware('auth');
+
+Route::put('nghiviec/{nghiviec}', [NghiViecController::class, 'update'])
+    ->name('nghiviec.update')
+    ->middleware('auth');
+
+Route::delete('nghiviec/{nghiviec}', [NghiViecController::class, 'destroy'])
+    ->name('nghiviec.destroy')
+    ->middleware('auth');
+
+Route::put('nghiviec/{nghiviec}/restore', [NghiViecController::class, 'restore'])
+    ->name('nghiviec.restore')
     ->middleware('auth');
