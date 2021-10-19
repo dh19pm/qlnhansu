@@ -19,6 +19,7 @@ use App\Http\Controllers\BaoHiemController;
 use App\Http\Controllers\HopDongController;
 use App\Http\Controllers\UngLuongController;
 use App\Http\Controllers\NghiViecController;
+use App\Http\Controllers\ThuongPhatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -530,30 +531,30 @@ Route::put('nghiviec/{nghiviec}/restore', [NghiViecController::class, 'restore']
     ->middleware('auth');
 
 // NghiViec
-Route::get('thuongphat', [NghiViecController::class, 'index'])
+Route::get('thuongphat', [ThuongPhatController::class, 'index'])
     ->name('thuongphat')
     ->middleware('auth');
 
-Route::get('thuongphat/{nhanvien}/create', [NghiViecController::class, 'create'])
+Route::get('thuongphat/{nhanvien}/create', [ThuongPhatController::class, 'create'])
     ->name('thuongphat.create')
     ->middleware('auth');
 
-Route::get('thuongphat/{thuongphat}/edit', [NghiViecController::class, 'edit'])
+Route::get('thuongphat/{thuongphat}/edit', [ThuongPhatController::class, 'edit'])
     ->name('thuongphat.edit')
     ->middleware('auth');
 
-Route::post('thuongphat/{nhanvien}', [NghiViecController::class, 'store'])
+Route::post('thuongphat/{nhanvien}', [ThuongPhatController::class, 'store'])
     ->name('thuongphat.store')
     ->middleware('auth');
 
-Route::put('thuongphat/{thuongphat}', [NghiViecController::class, 'update'])
+Route::put('thuongphat/{thuongphat}', [ThuongPhatController::class, 'update'])
     ->name('thuongphat.update')
     ->middleware('auth');
 
-Route::delete('thuongphat/{thuongphat}', [NghiViecController::class, 'destroy'])
+Route::delete('thuongphat/{thuongphat}', [ThuongPhatController::class, 'destroy'])
     ->name('thuongphat.destroy')
     ->middleware('auth');
 
-Route::put('thuongphat/{thuongphat}/restore', [NghiViecController::class, 'restore'])
+Route::put('thuongphat/{thuongphat}/restore', [ThuongPhatController::class, 'restore'])
     ->name('thuongphat.restore')
     ->middleware('auth');

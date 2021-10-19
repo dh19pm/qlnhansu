@@ -24,8 +24,9 @@ class ThuongPhatController extends Controller
                 ->through(fn ($thuongphat) => [
                     'id' => $thuongphat->id,
                     'manv' => 'NV' . str_pad($thuongphat->nhanvien->id, 10, '0', STR_PAD_LEFT),
+                    'hovaten' => $thuongphat->nhanvien->hovaten,
                     'loai' => $thuongphat->loai,
-                    'sotien' => $thuongphat->sotien,
+                    'sotien' => number_format($thuongphat->sotien) . ' VNĐ',
                     'ngayapdung' => $thuongphat->thang .  '-' . $thuongphat->nam,
                     'deleted_at' => $thuongphat->deleted_at,
                 ]),
@@ -56,8 +57,8 @@ class ThuongPhatController extends Controller
             'loai' => Request::get('loai'),
             'lydo' => Request::get('lydo'),
             'sotien' => Request::get('sotien'),
-            'thang' => date('m', strtotime(Request::get('ngayapdung'))),
-            'nam' => date('Y', strtotime(Request::get('ngayapdung'))),
+            'thang' => intval(date('m', strtotime(Request::get('ngayapdung')))),
+            'nam' => intval(date('Y', strtotime(Request::get('ngayapdung')))),
         ]);
 
         return Redirect::route('thuongphat')->with('success', 'Đã tạo thành công.');
@@ -72,7 +73,7 @@ class ThuongPhatController extends Controller
                 'loai' => $thuongphat->loai,
                 'lydo' => $thuongphat->lydo,
                 'sotien' => $thuongphat->sotien,
-                'ngayung' => $thuongphat->nam . '-' . str_pad($thuongphat->thang, 2, '0', STR_PAD_LEFT),
+                'ngayapdung' => $thuongphat->nam . '-' . str_pad($thuongphat->thang, 2, '0', STR_PAD_LEFT),
                 'deleted_at' => $thuongphat->deleted_at,
             ],
         ]);
