@@ -528,3 +528,32 @@ Route::delete('nghiviec/{nghiviec}', [NghiViecController::class, 'destroy'])
 Route::put('nghiviec/{nghiviec}/restore', [NghiViecController::class, 'restore'])
     ->name('nghiviec.restore')
     ->middleware('auth');
+
+// NghiViec
+Route::get('thuongphat', [NghiViecController::class, 'index'])
+    ->name('thuongphat')
+    ->middleware('auth');
+
+Route::get('thuongphat/{nhanvien}/create', [NghiViecController::class, 'create'])
+    ->name('thuongphat.create')
+    ->middleware('auth');
+
+Route::get('thuongphat/{thuongphat}/edit', [NghiViecController::class, 'edit'])
+    ->name('thuongphat.edit')
+    ->middleware('auth');
+
+Route::post('thuongphat/{nhanvien}', [NghiViecController::class, 'store'])
+    ->name('thuongphat.store')
+    ->middleware('auth');
+
+Route::put('thuongphat/{thuongphat}', [NghiViecController::class, 'update'])
+    ->name('thuongphat.update')
+    ->middleware('auth');
+
+Route::delete('thuongphat/{thuongphat}', [NghiViecController::class, 'destroy'])
+    ->name('thuongphat.destroy')
+    ->middleware('auth');
+
+Route::put('thuongphat/{thuongphat}/restore', [NghiViecController::class, 'restore'])
+    ->name('thuongphat.restore')
+    ->middleware('auth');
