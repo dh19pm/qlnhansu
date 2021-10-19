@@ -17,7 +17,7 @@ class CreateThuongphatTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
             $table->boolean('loai')->default(false);
-            $table->integer('sotien');
+            $table->bigInteger('sotien');
             $table->string('lydo', 255);
             $table->integer('thang');
             $table->integer('nam');

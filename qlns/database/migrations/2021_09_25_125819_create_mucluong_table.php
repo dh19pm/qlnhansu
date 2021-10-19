@@ -17,7 +17,7 @@ class CreateMucluongTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('phongban_id');
             $table->unsignedInteger('chucvu_id');
-            $table->integer('luongcb');
+            $table->bigInteger('luongcb');
             $table->float('phucap', 5, 2);
             $table->timestamps();
             $table->softDeletes();

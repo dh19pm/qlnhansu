@@ -16,7 +16,7 @@ class CreateUngluongTable extends Migration
         Schema::create('ungluong', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->integer('sotien');
+            $table->bigInteger('sotien');
             $table->string('lydo', 255);
             $table->integer('thang');
             $table->integer('nam');
