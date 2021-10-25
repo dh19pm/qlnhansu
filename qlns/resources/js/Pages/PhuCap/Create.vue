@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('mucluong')">Mức Lương</inertia-link>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('phucap')">Phụ Cấp</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Thêm Mới
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden">
@@ -15,8 +15,7 @@
             <option :value="null">- Chọn -</option>
             <option v-for="cv in chucvu" :key="cv.id" :value="cv.id">{{ cv.tencv }}</option>
           </select-input>
-          <text-input v-model="form.luongcb" :error="form.errors.luongcb" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Lương cơ bản" />
-          <text-input v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Phụ cấp" />
+          <text-input v-model="form.hsphucap" :error="form.errors.hsphucap" class="pr-6 pb-8 w-full lg:w-1/1" label="Hệ số phụ cấp" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Tạo Mới</loading-button>
@@ -32,7 +31,7 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 export default {
-  metaInfo: { title: 'Thêm Mới Mức Lương' },
+  metaInfo: { title: 'Thêm Mới Phụ Cấp' },
   components: {
     LoadingButton,
     SelectInput,
@@ -49,14 +48,13 @@ export default {
       form: this.$inertia.form({
         phongban: null,
         chucvu: null,
-        luongcb: null,
-        phucap: null,
+        hsphucap: null,
       }),
     }
   },
   methods: {
     store() {
-      this.form.post('/mucluong')
+      this.form.post('/phucap')
     },
   },
 }

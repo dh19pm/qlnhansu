@@ -2,13 +2,13 @@
   <div>
     <div class="mb-8 flex justify-start max-w-3xl">
       <h1 class="font-bold text-3xl">
-        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('mucluong')">Mức Lương</inertia-link>
+        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('phucap')">Phụ Cấp</inertia-link>
         <span class="text-indigo-400 font-medium">/</span>
         Chỉnh Sửa
       </h1>
     </div>
-    <trashed-message v-if="mucluong.deleted_at" class="mb-6" @restore="restore">
-      Mức lương này đã bị xoá.
+    <trashed-message v-if="phucap.deleted_at" class="mb-6" @restore="restore">
+      Phụ cấp này đã bị xoá.
     </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
@@ -21,11 +21,10 @@
             <option :value="null">- Chọn -</option>
             <option v-for="cv in chucvu" :key="cv.id" :value="cv.id">{{ cv.tencv }}</option>
           </select-input>
-          <text-input v-model="form.luongcb" :error="form.errors.luongcb" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Lương cơ bản" />
-          <text-input v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Phụ cấp" />
+          <text-input v-model="form.hsphucap" :error="form.errors.hsphucap" class="pr-6 pb-8 w-full lg:w-1/1" label="Hệ số phụ cấp" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!mucluong.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Mức Lương</button>
+          <button v-if="!phucap.deleted_at && $page.props.auth.user.role == 2" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Phụ Cấp</button>
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Cập Nhật</loading-button>
         </div>
       </form>
@@ -43,7 +42,7 @@ import TrashedMessage from '@/Shared/TrashedMessage'
 export default {
   metaInfo() {
     return {
-      title: `Chỉnh Sửa Mức Lương`,
+      title: `Chỉnh Sửa Phụ Cấp`,
     }
   },
   components: {
@@ -56,32 +55,31 @@ export default {
   props: {
     phongban: Array,
     chucvu: Array,
-    mucluong: Object,
+    phucap: Object,
   },
   remember: 'form',
   data() {
     return {
       form: this.$inertia.form({
         _method: 'put',
-        phongban: this.mucluong.phongban,
-        chucvu: this.mucluong.chucvu,
-        luongcb: this.mucluong.luongcb.toString(),
-        phucap: this.mucluong.phucap.toString(),
+        phongban: this.phucap.phongban,
+        chucvu: this.phucap.chucvu,
+        hsphucap: this.phucap.hsphucap.toString(),
       })
     }
   },
   methods: {
     update() {
-        this.form.post(this.route('mucluong.update', this.mucluong.id))
+        this.form.post(this.route('phucap.update', this.phucap.id))
     },
     destroy() {
         if (confirm('Bạn có chắc chắn muốn xoá không?')) {
-            this.$inertia.delete(this.route('mucluong.destroy', this.mucluong.id))
+            this.$inertia.delete(this.route('phucap.destroy', this.phucap.id))
         }
     },
     restore() {
         if (confirm('Bạn có chắc chắn muốn khôi phục không?')) {
-            this.$inertia.put(this.route('mucluong.restore', this.mucluong.id))
+            this.$inertia.put(this.route('phucap.restore', this.phucap.id))
         }
     },
   },

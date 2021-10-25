@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Mức Lương</h1>
+    <h1 class="mb-8 font-bold text-3xl">Phụ Cấp</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Trạng thái xoá:</label>
@@ -10,7 +10,7 @@
           <option value="with">Tất cả</option>
         </select>
       </search-filter>
-      <inertia-link class="btn-indigo" :href="route('mucluong.create')">
+      <inertia-link class="btn-indigo" :href="route('phucap.create')">
         <span>Tạo Mới</span>
       </inertia-link>
     </div>
@@ -19,43 +19,37 @@
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Tên phòng ban</th>
           <th class="px-6 pt-6 pb-4">Tên chức vụ</th>
-          <th class="px-6 pt-6 pb-4">Lương cơ bản</th>
-          <th class="px-6 pt-6 pb-4" colspan="2">Phụ cấp</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Hệ số phụ cấp</th>
         </tr>
-        <tr v-for="ml in mucluong.data" :key="ml.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+        <tr v-for="pc in phucap.data" :key="pc.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('mucluong.edit', ml.id)">
-              {{ ml.tenpb }}
-              <icon v-if="ml.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('phucap.edit', pc.id)">
+              {{ pc.tenpb }}
+              <icon v-if="pc.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('mucluong.edit', ml.id)">
-              {{ ml.tencv }}
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('phucap.edit', pc.id)">
+              {{ pc.tencv }}
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('mucluong.edit', ml.id)">
-              {{ ml.luongcb }}
-            </inertia-link>
-          </td>
-          <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('mucluong.edit', ml.id)">
-              {{ ml.phucap }}
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('phucap.edit', pc.id)">
+              {{ pc.hsphucap }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
-            <inertia-link class="px-4 flex items-center" :href="route('mucluong.edit', ml.id)" tabindex="-1">
+            <inertia-link class="px-4 flex items-center" :href="route('phucap.edit', pc.id)" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </inertia-link>
           </td>
         </tr>
-        <tr v-if="mucluong.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">Không có mức lương nào cả.</td>
+        <tr v-if="phucap.data.length === 0">
+          <td class="border-t px-6 py-4" colspan="4">Không có phụ cấp nào cả.</td>
         </tr>
       </table>
     </div>
-    <pagination :links="mucluong.links" />
+    <pagination :links="phucap.links" />
   </div>
 </template>
 
@@ -68,7 +62,7 @@ import pickBy from 'lodash/pickBy'
 import SearchFilter from '@/Shared/SearchFilter'
 import throttle from 'lodash/throttle'
 export default {
-  metaInfo: { title: 'Mức Lương' },
+  metaInfo: { title: 'Phụ Cấp' },
   layout: Layout,
   components: {
     Icon,
@@ -76,7 +70,7 @@ export default {
     SearchFilter,
   },
   props: {
-    mucluong: Object,
+    phucap: Object,
     filters: Object,
   },
   data() {
@@ -91,7 +85,7 @@ export default {
     form: {
       handler: throttle(function() {
         let query = pickBy(this.form)
-        this.$inertia.replace(this.route('mucluong', Object.keys(query).length ? query : { remember: 'forget' }))
+        this.$inertia.replace(this.route('phucap', Object.keys(query).length ? query : { remember: 'forget' }))
       }, 150),
       deep: true,
     },

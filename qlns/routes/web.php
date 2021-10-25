@@ -14,7 +14,7 @@ use App\Http\Controllers\LoaiBaoHiemController;
 use App\Http\Controllers\NgoaiNguController;
 use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\TonGiaoController;
-use App\Http\Controllers\MucLuongController;
+use App\Http\Controllers\PhuCapController;
 use App\Http\Controllers\BaoHiemController;
 use App\Http\Controllers\HopDongController;
 use App\Http\Controllers\UngLuongController;
@@ -415,32 +415,32 @@ Route::put('tongiao/{tongiao}/restore', [TonGiaoController::class, 'restore'])
 
 // MucLuong
 
-Route::get('mucluong', [MucLuongController::class, 'index'])
-    ->name('mucluong')
+Route::get('phucap', [PhuCapController::class, 'index'])
+    ->name('phucap')
     ->middleware('auth');
 
-Route::get('mucluong/create', [MucLuongController::class, 'create'])
-    ->name('mucluong.create')
+Route::get('phucap/create', [PhuCapController::class, 'create'])
+    ->name('phucap.create')
     ->middleware('auth');
 
-Route::post('mucluong', [MucLuongController::class, 'store'])
-    ->name('mucluong.store')
+Route::post('phucap', [PhuCapController::class, 'store'])
+    ->name('phucap.store')
     ->middleware('auth');
 
-Route::get('mucluong/{mucluong}/edit', [MucLuongController::class, 'edit'])
-    ->name('mucluong.edit')
+Route::get('phucap/{phucap}/edit', [PhuCapController::class, 'edit'])
+    ->name('phucap.edit')
     ->middleware('auth');
 
-Route::put('mucluong/{mucluong}', [MucLuongController::class, 'update'])
-    ->name('mucluong.update')
+Route::put('phucap/{phucap}', [PhuCapController::class, 'update'])
+    ->name('phucap.update')
     ->middleware('auth');
 
-Route::delete('mucluong/{mucluong}', [MucLuongController::class, 'destroy'])
-    ->name('mucluong.destroy')
+Route::delete('phucap/{phucap}', [PhuCapController::class, 'destroy'])
+    ->name('phucap.destroy')
     ->middleware('auth');
 
-Route::put('mucluong/{mucluong}/restore', [MucLuongController::class, 'restore'])
-    ->name('mucluong.restore')
+Route::put('phucap/{phucap}/restore', [PhuCapController::class, 'restore'])
+    ->name('phucap.restore')
     ->middleware('auth');
 
 // HopDong

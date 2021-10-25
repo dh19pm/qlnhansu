@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
-class MucLuongController extends Controller
+class PhuCapController extends Controller
 {
     public function index()
     {
