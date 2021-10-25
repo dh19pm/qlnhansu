@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-class MucLuong extends Model
+class PhuCap extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'mucluong';
+    protected $table = 'phucap';
 
     public function resolveRouteBinding($value, $field = null)
     {
@@ -36,10 +36,10 @@ class MucLuong extends Model
 
     public function getAll()
     {
-        return DB::table('mucluong')
-            ->join('phongban', 'mucluong.phongban_id', '=', 'phongban.id')
-            ->join('chucvu', 'mucluong.chucvu_id', '=', 'chucvu.id')
-            ->select('mucluong.id', 'phongban.tenpb', 'chucvu.tencv')
+        return DB::table('phucap')
+            ->join('phongban', 'phucap.phongban_id', '=', 'phongban.id')
+            ->join('chucvu', 'phucap.chucvu_id', '=', 'chucvu.id')
+            ->select('phucap.id', 'phongban.tenpb', 'chucvu.tencv')
             ->orderBy('phongban.id')
             ->get();
     }
@@ -47,11 +47,11 @@ class MucLuong extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->join('phongban as pb', 'mucluong.phongban_id', '=', 'pb.id')
-            ->join('chucvu as cv', 'mucluong.chucvu_id', '=', 'cv.id')
+            $query->join('phongban as pb', 'phucap.phongban_id', '=', 'pb.id')
+            ->join('chucvu as cv', 'phucap.chucvu_id', '=', 'cv.id')
             ->Where('pb.tenpb', 'like', '%'.$search.'%')
             ->OrWhere('cv.tencv', 'like', '%'.$search.'%')
-            ->select('mucluong.*', 'pb.tenpb', 'cv.tencv');
+            ->select('phucap.*', 'pb.tenpb', 'cv.tencv');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();

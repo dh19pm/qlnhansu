@@ -18,7 +18,7 @@ class NhanVienSeeder extends Seeder
     {
         User::factory()->create([
             'nhanvien_id' => NhanVien::factory()->create([
-                'mucluong_id' => DB::table('mucluong')->inRandomOrder()->first()->id,
+                'phucap_id' => DB::table('phucap')->inRandomOrder()->first()->id,
                 'bangcap_id' => DB::table('bangcap')->inRandomOrder()->first()->id,
                 'chuyenmon_id' => DB::table('chuyenmon')->inRandomOrder()->first()->id,
                 'ngoaingu_id' => DB::table('ngoaingu')->inRandomOrder()->first()->id,
@@ -34,7 +34,7 @@ class NhanVienSeeder extends Seeder
 
         User::factory()->create([
             'nhanvien_id' => NhanVien::factory()->create([
-                'mucluong_id' => DB::table('mucluong')->inRandomOrder()->first()->id,
+                'phucap_id' => DB::table('phucap')->inRandomOrder()->first()->id,
                 'bangcap_id' => DB::table('bangcap')->inRandomOrder()->first()->id,
                 'chuyenmon_id' => DB::table('chuyenmon')->inRandomOrder()->first()->id,
                 'ngoaingu_id' => DB::table('ngoaingu')->inRandomOrder()->first()->id,
@@ -50,7 +50,7 @@ class NhanVienSeeder extends Seeder
 
         User::factory()->create([
             'nhanvien_id' => NhanVien::factory()->create([
-                'mucluong_id' => DB::table('mucluong')->inRandomOrder()->first()->id,
+                'phucap_id' => DB::table('phucap')->inRandomOrder()->first()->id,
                 'bangcap_id' => DB::table('bangcap')->inRandomOrder()->first()->id,
                 'chuyenmon_id' => DB::table('chuyenmon')->inRandomOrder()->first()->id,
                 'ngoaingu_id' => DB::table('ngoaingu')->inRandomOrder()->first()->id,
@@ -68,7 +68,7 @@ class NhanVienSeeder extends Seeder
         {
             User::factory()->create([
                 'nhanvien_id' => NhanVien::factory()->create([
-                    'mucluong_id' => DB::table('mucluong')->inRandomOrder()->first()->id,
+                    'phucap_id' => DB::table('phucap')->inRandomOrder()->first()->id,
                     'bangcap_id' => DB::table('bangcap')->inRandomOrder()->first()->id,
                     'chuyenmon_id' => DB::table('chuyenmon')->inRandomOrder()->first()->id,
                     'ngoaingu_id' => DB::table('ngoaingu')->inRandomOrder()->first()->id,

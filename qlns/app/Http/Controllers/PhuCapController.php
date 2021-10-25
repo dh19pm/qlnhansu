@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChucVu;
-use App\Models\MucLuong;
+use App\Models\PhuCap;
 use App\Models\PhongBan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -16,27 +16,27 @@ class MucLuongController extends Controller
 {
     public function index()
     {
-        return Inertia::render('MucLuong/Index', [
+        return Inertia::render('PhuCap/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'mucluong' => (new MucLuong())
-                ->latest('mucluong.created_at')
+            'phucap' => (new PhuCap())
+                ->latest('phucap.created_at')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn ($mucluong) => [
-                    'id' => $mucluong->id,
-                    'tenpb' => $mucluong->phongban->tenpb,
-                    'tencv' => $mucluong->chucvu->tencv,
-                    'luongcb' => number_format($mucluong->luongcb) . ' VNĐ',
-                    'phucap' => $mucluong->phucap,
-                    'deleted_at' => $mucluong->deleted_at,
+                ->through(fn ($phucap) => [
+                    'id' => $phucap->id,
+                    'tenpb' => $phucap->phongban->tenpb,
+                    'tencv' => $phucap->chucvu->tencv,
+                    'luongcb' => number_format($phucap->luongcb) . ' VNĐ',
+                    'phucap' => $phucap->phucap,
+                    'deleted_at' => $phucap->deleted_at,
                 ]),
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('MucLuong/Create', [
+        return Inertia::render('PhuCap/Create', [
             'phongban' => (new PhongBan())
                 ->orderBy('tenpb')
                 ->get()
@@ -53,25 +53,25 @@ class MucLuongController extends Controller
     public function store()
     {
         Request::validate([
-            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('mucluong', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))],
-            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('mucluong', 'chucvu_id')->where('phongban_id', Request::get('phongban'))],
+            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('phucap', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))],
+            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('phucap', 'chucvu_id')->where('phongban_id', Request::get('phongban'))],
             'luongcb' => ['required', 'integer'],
             'phucap' => ['required', 'between:0,100.00'],
         ]);
 
-        (new MucLuong())->create([
+        (new PhuCap())->create([
             'phongban_id' => Request::get('phongban'),
             'chucvu_id' => Request::get('chucvu'),
             'luongcb' => Request::get('luongcb'),
             'phucap' => Request::get('phucap'),
         ]);
 
-        return Redirect::route('mucluong')->with('success', 'Đã tạo thành công.');
+        return Redirect::route('phucap')->with('success', 'Đã tạo thành công.');
     }
 
-    public function edit(MucLuong $mucluong)
+    public function edit(PhuCap $phucap)
     {
-        return Inertia::render('MucLuong/Edit', [
+        return Inertia::render('PhuCap/Edit', [
             'phongban' => (new PhongBan())
                 ->orderBy('tenpb')
                 ->get()
@@ -82,27 +82,27 @@ class MucLuongController extends Controller
                 ->get()
                 ->map
                 ->only('id', 'tencv'),
-            'mucluong' => [
-                'id' => $mucluong->id,
-                'phongban' => $mucluong->phongban_id,
-                'chucvu' => $mucluong->chucvu_id,
-                'luongcb' => $mucluong->luongcb,
-                'phucap' => $mucluong->phucap,
-                'deleted_at' => $mucluong->deleted_at,
+            'phucap' => [
+                'id' => $phucap->id,
+                'phongban' => $phucap->phongban_id,
+                'chucvu' => $phucap->chucvu_id,
+                'luongcb' => $phucap->luongcb,
+                'phucap' => $phucap->phucap,
+                'deleted_at' => $phucap->deleted_at,
             ],
         ]);
     }
 
-    public function update(MucLuong $mucluong)
+    public function update(PhuCap $phucap)
     {
         Request::validate([
-            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('mucluong', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))->ignore($mucluong->id)],
-            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('mucluong', 'chucvu_id')->where('phongban_id', Request::get('phongban'))->ignore($mucluong->id)],
+            'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('phucap', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))->ignore($phucap->id)],
+            'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('phucap', 'chucvu_id')->where('phongban_id', Request::get('phongban'))->ignore($phucap->id)],
             'luongcb' => ['required', 'integer'],
             'phucap' => ['required', 'between:0,100.00'],
         ]);
 
-        $mucluong->update([
+        $phucap->update([
             'phongban_id' => Request::get('phongban'),
             'chucvu_id' => Request::get('chucvu'),
             'luongcb' => Request::get('luongcb'),
@@ -112,16 +112,16 @@ class MucLuongController extends Controller
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
 
-    public function destroy(MucLuong $mucluong)
+    public function destroy(PhuCap $phucap)
     {
-        $mucluong->delete();
+        $phucap->delete();
 
         return Redirect::back()->with('success', 'Đã xoá thành công.');
     }
 
-    public function restore(MucLuong $mucluong)
+    public function restore(PhuCap $phucap)
     {
-        $mucluong->restore();
+        $phucap->restore();
 
         return Redirect::back()->with('success', 'Đã khôi phục thành công.');
     }

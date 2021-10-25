@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\MucLuong;
+use App\Models\PhuCap;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MucLuongFactory extends Factory
+class PhuCapFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = MucLuong::class;
+    protected $model = PhuCap::class;
 
     /**
      * Define the model's default state.
