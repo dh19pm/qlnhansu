@@ -63,109 +63,109 @@ class PhuCapSeeder extends Seeder
         PhuCap::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $truongphong,
-            'phucap' => 2.50
+            'hsphucap' => 2.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $giamdoc,
             'chucvu_id' => $phophong,
-            'phucap' => 2.0
+            'hsphucap' => 2.0
         ]);
 
          PhuCap::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $truongphong,
-            'phucap' => 1.50
+            'hsphucap' => 1.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $phophong,
-            'phucap' => 1.20
+            'hsphucap' => 1.20
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $marketing,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $kinhdoanh,
             'chucvu_id' => $nhanvien,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $truongphong,
-            'phucap' => 1.50
+            'hsphucap' => 1.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $phophong,
-            'phucap' => 1.20
+            'hsphucap' => 1.20
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $phantich,
             'chucvu_id' => $nhanvien,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $truongphong,
-            'phucap' => 1.50
+            'hsphucap' => 1.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $phophong,
-            'phucap' => 1.20
+            'hsphucap' => 1.20
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $thietke,
             'chucvu_id' => $nhanvien,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $truongphong,
-            'phucap' => 1.50
+            'hsphucap' => 1.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $phophong,
-            'phucap' => 1.20
+            'hsphucap' => 1.20
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $laptrinh,
             'chucvu_id' => $nhanvien,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $truongphong,
-            'phucap' => 1.50
+            'hsphucap' => 1.50
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $phophong,
-            'phucap' => 1.20
+            'hsphucap' => 1.20
         ]);
 
         PhuCap::factory()->create([
             'phongban_id' => $hanhchinh,
             'chucvu_id' => $nhanvien,
-            'phucap' => 1.00
+            'hsphucap' => 1.00
         ]);
     }
 }

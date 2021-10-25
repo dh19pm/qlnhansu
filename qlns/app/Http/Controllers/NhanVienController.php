@@ -95,6 +95,7 @@ class NhanVienController extends Controller
             'diachi' => ['nullable', 'max:255'],
             'quequan' => ['nullable', 'max:255'],
             'trangthai' => ['required', 'boolean'],
+            'batluong' => ['required', 'between:1,10'],
             'hesoluong' => ['required', 'between:0,100.00'],
             'photo' => ['nullable', 'image']
         ]);
@@ -115,6 +116,7 @@ class NhanVienController extends Controller
                 'diachi' => Request::get('diachi'),
                 'quequan' => Request::get('quequan'),
                 'trangthai' => Request::get('trangthai'),
+                'batluong' => Request::get('batluong'),
                 'hesoluong' => Request::get('hesoluong'),
                 'photo_path' => Request::file('photo') ? Request::file('photo')->store('nhanvien') : null,
             ])->id,
@@ -172,6 +174,7 @@ class NhanVienController extends Controller
                 'diachi' => $nhanvien->diachi,
                 'quequan' => $nhanvien->quequan,
                 'trangthai' => $nhanvien->trangthai,
+                'batluong' => $nhanvien->batluong,
                 'hesoluong' => $nhanvien->hesoluong,
                 'photo' => $nhanvien->photo_path ? URL::route('image', ['path' => $nhanvien->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
                 'deleted_at' => $nhanvien->deleted_at,
@@ -211,6 +214,7 @@ class NhanVienController extends Controller
             'diachi' => ['nullable', 'max:255'],
             'quequan' => ['nullable', 'max:255'],
             'trangthai' => ['required', 'boolean'],
+            'batluong' => ['required', 'between:1,10'],
             'hesoluong' => ['required', 'between:0,100.00'],
             'photo' => ['nullable', 'image']
         ]);
@@ -230,6 +234,7 @@ class NhanVienController extends Controller
             'diachi' => Request::get('diachi'),
             'quequan' => Request::get('quequan'),
             'trangthai' => Request::get('trangthai'),
+            'batluong' => Request::get('batluong'),
             'hesoluong' => Request::get('hesoluong')
         ]);
 

@@ -17,7 +17,7 @@ class CreatePhuCapTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('phongban_id');
             $table->unsignedInteger('chucvu_id');
-            $table->float('phucap', 5, 2);
+            $table->float('hsphucap', 5, 2);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('phongban_id','fk_phucap_phongban_id')->references('id')->on('phongban')->onUpdate('CASCADE');

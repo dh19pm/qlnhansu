@@ -27,8 +27,7 @@ class MucLuongController extends Controller
                     'id' => $phucap->id,
                     'tenpb' => $phucap->phongban->tenpb,
                     'tencv' => $phucap->chucvu->tencv,
-                    'luongcb' => number_format($phucap->luongcb) . ' VNĐ',
-                    'phucap' => $phucap->phucap,
+                    'hsphucap' => $phucap->hsphucap,
                     'deleted_at' => $phucap->deleted_at,
                 ]),
         ]);
@@ -55,15 +54,13 @@ class MucLuongController extends Controller
         Request::validate([
             'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('phucap', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))],
             'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('phucap', 'chucvu_id')->where('phongban_id', Request::get('phongban'))],
-            'luongcb' => ['required', 'integer'],
-            'phucap' => ['required', 'between:0,100.00'],
+            'hsphucap' => ['required', 'between:0,100.00'],
         ]);
 
         (new PhuCap())->create([
             'phongban_id' => Request::get('phongban'),
             'chucvu_id' => Request::get('chucvu'),
-            'luongcb' => Request::get('luongcb'),
-            'phucap' => Request::get('phucap'),
+            'hsphucap' => Request::get('hsphucap'),
         ]);
 
         return Redirect::route('phucap')->with('success', 'Đã tạo thành công.');
@@ -86,8 +83,7 @@ class MucLuongController extends Controller
                 'id' => $phucap->id,
                 'phongban' => $phucap->phongban_id,
                 'chucvu' => $phucap->chucvu_id,
-                'luongcb' => $phucap->luongcb,
-                'phucap' => $phucap->phucap,
+                'hsphucap' => $phucap->hsphucap,
                 'deleted_at' => $phucap->deleted_at,
             ],
         ]);
@@ -98,15 +94,13 @@ class MucLuongController extends Controller
         Request::validate([
             'phongban' => ['required', Rule::exists('phongban', 'id'), Rule::unique('phucap', 'phongban_id')->where('chucvu_id', Request::get('chucvu'))->ignore($phucap->id)],
             'chucvu' => ['required', Rule::exists('chucvu', 'id'), Rule::unique('phucap', 'chucvu_id')->where('phongban_id', Request::get('phongban'))->ignore($phucap->id)],
-            'luongcb' => ['required', 'integer'],
-            'phucap' => ['required', 'between:0,100.00'],
+            'hsphucap' => ['required', 'between:0,100.00'],
         ]);
 
         $phucap->update([
             'phongban_id' => Request::get('phongban'),
             'chucvu_id' => Request::get('chucvu'),
-            'luongcb' => Request::get('luongcb'),
-            'phucap' => Request::get('phucap'),
+            'hsphucap' => Request::get('hsphucap'),
         ]);
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
