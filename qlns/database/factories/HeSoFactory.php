@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\HeSo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HeSoFactory extends Factory
@@ -12,7 +12,7 @@ class HeSoFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = HeSo::class;
 
     /**
      * Define the model's default state.
