@@ -29,6 +29,7 @@ class NhanVienFactory extends Factory
             'ngaysinh' => $this->faker->dateTimeBetween('1985-01-01', '1995-12-31'),
             'gioitinh' => boolval(rand(0, 1)),
             'cmnd' => rand(100000000,999999999),
+            'batluong'  => rand(1, 10),
             'hesoluong' => 1.00,
             'trangthai' => true
         ];
