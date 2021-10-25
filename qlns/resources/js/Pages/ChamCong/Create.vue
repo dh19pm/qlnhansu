@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('chamcong', { nhanvien: nhanvien.id })">Chấm Công</inertia-link>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('chamcong', { nhanvien: nhanvien.id })">Lịch Sử Chấm Công</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> {{ nhanvien.hovaten }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden">

@@ -30,7 +30,7 @@
         <div :class="isUrl('hopdong') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Hợp Đồng</div>
       </inertia-link>
     </div>
-    <div class="mb-4">
+    <div v-if="$page.props.auth.user.role > 0" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('chamcong', { nhanvien: $page.props.auth.user.nhanvien_id })">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('chamcong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('chamcong') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Chấm Công</div>

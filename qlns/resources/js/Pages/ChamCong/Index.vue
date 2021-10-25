@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Chấm Công</h1>
+    <h1 class="mb-8 font-bold text-3xl">Lịch Sử Chấm Công</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Trạng thái xoá:</label>
@@ -11,7 +11,7 @@
         </select>
       </search-filter>
       <inertia-link v-if="filters.nhanvien" class="btn-indigo" :href="route('chamcong.create', filters.nhanvien)">
-        <span>Tạo Mới</span>
+        <span>Tạo Mới (Demo)</span>
       </inertia-link>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">

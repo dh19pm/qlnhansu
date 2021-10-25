@@ -13,13 +13,13 @@
     <div class="bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <select-input v-model="form.loai" :error="form.errors.loaihopdong" class="pr-6 pb-8 w-full lg:w-1/2" label="Hình thức">
+          <select-input v-model="form.loai" :error="form.errors.loai" class="pr-6 pb-8 w-full lg:w-1/2" label="Hình thức">
             <option :value="null">- Chọn -</option>
             <option :value="0">Thưởng</option>
             <option :value="1">Phạt</option>
           </select-input>
-          <text-input v-model="form.lydo" :error="form.errors.lydo" class="pr-6 pb-8 w-full lg:w-1/2" label="Lý do ứng tiền" />
-          <text-input v-model="form.sotien" :error="form.errors.sotien" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Số tiền cần ứng" />
+          <text-input v-model="form.lydo" :error="form.errors.lydo" class="pr-6 pb-8 w-full lg:w-1/2" label="Lý do" />
+          <text-input v-model="form.sotien" :error="form.errors.sotien" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Số tiền" />
           <text-input v-model="form.ngayapdung" :error="form.errors.ngayapdung" class="pr-6 pb-8 w-full lg:w-1/2" type="month" label="Áp dụng cho tháng nào?" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
