@@ -63,9 +63,9 @@ class NhanVien extends Model
         return $this->hasMany(NhanLuong::class, 'id', 'nhanvien_id');
     }
 
-    public function mucluong()
+    public function phucap()
     {
-        return $this->belongsTo(MucLuong::class, 'mucluong_id', 'id');
+        return $this->belongsTo(MucLuong::class, 'phucap_id', 'id');
     }
 
     public function ngoaingu()

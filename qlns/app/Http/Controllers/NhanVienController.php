@@ -8,7 +8,7 @@ use App\Models\ChuyenMon;
 use App\Models\DanToc;
 use App\Models\HopDong;
 use App\Models\NhanVien;
-use App\Models\MucLuong;
+use App\Models\PhuCap;
 use App\Models\NgoaiNgu;
 use App\Models\TonGiao;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +46,7 @@ class NhanVienController extends Controller
     public function create()
     {
         return Inertia::render('NhanVien/Create', [
-            'mucluong' => (new MucLuong())->getAll(),
+            'phucap' => (new PhuCap())->getAll(),
             'bangcap' => (new BangCap())
                 ->orderBy('tenbc')
                 ->get()
@@ -78,7 +78,7 @@ class NhanVienController extends Controller
     public function store()
     {
         Request::validate([
-            'mucluong' => ['required', Rule::exists('mucluong', 'id')],
+            'phucap' => ['required', Rule::exists('phucap', 'id')],
             'bangcap' => ['required', Rule::exists('bangcap', 'id')],
             'chuyenmon' => ['required', Rule::exists('chuyenmon', 'id')],
             'ngoaingu' => ['required', Rule::exists('ngoaingu', 'id')],
@@ -101,7 +101,7 @@ class NhanVienController extends Controller
 
         Auth::user()->nhanvien->user->create([
             'nhanvien_id' => Auth::user()->nhanvien->create([
-                'mucluong_id' => Request::get('mucluong'),
+                'phucap_id' => Request::get('phucap'),
                 'bangcap_id' => Request::get('bangcap'),
                 'chuyenmon_id' => Request::get('chuyenmon'),
                 'ngoaingu_id' => Request::get('ngoaingu'),
@@ -129,7 +129,7 @@ class NhanVienController extends Controller
     public function edit(NhanVien $nhanvien)
     {
         return Inertia::render('NhanVien/Edit', [
-            'mucluong' => (new MucLuong())->getAll(),
+            'phucap' => (new PhuCap())->getAll(),
             'bangcap' => (new BangCap())
                 ->orderBy('tenbc')
                 ->get()
@@ -158,7 +158,7 @@ class NhanVienController extends Controller
             'nhanvien' => [
                 'id' => $nhanvien->id,
                 'user_id' => $nhanvien->user->id,
-                'mucluong' => $nhanvien->mucluong_id,
+                'phucap' => $nhanvien->phucap_id,
                 'bangcap' => $nhanvien->bangcap_id ?? null,
                 'chuyenmon' => $nhanvien->chuyenmon_id,
                 'ngoaingu' => $nhanvien->ngoaingu_id,
@@ -197,7 +197,7 @@ class NhanVienController extends Controller
     public function update(NhanVien $nhanvien)
     {
         Request::validate([
-            'mucluong' => ['required', Rule::exists('mucluong', 'id')],
+            'phucap' => ['required', Rule::exists('phucap', 'id')],
             'bangcap' => ['required', Rule::exists('bangcap', 'id')],
             'chuyenmon' => ['required', Rule::exists('chuyenmon', 'id')],
             'ngoaingu' => ['required', Rule::exists('ngoaingu', 'id')],
@@ -216,7 +216,7 @@ class NhanVienController extends Controller
         ]);
 
         $nhanvien->update([
-            'mucluong_id' => Request::get('mucluong'),
+            'phucap_id' => Request::get('phucap'),
             'bangcap_id' => Request::get('bangcap'),
             'chuyenmon_id' => Request::get('chuyenmon'),
             'ngoaingu_id' => Request::get('ngoaingu'),
