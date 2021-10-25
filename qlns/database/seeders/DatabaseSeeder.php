@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             TonGiaoSeeder::class,
             NgoaiNguSeeder::class,
             LoaiBaoHiemSeeder::class,
+            HeSoSeeder::class,
             NhanVienSeeder::class
         ]);
     }

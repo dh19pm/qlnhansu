@@ -10,4 +10,6 @@ class HeSo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'heso';
 }
