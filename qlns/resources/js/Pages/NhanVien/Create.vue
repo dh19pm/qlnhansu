@@ -20,9 +20,22 @@
           </select-input>
           <text-input v-model="form.ngaysinh" :error="form.errors.ngaysinh" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày sinh" />
           <text-input v-model="form.hesoluong" :error="form.errors.hesoluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số lương" />
-          <select-input v-model="form.mucluong" :error="form.errors.mucluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Phòng ban -> chức vụ">
+          <select-input v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Phòng ban -> chức vụ">
             <option :value="null">- Chọn -</option>
-            <option v-for="ml in mucluong" :key="ml.id" :value="ml.id">{{ ml.tenpb }} -> {{ ml.tencv }}</option>
+            <option v-for="pc in phucap" :key="pc.id" :value="pc.id">{{ pc.tenpb }} -> {{ pc.tencv }}</option>
+          </select-input>
+          <select-input v-model="form.bacluong" :error="form.errors.bacluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Bậc lương">
+            <option :value="null">- Chọn -</option>
+            <option :value="1">Bậc 1</option>
+            <option :value="2">Bậc 2</option>
+            <option :value="3">Bậc 3</option>
+            <option :value="4">Bậc 4</option>
+            <option :value="5">Bậc 5</option>
+            <option :value="6">Bậc 6</option>
+            <option :value="7">Bậc 7</option>
+            <option :value="8">Bậc 8</option>
+            <option :value="9">Bậc 9</option>
+            <option :value="10">Bậc 10</option>
           </select-input>
           <select-input v-model="form.bangcap" :error="form.errors.bangcap" class="pr-6 pb-8 w-full lg:w-1/2" label="Bằng cấp">
             <option :value="null">- Chọn -</option>
@@ -56,7 +69,7 @@
           <text-input v-model="form.cmnd" :error="form.errors.cmnd" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="CMND" />
           <text-input v-model="form.diachi" :error="form.errors.diachi" class="pr-6 pb-8 w-full lg:w-1/2" label="Địa chỉ" />
           <text-input v-model="form.quequan" :error="form.errors.quequan" class="pr-6 pb-8 w-full lg:w-1/2" label="Quê quán" />
-          <file-input v-model="form.photo" :error="form.errors.photo" class="pr-6 pb-8 w-full lg:w-1/1" type="file" accept="image/*" label="Ảnh đại diện" />
+          <file-input v-model="form.photo" :error="form.errors.photo" class="pr-6 pb-8 w-full lg:w-1/2" type="file" accept="image/*" label="Ảnh đại diện" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Tạo Mới</loading-button>
@@ -82,7 +95,7 @@ export default {
   },
   layout: Layout,
   props: {
-    mucluong: Array,
+    phucap: Array,
     bangcap: Array,
     chuyenmon: Array,
     ngoaingu: Array,
@@ -93,7 +106,7 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        mucluong: null,
+        phucap: null,
         bangcap: null,
         ngoaingu: null,
         chuyenmon: null,
@@ -110,6 +123,7 @@ export default {
         cmnd: null,
         diachi: null,
         quequan: null,
+        bacluong: null,
         hesoluong: null,
         photo: null,
       }),

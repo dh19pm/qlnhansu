@@ -37,9 +37,22 @@
           </select-input>
           <text-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.ngaysinh" :error="form.errors.ngaysinh" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày sinh" />
           <text-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.hesoluong" :error="form.errors.hesoluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số lương" />
-          <select-input :disabled="$page.props.auth.user.role > 0 ? false : true"  v-model="form.mucluong" :error="form.errors.mucluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Phòng ban -> chức vụ">
+          <select-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Phòng ban -> chức vụ">
             <option :value="null">- Chọn -</option>
-            <option v-for="ml in mucluong" :key="ml.id" :value="ml.id">{{ ml.tenpb }} -> {{ ml.tencv }}</option>
+            <option v-for="pc in phucap" :key="pc.id" :value="pc.id">{{ pc.tenpb }} -> {{ pc.tencv }}</option>
+          </select-input>
+          <select-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.bacluong" :error="form.errors.bacluong" class="pr-6 pb-8 w-full lg:w-1/2" label="Bậc lương">
+            <option :value="null">- Chọn -</option>
+            <option :value="1">Bậc 1</option>
+            <option :value="2">Bậc 2</option>
+            <option :value="3">Bậc 3</option>
+            <option :value="4">Bậc 4</option>
+            <option :value="5">Bậc 5</option>
+            <option :value="6">Bậc 6</option>
+            <option :value="7">Bậc 7</option>
+            <option :value="8">Bậc 8</option>
+            <option :value="9">Bậc 9</option>
+            <option :value="10">Bậc 10</option>
           </select-input>
           <select-input v-model="form.bangcap" :error="form.errors.bangcap" class="pr-6 pb-8 w-full lg:w-1/2" label="Bằng cấp">
             <option :value="null">- Chọn -</option>
@@ -65,7 +78,7 @@
           <text-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.cmnd" :error="form.errors.cmnd" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="CMND" />
           <text-input v-model="form.diachi" :error="form.errors.diachi" class="pr-6 pb-8 w-full lg:w-1/2" label="Địa chỉ" />
           <text-input v-model="form.quequan" :error="form.errors.quequan" class="pr-6 pb-8 w-full lg:w-1/2" label="Quê quán" />
-          <file-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.photo" :error="form.errors.photo" class="pr-6 pb-8 w-full lg:w-1/2" type="file" accept="image/*" label="Ảnh đại diện" />
+          <file-input :disabled="$page.props.auth.user.role > 0 ? false : true" v-model="form.photo" :error="form.errors.photo" class="pr-6 pb-8 w-full lg:w-1/1" type="file" accept="image/*" label="Ảnh đại diện" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
           <button v-if="!nhanvien.deleted_at && $page.props.auth.user.role == 2 && $page.props.auth.user.id != nhanvien.user_id" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Xoá Nhân Viên</button>
@@ -285,7 +298,7 @@ export default {
   },
   layout: Layout,
   props: {
-    mucluong: Array,
+    phucap: Array,
     bangcap: Array,
     chuyenmon: Array,
     ngoaingu: Array,
@@ -300,7 +313,7 @@ export default {
     return {
       form: this.$inertia.form({
         _method: 'put',
-        mucluong: this.nhanvien.mucluong,
+        phucap: this.nhanvien.phucap,
         bangcap: this.nhanvien.bangcap,
         ngoaingu: this.nhanvien.ngoaingu,
         chuyenmon: this.nhanvien.chuyenmon,
@@ -314,6 +327,7 @@ export default {
         cmnd: this.nhanvien.cmnd,
         diachi: this.nhanvien.diachi,
         quequan: this.nhanvien.quequan,
+        bacluong: this.nhanvien.bacluong,
         hesoluong: this.nhanvien.hesoluong.toString(),
         photo: null
       })
