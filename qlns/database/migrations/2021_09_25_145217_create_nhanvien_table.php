@@ -15,7 +15,7 @@ class CreateNhanvienTable extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('mucluong_id');
+            $table->unsignedInteger('phucap_id');
             $table->unsignedInteger('bangcap_id');
             $table->unsignedInteger('chuyenmon_id');
             $table->unsignedInteger('ngoaingu_id');
@@ -34,7 +34,7 @@ class CreateNhanvienTable extends Migration
             $table->string('photo_path', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('mucluong_id','fk_nhanvien_mucluong_id')->references('id')->on('mucluong')->onUpdate('CASCADE');
+            $table->foreign('phucap_id','fk_nhanvien_phucap_id')->references('id')->on('phucap')->onUpdate('CASCADE');
             $table->foreign('bangcap_id','fk_nhanvien_bangcap_id')->references('id')->on('bangcap')->onUpdate('CASCADE');
             $table->foreign('chuyenmon_id','fk_nhanvien_chuyenmon_id')->references('id')->on('chuyenmon')->onUpdate('CASCADE');
             $table->foreign('ngoaingu_id','fk_nhanvien_ngoaingu_id')->references('id')->on('ngoaingu')->onUpdate('CASCADE');
@@ -53,13 +53,13 @@ class CreateNhanvienTable extends Migration
     {
         Schema::table('nhanvien', function(Blueprint $table)
         {
-            $table->dropForeign('fk_nhanvien_mucluong_id');
+            $table->dropForeign('fk_nhanvien_phucap_id');
             $table->dropForeign('fk_nhanvien_bangcap_id');
             $table->dropForeign('fk_nhanvien_ngoaingu_id');
             $table->dropForeign('fk_nhanvien_chuyenmon_id');
             $table->dropForeign('fk_nhanvien_dantoc_id');
             $table->dropForeign('fk_nhanvien_tongiao_id');
-            $table->dropColumn('mucluong_id');
+            $table->dropColumn('phucap_id');
             $table->dropColumn('bangcap_id');
             $table->dropColumn('chuyenmon_id');
             $table->dropColumn('ngoaingu_id');
