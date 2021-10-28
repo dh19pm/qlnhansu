@@ -54,17 +54,17 @@ export default {
     return {
       form: this.$inertia.form({
         _method: 'put',
-        luongcb: this.heso.luongcb,
-        bac1: this.heso.bac1,
-        bac2: this.heso.bac2,
-        bac3: this.heso.bac3,
-        bac4: this.heso.bac4,
-        bac5: this.heso.bac5,
-        bac6: this.heso.bac6,
-        bac7: this.heso.bac7,
-        bac8: this.heso.bac8,
-        bac9: this.heso.bac9,
-        bac10: this.heso.bac10
+        luongcb: this.heso.luongcb.toString(),
+        bac1: this.heso.bac1.toString(),
+        bac2: this.heso.bac2.toString(),
+        bac3: this.heso.bac3.toString(),
+        bac4: this.heso.bac4.toString(),
+        bac5: this.heso.bac5.toString(),
+        bac6: this.heso.bac6.toString(),
+        bac7: this.heso.bac7.toString(),
+        bac8: this.heso.bac8.toString(),
+        bac9: this.heso.bac9.toString(),
+        bac10: this.heso.bac10.toString()
       })
     }
   },

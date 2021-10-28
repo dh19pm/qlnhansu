@@ -14,10 +14,23 @@ class BangChamCongController extends Controller
 {
     public function index()
     {
-        return Inertia::render('BangChamCong/Index');
+        return Inertia::render('BangChamCong/Index', [
+            'filters' => Request::all('search', 'trashed'),
+            'nhanvien' => Auth::user()->nhanvien
+                ->latest('nhanvien.created_at')
+                ->filter(Request::only('search', 'trashed'))
+                ->paginate(50)
+                ->withQueryString()
+                ->through(fn ($nhanvien) => [
+                    'id' => $nhanvien->id,
+                    'manv' => 'NV' . str_pad($nhanvien->id, 3, '0', STR_PAD_LEFT),
+                    'hovaten' => $nhanvien->hovaten,
+                    'email' => $nhanvien->user->email,
+                ]),
+        ]);
     }
 
-    public function update()
+    public function store()
     {
         return '';
     }
