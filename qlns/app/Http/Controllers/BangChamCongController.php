@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NhanVien;
 use App\Models\ChamCong;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -14,7 +15,13 @@ class BangChamCongController extends Controller
 {
     public function index()
     {
+        if (!empty(Request::get('ngaycong')) && preg_match('/([0-9]{4,4}+)\-([0-9]{2,2}+)\-([0-9]{2,2}+)/', Request::get('ngaycong')))
+            $ngaycong = Request::get('ngaycong');
+        else
+            $ngaycong = date('Y-m-d', time());
+
         return Inertia::render('BangChamCong/Index', [
+            'chamconglist' => Auth::user()->nhanvien->ngayCongList($ngaycong),
             'filters' => Request::all('search', 'trashed'),
             'nhanvien' => Auth::user()->nhanvien
                 ->latest('nhanvien.created_at')

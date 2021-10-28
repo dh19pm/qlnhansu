@@ -93,6 +93,23 @@ class NhanVien extends Model
         return $this->belongsTo(DanToc::class, 'dantoc_id', 'id');
     }
 
+    public function ngayCongList(string $ngaycong)
+    {
+        $list = [];
+        $temp = [];
+        $nhanVien = (new NhanVien())->join('chamcong as c', 'nhanvien.id', '=', 'c.nhanvien_id')
+        ->where('c.created_at', $ngaycong . ' 00:00:00')
+        ->orderBy('nhanvien.id', 'ASC')
+        ->select('nhanvien.id')
+        ->get();
+        foreach ($nhanVien as $nv)
+            $list[$nv->id - 1] = true;
+        if (count($list) > 0)
+            for ($i = 0; $i <= max(array_keys($list)); $i++)
+                $temp[$i] = $list[$i] ?? null;
+        return $temp;
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
