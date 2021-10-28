@@ -12,5 +12,13 @@ use Inertia\Inertia;
 
 class BangChamCongController extends Controller
 {
-    //
+    public function index()
+    {
+        return Inertia::render('BangChamCong/Index');
+    }
+
+    public function update()
+    {
+        return '';
+    }
 }

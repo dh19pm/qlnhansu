@@ -23,7 +23,7 @@ class NghiViecController extends Controller
                 ->withQueryString()
                 ->through(fn ($nghiviec) => [
                     'id' => $nghiviec->id,
-                    'manv' => 'NV' . str_pad($nghiviec->nhanvien->id, 10, '0', STR_PAD_LEFT),
+                    'manv' => 'NV' . str_pad($nghiviec->nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $nghiviec->nhanvien->hovaten,
                     'ngaybd' => $nghiviec->ngaybd,
                     'ngaykt' => $nghiviec->ngaykt,

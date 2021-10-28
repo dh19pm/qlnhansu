@@ -21,6 +21,7 @@ use App\Http\Controllers\UngLuongController;
 use App\Http\Controllers\NghiViecController;
 use App\Http\Controllers\ThuongPhatController;
 use App\Http\Controllers\HeSoController;
+use App\Http\Controllers\BangChamCongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -568,4 +569,14 @@ Route::get('heso', [HeSoController::class, 'index'])
 
 Route::put('heso', [HeSoController::class, 'update'])
     ->name('heso.update')
+    ->middleware('auth');
+
+
+// bangchamcong
+Route::get('bangchamcong', [BangChamCongController::class, 'index'])
+    ->name('bangchamcong')
+    ->middleware('auth');
+
+Route::put('bangchamcong', [BangChamCongController::class, 'update'])
+    ->name('bangchamcong.update')
     ->middleware('auth');

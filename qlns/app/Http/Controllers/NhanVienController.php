@@ -31,7 +31,7 @@ class NhanVienController extends Controller
                 ->withQueryString()
                 ->through(fn ($nhanvien) => [
                     'id' => $nhanvien->id,
-                    'manv' => 'NV' . str_pad($nhanvien->id, 10, '0', STR_PAD_LEFT),
+                    'manv' => 'NV' . str_pad($nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $nhanvien->hovaten,
                     'email' => $nhanvien->user->email,
                     'sdt' => $nhanvien->sdt,

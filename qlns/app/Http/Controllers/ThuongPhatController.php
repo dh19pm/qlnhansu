@@ -23,7 +23,7 @@ class ThuongPhatController extends Controller
                 ->withQueryString()
                 ->through(fn ($thuongphat) => [
                     'id' => $thuongphat->id,
-                    'manv' => 'NV' . str_pad($thuongphat->nhanvien->id, 10, '0', STR_PAD_LEFT),
+                    'manv' => 'NV' . str_pad($thuongphat->nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $thuongphat->nhanvien->hovaten,
                     'loai' => $thuongphat->loai,
                     'sotien' => number_format($thuongphat->sotien) . ' VNĐ',

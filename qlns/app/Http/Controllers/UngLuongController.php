@@ -23,7 +23,7 @@ class UngLuongController extends Controller
                 ->withQueryString()
                 ->through(fn ($ungluong) => [
                     'id' => $ungluong->id,
-                    'manv' => 'NV' . str_pad($ungluong->nhanvien->id, 10, '0', STR_PAD_LEFT),
+                    'manv' => 'NV' . str_pad($ungluong->nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $ungluong->nhanvien->hovaten,
                     'sotien' => number_format($ungluong->sotien) . ' VNĐ',
                     'ngayung' => $ungluong->thang . '-' . $ungluong->nam,
