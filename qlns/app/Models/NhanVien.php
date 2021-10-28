@@ -93,11 +93,20 @@ class NhanVien extends Model
         return $this->belongsTo(DanToc::class, 'dantoc_id', 'id');
     }
 
+    public function isNgayCong($id, $ngaycong)
+    {
+        return $this->join('chamcong as c', 'nhanvien.id', '=', 'c.nhanvien_id')
+        ->where('c.created_at', $ngaycong . ' 00:00:00')
+        ->where('nhanvien.id', $id)
+        ->select('nhanvien.id')
+        ->first();
+    }
+
     public function ngayCongList(string $ngaycong)
     {
         $list = [];
         $temp = [];
-        $nhanVien = (new NhanVien())->join('chamcong as c', 'nhanvien.id', '=', 'c.nhanvien_id')
+        $nhanVien = $this->join('chamcong as c', 'nhanvien.id', '=', 'c.nhanvien_id')
         ->where('c.created_at', $ngaycong . ' 00:00:00')
         ->orderBy('nhanvien.id', 'ASC')
         ->select('nhanvien.id')

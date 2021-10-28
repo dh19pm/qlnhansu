@@ -40,6 +40,37 @@ class BangChamCongController extends Controller
 
     public function store()
     {
-        return '';
+        Request::validate([
+            'ngaycong' => ['required', 'date']
+        ]);
+
+        $list = Request::get('nhanvienIDList');
+        $ngaycong = Request::get('ngaycong');
+
+        if (count($list) <= 0)
+            return Redirect::back()->with('error', 'Bạn chưa chọn chấm công cho nhân viên nào cả.');
+
+        foreach ($list as $id => $isTrue)
+        {
+            if (empty(Auth::user()->nhanvien->isNgayCong($id + 1, $ngaycong)))
+            {
+                if ($isTrue)
+                {
+                    (new ChamCong())->create([
+                        'nhanvien_id' => $id + 1,
+                        'created_at' => $ngaycong . ' 00:00:00'
+                    ]);
+                }
+            }
+            else
+            {
+                if (!$isTrue)
+                {
+                    (new ChamCong())->where('nhanvien_id', $id + 1)->forceDelete();
+                }
+            }
+        }
+
+        return Redirect::back()->with('success', 'Chấm công cho nhân viên thành công.');
     }
 }
