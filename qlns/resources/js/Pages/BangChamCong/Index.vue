@@ -4,14 +4,10 @@
     <form @submit.prevent="update">
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
-        <label class="block text-gray-700">Trạng thái xoá:</label>
-        <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null">- Chưa chọn -</option>
-          <option value="only">Đã xoá</option>
-          <option value="with">Tất cả</option>
-        </select>
+        <label class="block text-gray-700">Ngày công:</label>
+        <input @change="change" v-model="frmngaycong" class="mt-1 w-full form-input" type="date"/>
       </search-filter>
-      <loading-button :loading="chamcong.processing" class="btn-indigo" type="submit">Chấm Công</loading-button>
+      <loading-button :loading="chamcong.processing" class="btn-indigo" type="submit">Cập Nhật</loading-button>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
@@ -39,7 +35,7 @@
             </inertia-link>
           </td>
           <td class="border-t text-center">
-              <input v-model="chamcong.nhanvienIDList[nv.id - 1]" type="checkbox" />
+              <input v-model="chamcong.nhanvienIDList[nv.id - 1]" type="checkbox"/>
           </td>
           <td class="border-t w-px">
             <inertia-link class="px-4 flex items-center" :href="route('nhanvien.edit', nv.id)" tabindex="-1">
@@ -78,6 +74,8 @@ export default {
     TrashedMessage,
   },
   props: {
+    chamconglist: Array,
+    ngaycong: String,
     nhanvien: Object,
     filters: Object,
   },
@@ -86,10 +84,11 @@ export default {
       allSelected: false,
       form: {
         search: this.filters.search,
-        trashed: this.filters.trashed,
       },
+      frmngaycong: this.ngaycong,
       chamcong: this.$inertia.form({
-          nhanvienIDList: []
+          nhanvienIDList: this.chamconglist,
+          ngaycong: this.ngaycong
       }),
     }
   },
@@ -108,6 +107,9 @@ export default {
     },
     update() {
         this.chamcong.post(this.route('bangchamcong'))
+    },
+    change() {
+        window.location.href = "?ngaycong=" + this.frmngaycong;
     },
     selectAll: function() {
         this.nhanvien.data.forEach((nv) => this.chamcong.nhanvienIDList[nv.id - 1] = !this.allSelected);

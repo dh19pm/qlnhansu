@@ -21,12 +21,13 @@ class BangChamCongController extends Controller
             $ngaycong = date('Y-m-d', time());
 
         return Inertia::render('BangChamCong/Index', [
+            'ngaycong' => $ngaycong,
             'chamconglist' => Auth::user()->nhanvien->ngayCongList($ngaycong),
-            'filters' => Request::all('search', 'trashed'),
+            'filters' => Request::all('search'),
             'nhanvien' => Auth::user()->nhanvien
                 ->latest('nhanvien.created_at')
-                ->filter(Request::only('search', 'trashed'))
-                ->paginate(50)
+                ->filter(Request::only('search'))
+                ->paginate(1000)
                 ->withQueryString()
                 ->through(fn ($nhanvien) => [
                     'id' => $nhanvien->id,

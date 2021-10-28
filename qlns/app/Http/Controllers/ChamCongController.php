@@ -87,9 +87,10 @@ class ChamCongController extends Controller
 
     public function destroy(ChamCong $chamcong)
     {
-        $chamcong->delete();
+        $id = $chamcong->nhanvien->id;
+        $chamcong->forceDelete();
 
-        return Redirect::back()->with('success', 'Đã xoá thành công.');
+        return Redirect::route('chamcong', ['nhanvien' => $id])->with('success', 'Đã xoá thành công.');
     }
 
     public function restore(ChamCong $chamcong)
