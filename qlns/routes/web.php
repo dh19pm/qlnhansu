@@ -20,6 +20,7 @@ use App\Http\Controllers\HopDongController;
 use App\Http\Controllers\UngLuongController;
 use App\Http\Controllers\NghiViecController;
 use App\Http\Controllers\ThuongPhatController;
+use App\Http\Controllers\HeSoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -557,4 +558,14 @@ Route::delete('thuongphat/{thuongphat}', [ThuongPhatController::class, 'destroy'
 
 Route::put('thuongphat/{thuongphat}/restore', [ThuongPhatController::class, 'restore'])
     ->name('thuongphat.restore')
+    ->middleware('auth');
+
+
+// heso
+Route::get('heso', [HeSoController::class, 'index'])
+    ->name('heso')
+    ->middleware('auth');
+
+Route::put('heso', [HeSoController::class, 'update'])
+    ->name('heso.update')
     ->middleware('auth');
