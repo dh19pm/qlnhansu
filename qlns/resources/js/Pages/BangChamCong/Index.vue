@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      allSelected: false,
+      allSelected: true,
       form: {
         search: this.filters.search,
       },
@@ -114,6 +114,24 @@ export default {
     selectAll: function() {
         this.nhanvien.data.forEach((nv) => this.chamcong.nhanvienIDList[nv.id - 1] = !this.allSelected);
     },
+  },
+  mounted()
+  {
+      if (this.chamconglist.length > 0)
+      {
+        for(let i = 0; i < this.chamconglist.length; i++)
+        {
+            if (this.chamconglist[i] == null)
+            {
+                this.allSelected = false;
+                break;
+            }
+        }
+      }
+      else
+      {
+          this.allSelected = false;
+      }
   },
 }
 </script>

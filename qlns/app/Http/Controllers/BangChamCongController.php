@@ -66,7 +66,7 @@ class BangChamCongController extends Controller
             {
                 if (!$isTrue)
                 {
-                    (new ChamCong())->where('nhanvien_id', $id + 1)->forceDelete();
+                    (new ChamCong())->where('nhanvien_id', $id + 1)->where('created_at', $ngaycong . ' 00:00:00')->forceDelete();
                 }
             }
         }
