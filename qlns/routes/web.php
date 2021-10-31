@@ -22,6 +22,7 @@ use App\Http\Controllers\NghiViecController;
 use App\Http\Controllers\ThuongPhatController;
 use App\Http\Controllers\HeSoController;
 use App\Http\Controllers\BangChamCongController;
+use App\Http\Controllers\NhanLuongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -579,4 +580,9 @@ Route::get('bangchamcong', [BangChamCongController::class, 'index'])
 
 Route::post('bangchamcong', [BangChamCongController::class, 'store'])
     ->name('bangchamcong.store')
+    ->middleware('auth');
+
+// nhanluong
+Route::get('nhanluong', [NhanLuongController::class, 'index'])
+    ->name('nhanluong')
     ->middleware('auth');
