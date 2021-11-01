@@ -15,7 +15,18 @@ class NhanLuongController extends Controller
 {
     public function tinhLuong()
     {
-        return response()->json([]);
+        $nhanvien_id = Request::get('id');
+        $thang = Request::get('thang');
+        $nam = Request::get('nam');
+        $ngaycong = Request::get('ngaycong');
+
+        if (empty($nhanvien_id) || empty($thang) || empty($nam) || empty($ngaycong))
+            return response()->json([]);
+
+        if (!is_numeric($nhanvien_id) || !is_numeric($thang) || !is_numeric($nam) || !is_numeric($ngaycong))
+            return response()->json([]);
+
+        return response()->json((new NhanLuong())->tinhLuong($nhanvien_id, $ngaycong, $thang, $nam));
     }
 
     public function index()

@@ -101,18 +101,21 @@ class NhanLuong extends Model
     }
 
     // thuclinh = (luongcb*heso + luongcb*heso*phucap)/ngaycongchuan*ngaycongthucte - ungtien (+-) thuongphat - baohiem
-    public function tinhluong($nhanvien_id, $month, $year)
+    public function tinhluong($nhanvien_id, $ngaycongchuan, $month, $year)
     {
+        $arr = [];
         $heso = heso::first();
-        $luongcb = $heso['luongcb'];
-        $hesoluong = $heso['bac' . $this->getBac($nhanvien_id)];
-        $ngaycong = $this->getNgayCong($nhanvien_id, $month, $year);
-        $ngaynghihl = $this->getNgayNghi($nhanvien_id, $month, $year, 1);
-        $ngaynghikhl = $this->getNgayNghi($nhanvien_id, $month, $year, 0);
-        $hsphucap = $this->getPhuCap($nhanvien_id);
-        $mucluong = $luongcb * $hesoluong;
-        $phucap = $mucluong * $hsphucap;
-        echo ($mucluong + $phucap) / 26 * ($ngaycong + $ngaynghihl);
+        $arr['luongcb'] = $heso['luongcb'];
+        $arr['hesoluong'] = $heso['bac' . $this->getBac($nhanvien_id)];
+        $arr['ngaycong'] = $this->getNgayCong($nhanvien_id, $month, $year);
+        $arr['ngaynghihl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 1);
+        $arr['ngaynghikhl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 0);
+        $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
+        $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
+        $arr['phucap'] = $arr['mucluong'] * $arr['hsphucap'];
+        $arr['ngaycongchuan'] = $ngaycongchuan;
+        $arr['thuclinh'] = ($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl']);
+        return $arr;
     }
 
     public function nhanvien()
