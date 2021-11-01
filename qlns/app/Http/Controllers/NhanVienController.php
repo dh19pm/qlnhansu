@@ -189,7 +189,7 @@ class NhanVienController extends Controller
             ]),
             'hopdong' => (new HopDong())->where('nhanvien_id', $nhanvien->id)->get()->transform(fn ($hopdong) => [
                 'id' => $hopdong->id,
-                'mahd' => 'HD' . str_pad($hopdong->id, 10, '0', STR_PAD_LEFT),
+                'mahd' => 'HD' . str_pad($hopdong->id, 3, '0', STR_PAD_LEFT),
                 'ngaybd' => $hopdong->ngaybd,
                 'ngaykt' => $hopdong->ngaykt ?? 'Vô thời hạn',
                 'loaihopdong' => $hopdong->loaihopdong

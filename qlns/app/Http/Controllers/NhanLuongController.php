@@ -12,9 +12,5 @@ use Inertia\Inertia;
 
 class NhanLuongController extends Controller
 {
-    public function index()
-    {
-        print_r((new NhanLuong())->tinhluong(1, 10, 2021));
-        return '';
-    }
+
 }
