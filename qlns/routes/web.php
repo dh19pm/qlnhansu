@@ -23,6 +23,7 @@ use App\Http\Controllers\ThuongPhatController;
 use App\Http\Controllers\HeSoController;
 use App\Http\Controllers\BangChamCongController;
 use App\Http\Controllers\NhanLuongController;
+use App\Http\Controllers\KhauTruController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -502,6 +503,27 @@ Route::delete('ungluong/{ungluong}', [UngLuongController::class, 'destroy'])
 
 Route::put('ungluong/{ungluong}/restore', [UngLuongController::class, 'restore'])
     ->name('ungluong.restore')
+    ->middleware('auth');
+
+// Khautru
+Route::get('khautru', [KhauTruController::class, 'index'])
+    ->name('khautru')
+    ->middleware('auth');
+
+Route::get('khautru/{khautru}/edit', [KhauTruController::class, 'edit'])
+    ->name('khautru.edit')
+    ->middleware('auth');
+
+Route::put('khautru/{khautru}', [KhauTruController::class, 'update'])
+    ->name('khautru.update')
+    ->middleware('auth');
+
+Route::delete('khautru/{khautru}', [KhauTruController::class, 'destroy'])
+    ->name('khautru.destroy')
+    ->middleware('auth');
+
+Route::put('khautru/{khautru}/restore', [KhauTruController::class, 'restore'])
+    ->name('khautru.restore')
     ->middleware('auth');
 
 // NghiViec

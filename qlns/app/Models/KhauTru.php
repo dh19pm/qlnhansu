@@ -27,4 +27,18 @@ class KhauTru extends Model
     {
         return $this->belongsTo(LoaiBaoHiem::class, 'loaibaohiem_id', 'id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->join('nhanvien as nv', 'khautru.nhanvien_id', '=', 'nv.id')
+                  ->where('nv.hovaten', 'like', '%'.$search.'%');
+        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
+            if ($trashed === 'with') {
+                $query->withTrashed();
+            } elseif ($trashed === 'only') {
+                $query->onlyTrashed();
+            }
+        });
+    }
 }

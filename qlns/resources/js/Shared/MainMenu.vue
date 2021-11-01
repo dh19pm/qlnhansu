@@ -48,6 +48,12 @@
         <div :class="isUrl('thuongphat') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Thưởng Phạt</div>
       </inertia-link>
     </div>
+    <div v-if="$page.props.auth.user.role > 0" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('khautru')">
+        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('khautru') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isUrl('khautru') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Khẩu Trừ</div>
+      </inertia-link>
+    </div>
     <div v-if="$page.props.auth.user.role == 2" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('bangchamcong')">
         <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('bangchamcong') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
