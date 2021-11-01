@@ -64,7 +64,7 @@ class NhanVienSeeder extends Seeder
             'role' => 0
         ]);
 
-        for($i=1; $i<=30; $i++)
+        for($i=1; $i<=20; $i++)
         {
             User::factory()->create([
                 'nhanvien_id' => NhanVien::factory()->create([
