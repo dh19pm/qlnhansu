@@ -16,16 +16,19 @@ class CreateNhanluongTable extends Migration
         Schema::create('nhanluong', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('nhanvien_id');
-            $table->integer('luongcb');
-            $table->float('hesoluong', 5, 2);
+            $table->float('heso', 5, 2);
             $table->float('phucap', 5, 2);
-            $table->integer('songaycong');
+            $table->float('khautru', 5, 2);
+            $table->bigInteger('luongcb');
+            $table->bigInteger('mucluong');
+            $table->integer('ngaycongchuan');
+            $table->integer('ngaycong');
             $table->integer('nghihl');
             $table->integer('nghikhl');
-            $table->integer('thuong');
-            $table->integer('phat');
-            $table->integer('tamung');
-            $table->integer('khautru');
+            $table->bigInteger('thuong');
+            $table->bigInteger('phat');
+            $table->bigInteger('tamung');
+            $table->bigInteger('thuclinh');
             $table->integer('thang');
             $table->integer('nam');
             $table->timestamps();
