@@ -89,9 +89,20 @@ class NhanLuongController extends Controller
             'nhanluong' => [
                 'id' => $nhanluong->id,
                 'hovaten' => $nhanluong->nhanvien->hovaten,
-                'lydo' => $nhanluong->lydo,
-                'sotien' => $nhanluong->sotien,
-                'ngayung' => $nhanluong->nam . '-' . str_pad($nhanluong->thang, 2, '0', STR_PAD_LEFT),
+                'heso' => $nhanluong->heso,
+                'phucap' => $nhanluong->phucap,
+                'khautru' => $nhanluong->khautru,
+                'luongcb' => $nhanluong->luongcb,
+                'mucluong' => $nhanluong->mucluong,
+                'ngaycongchuan' => $nhanluong->ngaycongchuan,
+                'ngaycong' => $nhanluong->ngaycong,
+                'nghihl' => $nhanluong->nghihl,
+                'nghikhl' => $nhanluong->nghikhl,
+                'thuong' => $nhanluong->thuong,
+                'phat' => $nhanluong->phat,
+                'tamung' => $nhanluong->tamung,
+                'thuclinh' => $nhanluong->thuclinh,
+                'ngaynhan' => $nhanluong->nam . '-' . str_pad($nhanluong->thang, 2, '0', STR_PAD_LEFT),
                 'deleted_at' => $nhanluong->deleted_at,
             ],
         ]);
@@ -100,10 +111,39 @@ class NhanLuongController extends Controller
     public function update(NhanLuong $nhanluong)
     {
         Request::validate([
-            'tencm' => ['required', 'max:100', Rule::unique('nhanluong')->ignore($nhanluong->id)]
+            'heso' => ['required', 'between:0,100.00'],
+            'phucap' => ['required', 'between:0,100.00'],
+            'khautru' => ['required', 'between:0,100.00'],
+            'luongcb' => ['required', 'integer'],
+            'mucluong' => ['required', 'integer'],
+            'ngaycongchuan' => ['required', 'integer'],
+            'ngaycong' => ['required', 'integer'],
+            'nghihl' => ['required', 'integer'],
+            'nghikhl' => ['required', 'integer'],
+            'thuong' => ['required', 'integer'],
+            'phat' => ['required', 'integer'],
+            'tamung' => ['required', 'integer'],
+            'thuclinh' => ['required', 'integer'],
+            'ngaynhan' => ['required', 'date'],
         ]);
 
-        $nhanluong->update(Request::only('tencm'));
+        $nhanluong->update([
+            'heso' => Request::get('heso'),
+            'phucap' => Request::get('phucap'),
+            'khautru' => Request::get('khautru'),
+            'luongcb' => Request::get('luongcb'),
+            'mucluong' => Request::get('mucluong'),
+            'ngaycongchuan' => Request::get('ngaycongchuan'),
+            'ngaycong' => Request::get('ngaycong'),
+            'nghihl' => Request::get('nghihl'),
+            'nghikhl' => Request::get('nghikhl'),
+            'thuong' => Request::get('thuong'),
+            'phat' => Request::get('phat'),
+            'tamung' => Request::get('tamung'),
+            'thuclinh' => Request::get('thuclinh'),
+            'thang' => date('m', strtotime(Request::get('ngaynhan'))),
+            'nam' => date('Y', strtotime(Request::get('ngaynhan'))),
+        ]);
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
