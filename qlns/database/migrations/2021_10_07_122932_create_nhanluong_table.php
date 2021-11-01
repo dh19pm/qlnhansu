@@ -18,7 +18,7 @@ class CreateNhanluongTable extends Migration
             $table->unsignedInteger('nhanvien_id');
             $table->float('heso', 5, 2);
             $table->float('hsphucap', 5, 2);
-            $table->float('khautru', 5, 2);
+            $table->bigInteger('khautru');
             $table->bigInteger('luongcb');
             $table->bigInteger('mucluong');
             $table->bigInteger('phucap');

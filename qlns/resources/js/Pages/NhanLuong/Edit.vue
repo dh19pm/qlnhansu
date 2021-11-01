@@ -17,7 +17,7 @@
           <text-input v-model="form.ngaycongchuan" :error="form.errors.ngaycongchuan" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Ngày công chuẩn" />
           <text-input v-model="form.heso" :error="form.errors.heso" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số lương" />
           <text-input v-model="form.hsphucap" :error="form.errors.hsphucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số phụ cấp" />
-          <text-input v-model="form.khautru" :error="form.errors.khautru" class="pr-6 pb-8 w-full lg:w-1/2" label="Khẩu trừ" />
+          <text-input v-model="form.khautru" :error="form.errors.khautru" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Khẩu trừ" />
           <text-input v-model="form.luongcb" :error="form.errors.luongcb" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Lương cơ bản" />
           <text-input v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Phụ cấp" />
           <text-input v-model="form.mucluong" :error="form.errors.mucluong" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Mức lương" />
@@ -68,7 +68,7 @@ export default {
         _method: 'put',
         heso: this.nhanluong.heso.toString(),
         hsphucap: this.nhanluong.hsphucap.toString(),
-        khautru: this.nhanluong.khautru.toString(),
+        khautru: this.nhanluong.khautru,
         luongcb: this.nhanluong.luongcb,
         mucluong: this.nhanluong.mucluong,
         phucap: this.nhanluong.phucap,

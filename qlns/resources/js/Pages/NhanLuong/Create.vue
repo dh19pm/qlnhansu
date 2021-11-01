@@ -18,7 +18,7 @@
           <text-input v-model="form.ngaycongchuan" :error="form.errors.ngaycongchuan" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Ngày công chuẩn" />
           <text-input v-model="form.heso" :error="form.errors.heso" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số lương" disabled/>
           <text-input v-model="form.hsphucap" :error="form.errors.hsphucap" class="pr-6 pb-8 w-full lg:w-1/2" label="Hệ số phụ cấp" disabled/>
-          <text-input v-model="form.khautru" :error="form.errors.khautru" class="pr-6 pb-8 w-full lg:w-1/2" label="Khẩu trừ" disabled/>
+          <text-input v-model="form.khautru" :error="form.errors.khautru" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Khẩu trừ" disabled/>
           <text-input v-model="form.luongcb" :error="form.errors.luongcb" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Lương cơ bản" disabled/>
           <text-input v-model="form.phucap" :error="form.errors.phucap" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Phụ cấp" disabled/>
           <text-input v-model="form.mucluong" :error="form.errors.mucluong" class="pr-6 pb-8 w-full lg:w-1/2" type="number" label="Mức lương" disabled/>
@@ -96,6 +96,21 @@ export default {
         let ngay = this.form.ngaynhan.split('-');
         axios.get('/nhanluong/tinhluong?id=' + this.nhanvien.id + '&thang=' + ngay[1] + '&nam=' + ngay[0] + '&ngaycong=' + this.form.ngaycongchuan).then(response => {
             console.log(response.data);
+            this.form.heso = response.data.hesoluong.toString();
+            this.form.hsphucap = response.data.hsphucap.toString();
+            this.form.khautru = '1';
+            this.form.luongcb = response.data.luongcb.toString();
+            this.form.mucluong = response.data.mucluong.toString();
+            this.form.phucap = response.data.phucap.toString();
+            this.form.ngaycongchuan = response.data.ngaycongchuan.toString();
+            this.form.ngaycong = response.data.ngaycong.toString();
+            this.form.nghihl = response.data.ngaynghihl.toString();
+            this.form.nghikhl = response.data.ngaynghikhl.toString();
+            this.form.thuong = '1';
+            this.form.phat = '1';
+            this.form.tamung = '1';
+            this.form.thuclinh = response.data.thuclinh.toString();
+            alert('Đã tính lương thành công!');
         });
     },
   },

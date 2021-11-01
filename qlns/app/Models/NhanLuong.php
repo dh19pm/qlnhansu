@@ -112,7 +112,7 @@ class NhanLuong extends Model
         $arr['ngaynghikhl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 0);
         $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
         $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
-        $arr['phucap'] = $arr['mucluong'] * $arr['hsphucap'];
+        $arr['phucap'] = $arr['mucluong'] * ($arr['hsphucap'] / 100);
         $arr['ngaycongchuan'] = $ngaycongchuan;
         $arr['thuclinh'] = ($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl']);
         return $arr;
