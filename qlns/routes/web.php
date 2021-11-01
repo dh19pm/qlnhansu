@@ -505,6 +505,35 @@ Route::put('ungluong/{ungluong}/restore', [UngLuongController::class, 'restore']
     ->name('ungluong.restore')
     ->middleware('auth');
 
+// NhanLuong
+Route::get('nhanluong', [NhanLuongController::class, 'index'])
+    ->name('nhanluong')
+    ->middleware('auth');
+
+Route::get('nhanluong/{nhanvien}/create', [NhanLuongController::class, 'create'])
+    ->name('nhanluong.create')
+    ->middleware('auth');
+
+Route::get('nhanluong/{nhanluong}/edit', [NhanLuongController::class, 'edit'])
+    ->name('nhanluong.edit')
+    ->middleware('auth');
+
+Route::post('nhanluong/{nhanvien}', [NhanLuongController::class, 'store'])
+    ->name('nhanluong.store')
+    ->middleware('auth');
+
+Route::put('nhanluong/{nhanluong}', [NhanLuongController::class, 'update'])
+    ->name('nhanluong.update')
+    ->middleware('auth');
+
+Route::delete('nhanluong/{nhanluong}', [NhanLuongController::class, 'destroy'])
+    ->name('nhanluong.destroy')
+    ->middleware('auth');
+
+Route::put('nhanluong/{nhanluong}/restore', [NhanLuongController::class, 'restore'])
+    ->name('nhanluong.restore')
+    ->middleware('auth');
+
 // Khautru
 Route::get('khautru', [KhauTruController::class, 'index'])
     ->name('khautru')
@@ -602,9 +631,4 @@ Route::get('bangchamcong', [BangChamCongController::class, 'index'])
 
 Route::post('bangchamcong', [BangChamCongController::class, 'store'])
     ->name('bangchamcong.store')
-    ->middleware('auth');
-
-// nhanluong
-Route::get('nhanluong', [NhanLuongController::class, 'index'])
-    ->name('nhanluong')
     ->middleware('auth');
