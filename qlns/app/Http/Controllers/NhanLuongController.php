@@ -13,6 +13,11 @@ use Inertia\Inertia;
 
 class NhanLuongController extends Controller
 {
+    public function tinhLuong()
+    {
+        return response()->json([]);
+    }
+
     public function index()
     {
         return Inertia::render('NhanLuong/Index', [

@@ -506,6 +506,11 @@ Route::put('ungluong/{ungluong}/restore', [UngLuongController::class, 'restore']
     ->middleware('auth');
 
 // NhanLuong
+
+Route::get('nhanluong/tinhluong', [NhanLuongController::class, 'tinhluong'])
+    ->name('tinhluong')
+    ->middleware('auth');
+
 Route::get('nhanluong', [NhanLuongController::class, 'index'])
     ->name('nhanluong')
     ->middleware('auth');
