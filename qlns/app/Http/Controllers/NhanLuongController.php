@@ -26,7 +26,7 @@ class NhanLuongController extends Controller
                     'manv' => 'NV' . str_pad($nhanluong->nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $nhanluong->nhanvien->hovaten,
                     'thuclinh' => number_format($nhanluong->thuclinh) . ' VNĐ',
-                    'ngaynhan' => $nhanluong->thang . '-' . $nhanluong->nam,
+                    'ngaynhan' => str_pad($nhanluong->thang, 2, '0', STR_PAD_LEFT) . '-' . $nhanluong->nam,
                     'deleted_at' => $nhanluong->deleted_at,
                 ]),
         ]);

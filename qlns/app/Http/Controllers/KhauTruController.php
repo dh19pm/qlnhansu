@@ -28,7 +28,7 @@ class KhauTruController extends Controller
                     'hovaten' => $khautru->nhanvien->hovaten,
                     'loaibaohiem' => $khautru->loaibaohiem->tenbh,
                     'mucdong' => $khautru->mucdong,
-                    'ngaydong' => $khautru->thang . '-' . $khautru->nam,
+                    'ngaydong' => str_pad($khautru->thang, 2, '0', STR_PAD_LEFT) . '-' . $khautru->nam,
                     'deleted_at' => $khautru->deleted_at,
                 ]),
         ]);

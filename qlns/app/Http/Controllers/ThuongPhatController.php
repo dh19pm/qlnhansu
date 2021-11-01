@@ -27,7 +27,7 @@ class ThuongPhatController extends Controller
                     'hovaten' => $thuongphat->nhanvien->hovaten,
                     'loai' => $thuongphat->loai,
                     'sotien' => number_format($thuongphat->sotien) . ' VNĐ',
-                    'ngayapdung' => $thuongphat->thang .  '-' . $thuongphat->nam,
+                    'ngayapdung' => str_pad($thuongphat->thang, 2, '0', STR_PAD_LEFT) .  '-' . $thuongphat->nam,
                     'deleted_at' => $thuongphat->deleted_at,
                 ]),
         ]);

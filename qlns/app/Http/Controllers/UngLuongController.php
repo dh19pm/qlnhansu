@@ -26,7 +26,7 @@ class UngLuongController extends Controller
                     'manv' => 'NV' . str_pad($ungluong->nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $ungluong->nhanvien->hovaten,
                     'sotien' => number_format($ungluong->sotien) . ' VNĐ',
-                    'ngayung' => $ungluong->thang . '-' . $ungluong->nam,
+                    'ngayung' => str_pad($ungluong->thang, 2, '0', STR_PAD_LEFT) . '-' . $ungluong->nam,
                     'deleted_at' => $ungluong->deleted_at,
                 ]),
         ]);
