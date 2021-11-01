@@ -97,7 +97,7 @@ class NhanLuong extends Model
 
     public function getPhuCap($nhanvien_id)
     {
-        return NhanVien::find($nhanvien_id)->first()->hsphucap ?? 0;
+        return NhanVien::join('phucap as p', 'nhanvien.phucap_id', '=', 'p.id')->select('p.hsphucap')->first()->hsphucap ?? 0;
     }
 
     // thuclinh = (luongcb*heso + luongcb*heso*phucap)/ngaycongchuan*ngaycongthucte - ungtien (+-) thuongphat - baohiem
@@ -109,7 +109,10 @@ class NhanLuong extends Model
         $ngaycong = $this->getNgayCong($nhanvien_id, $month, $year);
         $ngaynghihl = $this->getNgayNghi($nhanvien_id, $month, $year, 1);
         $ngaynghikhl = $this->getNgayNghi($nhanvien_id, $month, $year, 0);
-        echo ($luongcb * $hesoluong) / 26 * ($ngaycong + $ngaynghihl);
+        $hsphucap = $this->getPhuCap($nhanvien_id);
+        $mucluong = $luongcb * $hesoluong;
+        $phucap = $mucluong * $hsphucap;
+        echo ($mucluong + $phucap) / 26 * ($ngaycong + $ngaynghihl);
     }
 
     public function nhanvien()
