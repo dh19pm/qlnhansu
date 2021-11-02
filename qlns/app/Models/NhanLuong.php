@@ -116,12 +116,24 @@ class NhanLuong extends Model
     public function getTamLuong($nhanvien_id, $month, $year)
     {
         $tong = 0;
-        $thuongphat = (new UngLuong())->where('nhanvien_id', $nhanvien_id)
+        $tamung = (new UngLuong())->where('nhanvien_id', $nhanvien_id)
         ->where('thang', $month)
         ->where('nam', $year)
         ->get();
-        foreach ($thuongphat as $value)
+        foreach ($tamung as $value)
             $tong += $value['sotien'];
+        return $tong;
+    }
+
+    public function getKhauTru($nhanvien_id, $month, $year)
+    {
+        $tong = 0;
+        $khautru = (new KhauTru())->where('nhanvien_id', $nhanvien_id)
+        ->where('thang', $month)
+        ->where('nam', $year)
+        ->get();
+        foreach ($khautru as $value)
+            $tong += $value['mucdong'];
         return $tong;
     }
 
@@ -138,6 +150,7 @@ class NhanLuong extends Model
         $arr['ngaynghikhl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 0) + ($arr['ngaycongchuan'] - $arr['ngaycong']);
         $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
         $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
+        $arr['khautru'] = $arr['mucluong'] * ($this->getKhauTru($nhanvien_id, $month, $year) / 100);
         $arr['phucap'] = $arr['mucluong'] * ($arr['hsphucap'] / 100);
         $arr['thuong'] = $this->getThuongPhat($nhanvien_id, $month, $year, 1);
         $arr['phat'] = $this->getThuongPhat($nhanvien_id, $month, $year, 0);

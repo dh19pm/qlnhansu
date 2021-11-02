@@ -98,7 +98,7 @@ export default {
             console.log(response.data);
             this.form.heso = response.data.hesoluong.toString();
             this.form.hsphucap = response.data.hsphucap.toString();
-            this.form.khautru = '1';
+            this.form.khautru = response.data.khautru.toString();
             this.form.luongcb = response.data.luongcb.toString();
             this.form.mucluong = response.data.mucluong.toString();
             this.form.phucap = response.data.phucap.toString();
