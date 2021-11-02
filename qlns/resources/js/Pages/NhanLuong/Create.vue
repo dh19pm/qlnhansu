@@ -108,7 +108,7 @@ export default {
             this.form.nghikhl = response.data.ngaynghikhl.toString();
             this.form.thuong = response.data.thuong.toString();
             this.form.phat = response.data.phat.toString();
-            this.form.tamung = '1';
+            this.form.tamung = response.data.tamung.toString();
             this.form.thuclinh = response.data.thuclinh.toString();
             alert('Đã tính lương thành công!');
         });
