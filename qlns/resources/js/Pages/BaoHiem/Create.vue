@@ -17,7 +17,12 @@
           <text-input v-model="form.noicap" :error="form.errors.noicap" class="pr-6 pb-8 w-full lg:w-1/2" label="Nơi cấp" />
           <text-input v-model="form.ngaycap" :error="form.errors.ngaycap" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày cấp" />
           <text-input v-model="form.ngayhethan" :error="form.errors.ngayhethan" class="pr-6 pb-8 w-full lg:w-1/2" type="date" label="Ngày hết hạn" />
-          <text-input v-model="form.mucdong" :error="form.errors.mucdong" class="pr-6 pb-8 w-full lg:w-1/2" label="Mức đóng" />
+          <select-input v-model="form.khautru" :error="form.errors.khautru" class="pr-6 pb-8 w-full lg:w-1/2" label="Có tính vào lương tháng này không?">
+            <option :value="null">- Chọn -</option>
+            <option :value="0">Không</option>
+            <option :value="1">Có</option>
+          </select-input>
+          <text-input v-model="form.mucdong" :error="form.errors.mucdong" class="pr-6 pb-8 w-full lg:w-1/1" label="Mức đóng" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Tạo Mới</loading-button>
@@ -53,7 +58,8 @@ export default {
         noicap: null,
         ngaycap: null,
         ngayhethan: null,
-        mucdong: null
+        mucdong: null,
+        khautru: null
       }),
     }
   },

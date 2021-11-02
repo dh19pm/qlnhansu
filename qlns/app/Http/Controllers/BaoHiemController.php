@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BaoHiem;
+use App\Models\KhauTru;
 use App\Models\LoaiBaoHiem;
 use App\Models\NhanVien;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +60,8 @@ class BaoHiemController extends Controller
             'noicap' => ['required', 'max:100'],
             'ngaycap' => ['required', 'date'],
             'ngayhethan' => ['required', 'date'],
-            'mucdong' => ['required', 'between:0,100.00']
+            'mucdong' => ['required', 'between:0,100.00'],
+            'khautru' => ['required', 'boolean']
         ]);
 
         (new BaoHiem())->create([
@@ -71,6 +73,16 @@ class BaoHiemController extends Controller
             'ngayhethan' => Request::get('ngayhethan'),
             'mucdong' => Request::get('mucdong')
         ]);
+
+        if (Request::get('khautru') == 1)
+        {
+            (new KhauTru())->create([
+                'loaibaohiem_id' => Request::get('loaibaohiem'),
+                'mucdong' => Request::get('mucdong'),
+                'thang' => intval(date('m', time())),
+                'nam' => intval(date('Y', time())),
+            ]);
+        }
 
         return Redirect::route('nhanvien.edit', $nhanvien->id)->with('success', 'Đã tạo thành công.');
     }
@@ -105,7 +117,8 @@ class BaoHiemController extends Controller
             'noicap' => ['required', 'max:100'],
             'ngaycap' => ['required', 'date'],
             'ngayhethan' => ['required', 'date'],
-            'mucdong' => ['required', 'between:0,100.00']
+            'mucdong' => ['required', 'between:0,100.00'],
+            'khautru' => ['required', 'boolean']
         ]);
 
         $baohiem->update([
@@ -116,6 +129,16 @@ class BaoHiemController extends Controller
             'ngayhethan' => Request::get('ngayhethan'),
             'mucdong' => Request::get('mucdong')
         ]);
+
+        if (Request::get('khautru') == 1)
+        {
+            (new KhauTru())->create([
+                'loaibaohiem_id' => Request::get('loaibaohiem'),
+                'mucdong' => Request::get('mucdong'),
+                'thang' => intval(date('m', time())),
+                'nam' => intval(date('Y', time())),
+            ]);
+        }
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
     }
