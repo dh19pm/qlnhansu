@@ -77,6 +77,7 @@ class BaoHiemController extends Controller
         if (Request::get('khautru') == 1)
         {
             (new KhauTru())->create([
+                'nhanvien_id' => $nhanvien->id,
                 'loaibaohiem_id' => Request::get('loaibaohiem'),
                 'mucdong' => Request::get('mucdong'),
                 'thang' => intval(date('m', time())),
@@ -104,6 +105,7 @@ class BaoHiemController extends Controller
                 'ngaycap' => $baohiem->ngaycap,
                 'ngayhethan' => $baohiem->ngayhethan,
                 'mucdong' => $baohiem->mucdong,
+                'khautru' => 0,
                 'deleted_at' => $baohiem->deleted_at,
             ],
         ]);
@@ -133,6 +135,7 @@ class BaoHiemController extends Controller
         if (Request::get('khautru') == 1)
         {
             (new KhauTru())->create([
+                'nhanvien_id' => $baohiem->nhanvien->id,
                 'loaibaohiem_id' => Request::get('loaibaohiem'),
                 'mucdong' => Request::get('mucdong'),
                 'thang' => intval(date('m', time())),

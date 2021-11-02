@@ -72,7 +72,7 @@ export default {
         ngaycap: this.baohiem.ngaycap,
         ngayhethan: this.baohiem.ngayhethan,
         mucdong: this.baohiem.mucdong.toString(),
-        khautru: this.baohiem.khautru.toString()
+        khautru: this.baohiem.khautru,
       })
     }
   },
