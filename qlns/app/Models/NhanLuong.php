@@ -155,7 +155,7 @@ class NhanLuong extends Model
         $arr['thuong'] = $this->getThuongPhat($nhanvien_id, $month, $year, 1);
         $arr['phat'] = $this->getThuongPhat($nhanvien_id, $month, $year, 0);
         $arr['tamung'] = $this->getTamLuong($nhanvien_id, $month, $year);
-        $arr['thuclinh'] = (($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl'])) + $arr['thuong'] - $arr['phat'] - $arr['tamung'];
+        $arr['thuclinh'] = (($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl'])) + $arr['thuong'] - $arr['phat'] - $arr['tamung'] - $arr['khautru'];
         $arr['thuclinh'] = $arr['thuclinh'] <= 0 ? 0 : floor($arr['thuclinh']);
         return $arr;
     }
