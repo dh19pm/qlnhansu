@@ -147,7 +147,7 @@ class NhanLuong extends Model
         $arr['hesoluong'] = $heso['bac' . $this->getBac($nhanvien_id)];
         $arr['ngaycong'] = $this->getNgayCong($nhanvien_id, $month, $year);
         $arr['ngaynghihl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 1);
-        $arr['ngaynghikhl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 0) + ($arr['ngaycongchuan'] - $arr['ngaycong']);
+        $arr['ngaynghikhl'] = $this->getNgayNghi($nhanvien_id, $month, $year, 0) + ($arr['ngaycongchuan'] - $arr['ngaycong']) - $arr['ngaynghihl'];
         $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
         $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
         $arr['khautru'] = $arr['mucluong'] * ($this->getKhauTru($nhanvien_id, $month, $year) / 100);
