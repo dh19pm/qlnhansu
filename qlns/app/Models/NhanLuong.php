@@ -80,11 +80,11 @@ class NhanLuong extends Model
         foreach ($data as $value)
         {
             if ($this->getMonth($value->ngaybd) == $this->getMonth($value->ngaykt))
-                $count = $count + $this->countDate($value->ngaybd, $value->ngaykt);
+                $count += $this->countDate($value->ngaybd, $value->ngaykt);
             else if ($this->getMonth($value->ngaykt) !== $month)
-                $count = $count + $this->countDate($value->ngaybd, $this->getLastDay($value->ngaybd));
+                $count += $this->countDate($value->ngaybd, $this->getLastDay($value->ngaybd));
             else if ($this->getMonth($value->ngaybd) !== $month)
-                $count = $count + $this->countDate($year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01', $value->ngaykt);
+                $count += $this->countDate($year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01', $value->ngaykt);
         }
 
         return $count;
@@ -100,11 +100,25 @@ class NhanLuong extends Model
         return NhanVien::join('phucap as p', 'nhanvien.phucap_id', '=', 'p.id')->select('p.hsphucap')->first()->hsphucap ?? 0;
     }
 
+    public function getThuongPhat($nhanvien_id, $month, $year, $loai = 1)
+    {
+        $tong = 0;
+        $thuongphat = (new ThuongPhat())->where('nhanvien_id', $nhanvien_id)
+        ->where('loai', $loai)
+        ->where('thang', $month)
+        ->where('nam', $year)
+        ->get();
+        foreach ($thuongphat as $value)
+            $tong += $value['sotien'];
+        return $tong;
+    }
+
     // thuclinh = (luongcb*heso + luongcb*heso*phucap)/ngaycongchuan*ngaycongthucte - ungtien (+-) thuongphat - baohiem
     public function tinhluong($nhanvien_id, $ngaycongchuan, $month, $year)
     {
         $arr = [];
         $heso = heso::first();
+        $arr['ngaycongchuan'] = $ngaycongchuan;
         $arr['luongcb'] = $heso['luongcb'];
         $arr['hesoluong'] = $heso['bac' . $this->getBac($nhanvien_id)];
         $arr['ngaycong'] = $this->getNgayCong($nhanvien_id, $month, $year);
@@ -113,7 +127,8 @@ class NhanLuong extends Model
         $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
         $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
         $arr['phucap'] = $arr['mucluong'] * ($arr['hsphucap'] / 100);
-        $arr['ngaycongchuan'] = $ngaycongchuan;
+        $arr['thuong'] = $this->getThuongPhat($nhanvien_id, $month, $year, 1);
+        $arr['phat'] = $this->getThuongPhat($nhanvien_id, $month, $year, 0);
         $arr['thuclinh'] = ($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl']);
         return $arr;
     }
