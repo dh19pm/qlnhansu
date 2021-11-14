@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
+use App\Imports\NhanVienImport;
+use App\Exports\NhanVienExport;
+use Excel;
 
 class NhanVienController extends Controller
 {
@@ -257,5 +260,16 @@ class NhanVienController extends Controller
         $nhanvien->restore();
 
         return Redirect::back()->with('success', 'Đã khôi phục thành công.');
+    }
+
+    public function import()
+    {
+        Excel::import(new NhanVienImport, Request::file('file_import'));
+        return redirect()->route('nhanvien');
+    }
+
+    public function export()
+    {
+        return Excel::download(new NhanVienExport, 'danh-sach-nhan-vien.xlsx');
     }
 }

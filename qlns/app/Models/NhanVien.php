@@ -13,6 +13,27 @@ class NhanVien extends Model
 
     protected $table = 'nhanvien';
 
+    protected $fillable = [
+        'phucap_id',
+        'bangcap_id',
+        'chuyenmon_id',
+        'ngoaingu_id',
+        'dantoc_id',
+        'tongiao_id',
+        'hovaten',
+        'gioitinh',
+        'ngaysinh',
+        'cmnd',
+        'sdt',
+        'diachi',
+        'quequan',
+        'trangthai',
+        'ngaynghilam',
+        'bacluong',
+        'hesoluong',
+        'photo_path',
+    ];
+
     public function resolveRouteBinding($value, $field = null)
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();

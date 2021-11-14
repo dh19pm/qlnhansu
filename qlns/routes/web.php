@@ -112,6 +112,14 @@ Route::put('nhanvien/{nhanvien}/restore', [NhanVienController::class, 'restore']
     ->name('nhanvien.restore')
     ->middleware('auth');
 
+Route::post('nhanvien/import', [NhanVienController::class, 'import'])
+    ->name('nhanvien.import')
+    ->middleware('auth');
+
+Route::get('nhanvien/export', [NhanVienController::class, 'export'])
+    ->name('nhanvien.export')
+    ->middleware('auth');
+
 // Images
 
 Route::get('/img/{path}', [ImagesController::class, 'show'])

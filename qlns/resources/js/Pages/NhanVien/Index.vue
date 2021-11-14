@@ -22,9 +22,13 @@
           <option value="danglamviec">Đang làm việc</option>
         </select>
       </search-filter>
-      <inertia-link class="btn-indigo" :href="route('nhanvien.create')">
-        <span>Tạo Mới</span>
-      </inertia-link>
+      <div>
+        <a href="javascript:void(0)" class="btn-indigo" @click="openModal"><span>Import</span></a>
+        <a :href="route('nhanvien.export')" class="btn-indigo" target="_blank"><span>Export</span></a>
+        <inertia-link class="btn-indigo" :href="route('nhanvien.create')">
+          <span>Tạo Mới</span>
+        </inertia-link>
+      </div>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
@@ -81,10 +85,38 @@
       </table>
     </div>
     <pagination :links="nhanvien.links" />
+    <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0, 0, 0, 0.7); display: none;">
+      <div class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <div class="modal-content py-4 text-left px-6">
+          <form @submit.prevent="store">
+            <!--Title-->
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-2xl font-bold">Header</p>
+              <div class="modal-close cursor-pointer z-50" @click="closeModal">
+                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+              </div>
+            </div>
+            <!--Body-->
+            <div class="my-5 leading-6">
+              <p>Vui lòng nhập file excel để cập nhật dữ liệu!</p>
+              <file-input v-model="form.fileimport" class="pr-6 pb-8 w-full lg:w-1/1" type="file" label="File Excel" />
+            </div>
+            <!--Footer-->
+            <div class="flex justify-end pt-2">
+              <button class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-white hover:bg-gray-300" @click="closeModal">Thoát</button>
+              <button type="submit" class="focus:outline-none px-4 btn-indigo p-3 ml-3 rounded-lg text-white hover:bg-teal-400">Tải Lên</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import Icon from '@/Shared/Icon'
 import Layout from '@/Shared/Layout'
 import mapValues from 'lodash/mapValues'
@@ -92,6 +124,7 @@ import Pagination from '@/Shared/Pagination'
 import pickBy from 'lodash/pickBy'
 import SearchFilter from '@/Shared/SearchFilter'
 import throttle from 'lodash/throttle'
+import FileInput from '@/Shared/FileInput'
 export default {
   metaInfo: { title: 'Nhân Viên' },
   layout: Layout,
@@ -99,6 +132,7 @@ export default {
     Icon,
     Pagination,
     SearchFilter,
+    FileInput,
   },
   props: {
     nhanvien: Object,
@@ -111,7 +145,9 @@ export default {
         trashed: this.filters.trashed,
         gioitinh: this.filters.gioitinh,
         trangthai: this.filters.trangthai,
+        fileimport: null,
       },
+      modal: null,
     }
   },
   watch: {
@@ -123,10 +159,46 @@ export default {
       deep: true,
     },
   },
+  mounted() {
+    this.modal = document.querySelector('.main-modal');
+  },
   methods: {
+    store() {
+      console.log(this.form.fileimport);
+      var formData = new FormData();
+      formData.append('file_import', this.form.fileimport);
+      axios.post('/nhanvien/import', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      }).then(() => {
+        alert('Đã upload file thành công');
+        window.location.reload();
+      })
+      .catch(() => {
+        alert('Đã xảy ra lỗi! Vui lòng thử lại.');
+        window.location.reload();
+      });
+    },
     reset() {
       this.form = mapValues(this.form, () => null)
     },
+    openModal() {
+      if (this.modal)
+      {
+        this.modal.classList.remove('fadeOut');
+        this.modal.classList.add('fadeIn');
+        this.modal.style.display = 'flex';
+      }
+    },
+    closeModal() {
+      if (this.modal)
+      {
+        this.modal.classList.remove('fadeIn');
+        this.modal.classList.add('fadeOut');
+        setTimeout(() => this.modal.style.display = 'none', 500);
+      }
+    }
   },
 }
 </script>
