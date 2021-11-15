@@ -51,8 +51,15 @@ class NghiViecController extends Controller
             'ngaykt' => ['required', 'date'],
             'huongluong' => ['required', 'boolean']
         ]);
+        $nghiviec = new NghiViec();
 
-        (new NghiViec())->create([
+        if ($nghiviec->exists($nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
+
+        if (!$nghiviec->checkDateStartEnd(Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày bắt đầu phải nhỏ hơn bằng ngày kết thúc.');
+
+        $nghiviec->create([
             'nhanvien_id' => $nhanvien->id,
             'lydo' => Request::get('lydo'),
             'ngaybd' => Request::get('ngaybd'),
@@ -86,6 +93,12 @@ class NghiViecController extends Controller
             'ngaykt' => ['required', 'date'],
             'huongluong' => ['required', 'boolean']
         ]);
+
+        if ($nghiviec->exists($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
+
+        if (!$nghiviec->checkDateStartEnd(Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày bắt đầu phải nhỏ hơn bằng ngày kết thúc.');
 
         $nghiviec->update([
             'lydo' => Request::get('lydo'),
