@@ -28,33 +28,42 @@ class NghiViec extends Model
         return strtotime($start) <= strtotime($end) ? true : false;
     }
 
-    public function checkNgayCong($start, $end)
+    public function checkNgayCong($nhanvienId, $start, $end)
     {
-
+        return $this->where('nhanvien_id', $nhanvienId)
+            ->whereBetween('created_at', [date($start), date($end)])
+            ->get()
+            ->count() > 0 ? true : false;
     }
     // a -> b => c trong a -> b hoặc d trong a -> b
     // hoặc
     // a -> b => c trong a -> b and d trong a -> b
     public function exists($nhanvienId, $start, $end, $currentId = -1)
     {
-        return $this->where('nhanvien_id', $nhanvienId)
-        ->where('id', '!=', $currentId)
-        ->where(function($query) use ($start, $end) {
+        return $this->where(function($query) use ($nhanvienId, $start, $end, $currentId) {
             return $query
             ->whereBetween('ngaybd', [date($start), date($end)])
-            ->whereBetween('ngaykt', [date($start), date($end)]);
-        })->OrWhere(function($query) use ($start, $end) {
+            ->whereBetween('ngaykt', [date($start), date($end)])
+            ->where('nhanvien_id', $nhanvienId)
+            ->where('id', '!=', $currentId);
+        })->OrWhere(function($query) use ($nhanvienId, $start, $end, $currentId) {
             return $query
             ->whereBetween('ngaybd', [date($start), date($end)])
-            ->WhereNotBetween('ngaykt', [date($start), date($end)]);
-        })->OrWhere(function($query) use ($start, $end) {
+            ->WhereNotBetween('ngaykt', [date($start), date($end)])
+            ->where('nhanvien_id', $nhanvienId)
+            ->where('id', '!=', $currentId);
+        })->OrWhere(function($query) use ($nhanvienId, $start, $end, $currentId) {
             return $query
             ->WhereNotBetween('ngaybd', [date($start), date($end)])
-            ->WhereBetween('ngaykt', [date($start), date($end)]);
-        })->OrWhere(function($query) use ($start, $end) {
+            ->WhereBetween('ngaykt', [date($start), date($end)])
+            ->where('nhanvien_id', $nhanvienId)
+            ->where('id', '!=', $currentId);
+        })->OrWhere(function($query) use ($nhanvienId, $start, $end, $currentId) {
             return $query
             ->where('ngaybd', '<', $start)
-            ->where('ngaykt', '>', $end);
+            ->where('ngaykt', '>', $end)
+            ->where('nhanvien_id', $nhanvienId)
+            ->where('id', '!=', $currentId);
         })
         ->get()
         ->count() > 0 ? true : false;

@@ -6,6 +6,7 @@ use App\Models\NghiViec;
 use App\Models\NhanVien;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\URL;
@@ -53,11 +54,14 @@ class NghiViecController extends Controller
         ]);
         $nghiviec = new NghiViec();
 
-        if ($nghiviec->exists($nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
-            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
-
         if (!$nghiviec->checkDateStartEnd(Request::get('ngaybd'), Request::get('ngaykt')))
             return Redirect::back()->with('error', 'Ngày bắt đầu phải nhỏ hơn bằng ngày kết thúc.');
+
+        if ($nghiviec->checkNgayCong($nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày nghĩ đã được chấm công.');
+
+        if ($nghiviec->exists($nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
 
         $nghiviec->create([
             'nhanvien_id' => $nhanvien->id,
@@ -94,11 +98,14 @@ class NghiViecController extends Controller
             'huongluong' => ['required', 'boolean']
         ]);
 
-        if ($nghiviec->exists($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt'), $nghiviec->id))
-            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
-
         if (!$nghiviec->checkDateStartEnd(Request::get('ngaybd'), Request::get('ngaykt')))
             return Redirect::back()->with('error', 'Ngày bắt đầu phải nhỏ hơn bằng ngày kết thúc.');
+
+        if ($nghiviec->checkNgayCong($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+            return Redirect::back()->with('error', 'Ngày nghĩ đã được chấm công.');
+
+        if ($nghiviec->exists($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt'), $nghiviec->id))
+            return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
 
         $nghiviec->update([
             'lydo' => Request::get('lydo'),
