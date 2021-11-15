@@ -31,9 +31,9 @@ class NghiViec extends Model
     public function checkNgayCong($nhanvienId, $start, $end)
     {
         return $this->where('nhanvien_id', $nhanvienId)
-            ->whereBetween('created_at', [date($start), date($end)])
-            ->get()
-            ->count() > 0 ? true : false;
+                    ->whereBetween('created_at', [date($start), date($end)])
+                    ->get()
+                    ->count() > 0 ? true : false;
     }
     // a -> b => c trong a -> b hoặc d trong a -> b
     // hoặc
