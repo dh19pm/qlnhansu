@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NhanVien;
 use App\Models\ChamCong;
+use App\Models\NghiViec;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -46,6 +47,7 @@ class BangChamCongController extends Controller
 
         $list = Request::get('nhanvienIDList');
         $ngaycong = Request::get('ngaycong');
+        $chamcong = new ChamCong();
 
         if (count($list) <= 0)
             return Redirect::back()->with('error', 'Bạn chưa chọn chấm công cho nhân viên nào cả.');
@@ -56,17 +58,20 @@ class BangChamCongController extends Controller
             {
                 if ($isTrue)
                 {
-                    (new ChamCong())->create([
-                        'nhanvien_id' => $id + 1,
-                        'created_at' => $ngaycong . ' 00:00:00'
-                    ]);
+                    if (!(new NghiViec())->checkNgayNghi($id + 1, $ngaycong))
+                    {
+                        $chamcong->create([
+                            'nhanvien_id' => $id + 1,
+                            'created_at' => $ngaycong . ' 00:00:00'
+                        ]);
+                    }
                 }
             }
             else
             {
                 if (!$isTrue)
                 {
-                    (new ChamCong())->where('nhanvien_id', $id + 1)->where('created_at', $ngaycong . ' 00:00:00')->forceDelete();
+                    $chamcong->where('nhanvien_id', $id + 1)->where('created_at', $ngaycong . ' 00:00:00')->forceDelete();
                 }
             }
         }

@@ -69,6 +69,15 @@ class NghiViec extends Model
         ->count() > 0 ? true : false;
     }
 
+    public function checkNgayNghi($nhanvienId, $ngay)
+    {
+        return $this->where('ngaybd', '>=', $ngay)
+                    ->where('ngaykt', '<=', $ngay)
+                    ->where('nhanvien_id', $nhanvienId)
+                    ->get()
+                    ->count() > 0 ? true : false;
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
