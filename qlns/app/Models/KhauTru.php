@@ -28,6 +28,16 @@ class KhauTru extends Model
         return $this->belongsTo(LoaiBaoHiem::class, 'loaibaohiem_id', 'id');
     }
 
+    public function exists($nhanvienId, $loaibaohiemId, $thang, $nam)
+    {
+        return $this->where('nhanvien_id', $nhanvienId)
+                    ->where('loaibaohiem_id', $loaibaohiemId)
+                    ->where('thang', $thang)
+                    ->where('nam', $nam)
+                    ->get()
+                    ->count() > 0 ? true : false;
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

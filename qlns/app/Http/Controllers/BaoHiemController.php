@@ -76,12 +76,17 @@ class BaoHiemController extends Controller
 
         if (Request::get('khautru') == 1)
         {
-            (new KhauTru())->create([
+            $thang = intval(date('m', time()));
+            $nam = intval(date('Y', time()));
+            $khautru = new KhauTru();
+            if ($khautru->exists($nhanvien->id, Request::get('loaibaohiem'), $thang, $nam))
+                return Redirect::back()->with('error', 'Khẩu trừ của bảo hiểm này đã tồn tại.');
+            $khautru->create([
                 'nhanvien_id' => $nhanvien->id,
                 'loaibaohiem_id' => Request::get('loaibaohiem'),
                 'mucdong' => Request::get('mucdong'),
-                'thang' => intval(date('m', time())),
-                'nam' => intval(date('Y', time())),
+                'thang' => $thang,
+                'nam' => $nam,
             ]);
         }
 
@@ -134,12 +139,17 @@ class BaoHiemController extends Controller
 
         if (Request::get('khautru') == 1)
         {
-            (new KhauTru())->create([
+            $thang = intval(date('m', time()));
+            $nam = intval(date('Y', time()));
+            $khautru = new KhauTru();
+            if ($khautru->exists($baohiem->nhanvien->id, Request::get('loaibaohiem'), $thang, $nam))
+                return Redirect::back()->with('error', 'Khẩu trừ của bảo hiểm này đã tồn tại.');
+            $khautru->create([
                 'nhanvien_id' => $baohiem->nhanvien->id,
                 'loaibaohiem_id' => Request::get('loaibaohiem'),
                 'mucdong' => Request::get('mucdong'),
-                'thang' => intval(date('m', time())),
-                'nam' => intval(date('Y', time())),
+                'thang' => $thang,
+                'nam' => $nam,
             ]);
         }
 
