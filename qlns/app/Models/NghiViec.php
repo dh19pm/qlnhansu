@@ -58,12 +58,6 @@ class NghiViec extends Model
             ->WhereBetween('ngaykt', [date($start), date($end)])
             ->where('nhanvien_id', $nhanvienId)
             ->where('id', '!=', $currentId);
-        })->OrWhere(function($query) use ($nhanvienId, $start, $end, $currentId) {
-            return $query
-            ->where('ngaybd', '<', $start)
-            ->where('ngaykt', '>', $end)
-            ->where('nhanvien_id', $nhanvienId)
-            ->where('id', '!=', $currentId);
         })
         ->get()
         ->count() > 0 ? true : false;
@@ -71,8 +65,8 @@ class NghiViec extends Model
 
     public function checkNgayNghi($nhanvienId, $ngay)
     {
-        return $this->where('ngaybd', '>=', $ngay)
-                    ->where('ngaykt', '<=', $ngay)
+        return $this->where('ngaybd', '<=', $ngay)
+                    ->where('ngaykt', '>=', $ngay)
                     ->where('nhanvien_id', $nhanvienId)
                     ->get()
                     ->count() > 0 ? true : false;
