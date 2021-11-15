@@ -55,7 +55,7 @@ class BaoHiemController extends Controller
     public function store(NhanVien $nhanvien)
     {
         Request::validate([
-            'loaibaohiem' => ['required', Rule::exists('loaibaohiem', 'id')],
+            'loaibaohiem' => ['required', Rule::exists('loaibaohiem', 'id'), Rule::unique('baohiem', 'loaibaohiem_id')->where('nhanvien_id', $nhanvien->id)],
             'maso' => ['required', 'max:100'],
             'noicap' => ['required', 'max:100'],
             'ngaycap' => ['required', 'date'],
@@ -119,7 +119,7 @@ class BaoHiemController extends Controller
     public function update(BaoHiem $baohiem)
     {
         Request::validate([
-            'loaibaohiem' => ['required', Rule::exists('loaibaohiem', 'id')],
+            'loaibaohiem' => ['required', Rule::exists('loaibaohiem', 'id'), Rule::unique('baohiem', 'loaibaohiem_id')->where('nhanvien_id', $baohiem->nhanvien->id)->ignore($baohiem->id)],
             'maso' => ['required', 'max:100'],
             'noicap' => ['required', 'max:100'],
             'ngaycap' => ['required', 'date'],
