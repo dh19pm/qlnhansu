@@ -35,6 +35,7 @@ class BangChamCongController extends Controller
                     'manv' => 'NV' . str_pad($nhanvien->id, 3, '0', STR_PAD_LEFT),
                     'hovaten' => $nhanvien->hovaten,
                     'email' => $nhanvien->user->email,
+                    'nghiviec' => (new NghiViec())->checkNgayNghi($nhanvien->id, $ngaycong)
                 ]),
         ]);
     }
