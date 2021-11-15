@@ -35,9 +35,10 @@ class NghiViec extends Model
     // a -> b => c trong a -> b hoặc d trong a -> b
     // hoặc
     // a -> b => c trong a -> b and d trong a -> b
-    public function exists($nhanvienId, $start, $end)
+    public function exists($nhanvienId, $start, $end, $currentId = -1)
     {
         return $this->where('nhanvien_id', $nhanvienId)
+        ->where('id', '!=', $currentId)
         ->where(function($query) use ($start, $end) {
             return $query
             ->whereBetween('ngaybd', [date($start), date($end)])
@@ -55,7 +56,8 @@ class NghiViec extends Model
             ->where('ngaybd', '<', $start)
             ->where('ngaykt', '>', $end);
         })
-        ->get()->count() > 0 ? true : false;
+        ->get()
+        ->count() > 0 ? true : false;
     }
 
     public function scopeFilter($query, array $filters)

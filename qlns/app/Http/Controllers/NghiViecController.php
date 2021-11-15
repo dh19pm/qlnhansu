@@ -94,7 +94,7 @@ class NghiViecController extends Controller
             'huongluong' => ['required', 'boolean']
         ]);
 
-        if ($nghiviec->exists($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt')))
+        if ($nghiviec->exists($nghiviec->nhanvien->id, Request::get('ngaybd'), Request::get('ngaykt'), $nghiviec->id))
             return Redirect::back()->with('error', 'Ngày nghỉ đã bị trùng.');
 
         if (!$nghiviec->checkDateStartEnd(Request::get('ngaybd'), Request::get('ngaykt')))

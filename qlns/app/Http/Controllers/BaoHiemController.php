@@ -142,8 +142,10 @@ class BaoHiemController extends Controller
             $thang = intval(date('m', time()));
             $nam = intval(date('Y', time()));
             $khautru = new KhauTru();
+
             if ($khautru->exists($baohiem->nhanvien->id, Request::get('loaibaohiem'), $thang, $nam))
                 return Redirect::back()->with('error', 'Khẩu trừ của bảo hiểm này đã tồn tại.');
+
             $khautru->create([
                 'nhanvien_id' => $baohiem->nhanvien->id,
                 'loaibaohiem_id' => Request::get('loaibaohiem'),

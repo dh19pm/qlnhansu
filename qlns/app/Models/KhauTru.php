@@ -28,9 +28,10 @@ class KhauTru extends Model
         return $this->belongsTo(LoaiBaoHiem::class, 'loaibaohiem_id', 'id');
     }
 
-    public function exists($nhanvienId, $loaibaohiemId, $thang, $nam)
+    public function exists($nhanvienId, $loaibaohiemId, $thang, $nam, $currentId = -1)
     {
         return $this->where('nhanvien_id', $nhanvienId)
+                    ->where('id', '!=', $currentId)
                     ->where('loaibaohiem_id', $loaibaohiemId)
                     ->where('thang', $thang)
                     ->where('nam', $nam)

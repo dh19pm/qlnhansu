@@ -61,11 +61,17 @@ class KhauTruController extends Controller
             'ngaydong' => ['required', 'date'],
         ]);
 
+        $thang = date('m', strtotime(Request::get('ngaydong')));
+        $nam = date('Y', strtotime(Request::get('ngaydong')));
+
+        if ($khautru->exists($khautru->nhanvien->id, Request::get('loaibaohiem'), $thang, $nam, $khautru->id))
+            return Redirect::back()->with('error', 'Khẩu trừ của bảo hiểm này đã tồn tại.');
+
         $khautru->update([
             'loaibaohiem_id' => Request::get('loaibaohiem'),
             'mucdong' => Request::get('mucdong'),
-            'thang' => date('m', strtotime(Request::get('ngaydong'))),
-            'nam' => date('Y', strtotime(Request::get('ngaydong'))),
+            'thang' => $thang,
+            'nam' => $nam,
         ]);
 
         return Redirect::back()->with('success', 'Đã cập nhật thành công.');
