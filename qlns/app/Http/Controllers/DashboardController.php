@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NhanVien;
 use Inertia\Inertia;
 
 class DashboardController extends Controller

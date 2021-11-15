@@ -38,23 +38,24 @@ class NghiViec extends Model
     public function exists($nhanvienId, $start, $end)
     {
         return $this->where('nhanvien_id', $nhanvienId)
-            ->where(function($query) use ($start, $end) {
-                return $query->where(function($query2) use ($start) {
-                    return $query2
-                    ->where('ngaybd', '>=', $start)
-                    ->where('ngaykt', '<=', $start);
-                })->OrWhere(function($query2) use ($end) {
-                    return $query2
-                    ->where('ngaybd', '>=', $end)
-                    ->where('ngaykt', '<=', $end);
-                });
-            })->OrWhere(function($query) use ($start, $end) {
-                return $query
-                ->where('ngaybd', '>=', $start)
-                ->where('ngaykt', '<=', $start)
-                ->where('ngaybd', '>=', $end)
-                ->where('ngaykt', '<=', $end);
-            })->get()->count() > 0 ? true : false;
+        ->where(function($query) use ($start, $end) {
+            return $query
+            ->whereBetween('ngaybd', [date($start), date($end)])
+            ->whereBetween('ngaykt', [date($start), date($end)]);
+        })->OrWhere(function($query) use ($start, $end) {
+            return $query
+            ->whereBetween('ngaybd', [date($start), date($end)])
+            ->WhereNotBetween('ngaykt', [date($start), date($end)]);
+        })->OrWhere(function($query) use ($start, $end) {
+            return $query
+            ->WhereNotBetween('ngaybd', [date($start), date($end)])
+            ->WhereBetween('ngaykt', [date($start), date($end)]);
+        })->OrWhere(function($query) use ($start, $end) {
+            return $query
+            ->where('ngaybd', '<', $start)
+            ->where('ngaykt', '>', $end);
+        })
+        ->get()->count() > 0 ? true : false;
     }
 
     public function scopeFilter($query, array $filters)
