@@ -35,7 +35,12 @@
             </inertia-link>
           </td>
           <td class="border-t text-center">
-              <input v-if="nv.nghiviec == false" v-model="chamcong.nhanvienIDList[nv.id - 1]" type="checkbox"/>
+              <div v-if="nv.nghiviec == false">
+                <input v-model="chamcong.nhanvienIDList[nv.id - 1]" type="checkbox"/>
+              </div>
+              <div v-else>
+                <input disabled type="checkbox"/>
+              </div>
           </td>
           <td class="border-t w-px">
             <inertia-link class="px-4 flex items-center" :href="route('nhanvien.edit', nv.id)" tabindex="-1">
