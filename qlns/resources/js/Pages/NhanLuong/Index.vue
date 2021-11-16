@@ -12,6 +12,8 @@
         <label class="mt-4 block text-gray-700">Tháng nhận:</label>
         <input v-model="form.ngayluong" class="mt-1 w-full form-input" type="month"/>
       </search-filter>
+      <a v-if="form.ngayluong" :href="route('nhanluong.export', { ngayluong: form.ngayluong })" class="btn-indigo" target="_blank"><span>Export</span></a>
+      <a v-else :href="route('nhanluong.export')" class="btn-indigo" target="_blank"><span>Export</span></a>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
       <table class="w-full whitespace-no-wrap">

@@ -182,4 +182,9 @@ class NhanLuongController extends Controller
 
         return Redirect::back()->with('success', 'Đã khôi phục thành công.');
     }
+
+    public function export()
+    {
+        return '';
+    }
 }

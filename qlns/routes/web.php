@@ -547,6 +547,10 @@ Route::put('nhanluong/{nhanluong}/restore', [NhanLuongController::class, 'restor
     ->name('nhanluong.restore')
     ->middleware('auth');
 
+Route::get('nhanluong/export', [NhanLuongController::class, 'export'])
+    ->name('nhanluong.export')
+    ->middleware('auth');
+
 // Khautru
 Route::get('khautru', [KhauTruController::class, 'index'])
     ->name('khautru')
