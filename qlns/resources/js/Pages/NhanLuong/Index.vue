@@ -9,6 +9,8 @@
           <option value="only">Đã xoá</option>
           <option value="with">Tất cả</option>
         </select>
+        <label class="mt-4 block text-gray-700">Tháng nhận:</label>
+        <input v-model="form.ngayluong" class="mt-1 w-full form-input" type="month"/>
       </search-filter>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
@@ -81,6 +83,7 @@ export default {
       form: {
         search: this.filters.search,
         trashed: this.filters.trashed,
+        ngayluong: this.filters.ngayluong,
       },
     }
   },

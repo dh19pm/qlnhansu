@@ -170,6 +170,8 @@ class NhanLuong extends Model
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->join('nhanvien as nv', 'nhanluong.nhanvien_id', '=', 'nv.id')
                   ->where('nv.hovaten', 'like', '%'.$search.'%');
+        })->when($filters['ngayluong'] ?? null, function ($query, $ngayluong) {
+
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();

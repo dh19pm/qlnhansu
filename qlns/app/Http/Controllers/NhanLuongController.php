@@ -32,9 +32,9 @@ class NhanLuongController extends Controller
     public function index()
     {
         return Inertia::render('NhanLuong/Index', [
-            'filters' => Request::all('search', 'trashed'),
+            'filters' => Request::all('search', 'trashed', 'ngayluong'),
             'nhanluong' => (new NhanLuong())
-                ->filter(Request::only('search', 'trashed'))
+                ->filter(Request::only('search', 'trashed', 'ngayluong'))
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($nhanluong) => [
