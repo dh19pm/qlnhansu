@@ -17,6 +17,13 @@ class NhanLuongExport implements FromCollection,
     * @return \Illuminate\Support\Collection
     */
 
+    private $ngaynhan;
+
+    public function __construct(string $ngaynhan = null)
+    {
+        $this->ngaynhan = $ngaynhan;
+    }
+
     public function headings(): array
     {
         return [
@@ -70,6 +77,20 @@ class NhanLuongExport implements FromCollection,
 
     public function collection()
     {
-        return (new NhanLuong())->join('nhanvien as nv', 'nhanluong.nhanvien_id', '=', 'nv.id')->get();
+        if (!empty($this->ngaynhan))
+        {
+            $this->ngaynhan = explode('-', $this->ngaynhan);
+            if (!empty($this->ngaynhan[0]) && !empty($this->ngaynhan[1]))
+            {
+                return (new NhanLuong())
+                ->join('nhanvien as nv', 'nhanluong.nhanvien_id', '=', 'nv.id')
+                ->where('thang', $this->ngaynhan[1])
+                ->where('nam', $this->ngaynhan[0])
+                ->get();
+            }
+        }
+        return (new NhanLuong())
+                ->join('nhanvien as nv', 'nhanluong.nhanvien_id', '=', 'nv.id')
+                ->get();
     }
 }

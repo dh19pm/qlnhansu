@@ -187,6 +187,6 @@ class NhanLuongController extends Controller
 
     public function export()
     {
-        return Excel::download(new NhanLuongExport, 'danh-sach-nhan-luong.xlsx');
+        return Excel::download(new NhanLuongExport(Request::get('ngayluong')), 'danh-sach-nhan-luong.xlsx');
     }
 }
