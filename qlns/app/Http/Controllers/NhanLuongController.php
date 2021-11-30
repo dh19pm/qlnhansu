@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\URL;
+use App\Exports\NhanLuongExport;
 use Inertia\Inertia;
+use Excel;
 
 class NhanLuongController extends Controller
 {
@@ -185,6 +187,6 @@ class NhanLuongController extends Controller
 
     public function export()
     {
-        return '';
+        return Excel::download(new NhanLuongExport, 'danh-sach-nhan-luong.xlsx');
     }
 }

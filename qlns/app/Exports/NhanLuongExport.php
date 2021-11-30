@@ -2,15 +2,74 @@
 
 namespace App\Exports;
 
+use App\Models\NhanLuong;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class NhanLuongExport implements FromCollection
-{
+class NhanLuongExport implements FromCollection,
+                                WithHeadings,
+                                WithCustomStartCell,
+                                WithMapping
+    {
     /**
     * @return \Illuminate\Support\Collection
     */
+
+    public function headings(): array
+    {
+        return [
+            'hovaten',
+            'heso',
+            'hsphucap',
+            'khautru',
+            'luongcb',
+            'mucluong',
+            'phucap',
+            'ngaycongchuan',
+            'ngaycong',
+            'nghihl',
+            'nghikhl',
+            'thuong',
+            'phat',
+            'tamung',
+            'thuclinh',
+            'thang',
+            'nam',
+        ];
+    }
+
+    public function map($row): array
+    {
+        return [
+            $row->hovaten,
+            !empty($row->heso) ? $row->heso : '0',
+            !empty($row->hsphucap) ? $row->hsphucap : '0',
+            !empty($row->khautru) ? $row->khautru : '0',
+            !empty($row->luongcb) ? $row->luongcb : '0',
+            !empty($row->mucluong) ? $row->mucluong : '0',
+            !empty($row->phucap) ? $row->phucap : '0',
+            !empty($row->ngaycongchuan) ? $row->ngaycongchuan : '0',
+            !empty($row->ngaycong) ? $row->ngaycong : '0',
+            !empty($row->nghihl) ? $row->nghihl : '0',
+            !empty($row->nghikhl) ? $row->nghikhl : '0',
+            !empty($row->thuong) ? $row->thuong : '0',
+            !empty($row->phat) ? $row->phat : '0',
+            !empty($row->tamung) ? $row->tamung : '0',
+            !empty($row->thuclinh) ? $row->thuclinh : '0',
+            $row->thang,
+            $row->nam,
+        ];
+    }
+
+    public function startCell(): string
+    {
+        return 'A1';
+    }
+
     public function collection()
     {
-        //
+        return (new NhanLuong())->join('nhanvien as nv', 'nhanluong.nhanvien_id', '=', 'nv.id')->get();
     }
 }
