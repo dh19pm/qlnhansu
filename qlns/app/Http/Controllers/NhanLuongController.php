@@ -65,7 +65,7 @@ class NhanLuongController extends Controller
         Request::validate([
             'heso' => ['required', 'between:0,100.00'],
             'hsphucap' => ['required', 'between:0,100.00'],
-            'khautru' => ['required', 'integer'],
+            'khautru' => ['required', 'between:0,100.00'],
             'luongcb' => ['required', 'integer'],
             'mucluong' => ['required', 'integer'],
             'phucap' => ['required', 'integer'],
