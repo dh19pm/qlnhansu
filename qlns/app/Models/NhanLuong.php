@@ -150,12 +150,12 @@ class NhanLuong extends Model
         $arr['ngaynghikhl'] = ($arr['ngaycongchuan'] - $arr['ngaycong']) - $arr['ngaynghihl'];
         $arr['hsphucap'] = $this->getPhuCap($nhanvien_id);
         $arr['mucluong'] = $arr['luongcb'] * $arr['hesoluong'];
-        $arr['khautru'] = $arr['mucluong'] * ($this->getKhauTru($nhanvien_id, $month, $year) / 100);
-        $arr['phucap'] = $arr['mucluong'] * ($arr['hsphucap'] / 100);
+        $arr['khautru'] = (int)($arr['mucluong'] * ($this->getKhauTru($nhanvien_id, $month, $year) / 100));
+        $arr['phucap'] = (int)($arr['mucluong'] * ($arr['hsphucap'] / 100));
         $arr['thuong'] = $this->getThuongPhat($nhanvien_id, $month, $year, 1);
         $arr['phat'] = $this->getThuongPhat($nhanvien_id, $month, $year, 0);
         $arr['tamung'] = $this->getTamLuong($nhanvien_id, $month, $year);
-        $arr['thuclinh'] = (($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl'])) + $arr['thuong'] - $arr['phat'] - $arr['tamung'] - $arr['khautru'];
+        $arr['thuclinh'] = (int)((($arr['mucluong'] + $arr['phucap']) / $arr['ngaycongchuan'] * ($arr['ngaycong'] + $arr['ngaynghihl'])) + $arr['thuong'] - $arr['phat'] - $arr['tamung'] - $arr['khautru']);
         $arr['thuclinh'] = $arr['thuclinh'] <= 0 ? 0 : floor($arr['thuclinh']);
         return $arr;
     }
