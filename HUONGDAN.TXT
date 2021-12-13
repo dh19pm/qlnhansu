@@ -1,3 +1,5 @@
+link sources code được public trên github: https://github.com/dh19pm/qlnhansu
+
 #chạy code bằng 1 số lệnh sau đây:
 
 composer install
